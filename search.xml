@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hexo的NexT主题：添加来必力评论]]></title>
+    <url>%2F2017%2F05%2F26%2FHexo%E7%9A%84NexT%E4%B8%BB%E9%A2%98%EF%BC%9A%E6%B7%BB%E5%8A%A0%E6%9D%A5%E5%BF%85%E5%8A%9B%E8%AF%84%E8%AE%BA%2F</url>
+    <content type="text"><![CDATA[来必力是什么？使用社交网站账户登录，免去注册过程。提高用户的参与和沟通意愿。管理/删除我的评论内容。提供管理页面，管理网站文章及评论内容。 安装来必力1 、登陆来必力网站注册2 、在后台的代码管理页面 查看一般网站的安装代码,复制data-uid的值 3、打开next主题的配置文件 \themes\next_config.yml，找到 livere_uid 设置为该值即可。123# Support for LiveRe comments system.# You can get your uid from https://livere.com/insight/myCode (General web site)livere_uid: 这里填写data-uid的值 基本设置 1 、注意需要在来必力后台管理的设置中添加网站名称和网站的URL，可根据情况选择要显示的SNS第三方登陆按钮。 2、评论提醒：在评论提醒开启登记新评论时，接受提醒，填写接受提醒的邮箱地址以及选择提醒周期。3、评论管理中可针对接收到的评论进行管理。]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo的NexT主题：显示网站访问人数和总访问量]]></title>
+    <url>%2F2017%2F05%2F18%2FHexo%E7%9A%84NexT%E4%B8%BB%E9%A2%98%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E4%BA%BA%E6%95%B0%E5%92%8C%E6%80%BB%E8%AE%BF%E9%97%AE%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[显示统计标签打开\themes\next\layout_partials\footer.swig文件，复制以下代码至你想要放置的位置。12345678910111213141516&lt;div class="busuanzi-count"&gt; &lt;script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt; &lt;span class="site-uv"&gt; &lt;i class="fa fa-user"&gt; 本站访客数&lt;/i&gt; &lt;span class="busuanzi-value" id="busuanzi_value_site_uv"&gt;&lt;/span&gt; 人 &lt;/span&gt; &lt;span class="site-pv"&gt; &lt;i class="fa fa-eye"&gt; 本站总访问量&lt;/i&gt; &lt;span class="busuanzi-value" id="busuanzi_value_site_pv"&gt;&lt;/span&gt; 次 &lt;/span&gt;&lt;/div&gt;]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F04%2F12%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
