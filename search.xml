@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python3.5安装加密模块pycrypto]]></title>
+    <url>%2F2017%2F06%2F01%2Fpython3-5%E5%AE%89%E8%A3%85%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9D%97pycrypto%2F</url>
+    <content type="text"><![CDATA[安装代码如下 1pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo的NexT主题：添加来必力评论]]></title>
     <url>%2F2017%2F05%2F26%2FHexo%E7%9A%84NexT%E4%B8%BB%E9%A2%98%EF%BC%9A%E6%B7%BB%E5%8A%A0%E6%9D%A5%E5%BF%85%E5%8A%9B%E8%AF%84%E8%AE%BA%2F</url>
     <content type="text"><![CDATA[来必力是什么？使用社交网站账户登录，免去注册过程。提高用户的参与和沟通意愿。管理/删除我的评论内容。提供管理页面，管理网站文章及评论内容。 安装来必力1 、登陆来必力网站注册2 、在后台的代码管理页面 查看一般网站的安装代码,复制data-uid的值 3、打开next主题的配置文件 \themes\next_config.yml，找到 livere_uid 设置为该值即可。123# Support for LiveRe comments system.# You can get your uid from https://livere.com/insight/myCode (General web site)livere_uid: 这里填写data-uid的值 基本设置 1 、注意需要在来必力后台管理的设置中添加网站名称和网站的URL，可根据情况选择要显示的SNS第三方登陆按钮。 2、评论提醒：在评论提醒开启登记新评论时，接受提醒，填写接受提醒的邮箱地址以及选择提醒周期。3、评论管理中可针对接收到的评论进行管理。]]></content>
