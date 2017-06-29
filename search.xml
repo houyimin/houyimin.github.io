@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[设置cmd命令提示符窗口的界面语言]]></title>
+    <url>%2F2017%2F06%2F29%2F%E8%AE%BE%E7%BD%AEcmd%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E7%AA%97%E5%8F%A3%E7%9A%84%E7%95%8C%E9%9D%A2%E8%AF%AD%E8%A8%80%2F</url>
+    <content type="text"><![CDATA[chcp 是 “change code page”的缩写，chcp命令查看当前代码页 “chcp 437” 命令的作用是更改代码页。 437 是美国英语的代码页936 是中文的代码页，936就是cmd默认的代码页]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[PHPStorm 设置调试工具XDebug]]></title>
     <url>%2F2017%2F06%2F07%2FPHPStorm-%E8%AE%BE%E7%BD%AE%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7XDebug%2F</url>
     <content type="text"><![CDATA[安装XDebug如果使用的PHP开发环境是phpStudy，本身已经安装了XDebug扩展，只需在php.ini中开启即可。12345[XDebug]xdebug.profiler_output_dir="D:\phpStudy\tmp\xdebug"xdebug.trace_output_dir="D:\phpStudy\tmp\xdebug"zend_extension="D:\phpStudy\php\php-5.5.38\ext\php_xdebug.dll"xdebug.remote_enable = on 如果没有安装，可以到 xdebug网站 下载相应版本的XDebug扩展php_xdebug.dll,只需将phpinfo的内容复制到输入框，第一种方式可以打印phpinfo()，复制网页内容，第二种方式在命令行将phpinfo的内容输出到文件中 php -i &gt;phpinfo.txt ，复制phpinfo.txt的内容到输入框。最后点击按钮 Analyse my phpinfo() output 就会显示你要下载的版本。 设置PHPStorm一、 添加服务器信息1、 进入File&gt;Settings&gt;Languages &amp; Frameworks&gt;PHP&gt;Servers，根据自己的域名进行设置，www.xywang.net是我配置的要进行debug的域名。 2、进入File&gt;Settings&gt;Languages &amp; Frameworks&gt;PHP&gt;Debug&gt;DBGp Proxy 填写：123IDE key: phpStorm host: www.xywang.net port: 80 3、最后点菜单栏的Run&gt;Edit Configurations… 在弹出的窗口中添加一个调试配置：点击左上角加号，选择PHP Web Application，选择刚才配置的Server，选择默认浏览器为chrome 二、安装chrome调试插件Xdebug helper安装好后在浏览器右上角会有一个灰色的小甲虫，右键选项中设置IDE key为PhpStorm,调试时要选择Debug选项成为绿色。 开始调试调试时，在phpstrom中设置好断点，并点击右上角开始监听调试按钮，最后刷新网页即可进行调试。]]></content>
