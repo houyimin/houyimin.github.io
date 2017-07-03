@@ -441,8 +441,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(myproject) D:\houyimin\learnpython\myproject\Scripts&gt;</div></pre></td></tr></table></figure>
 <p>注意到命令提示符变了，有个(myproject)前缀，表示当前环境是一个名为myproject的Python环境。</p>
 <h2 id="运行下面的命令退出virtualenv环境。"><a href="#运行下面的命令退出virtualenv环境。" class="headerlink" title="运行下面的命令退出virtualenv环境。"></a>运行下面的命令退出virtualenv环境。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deactivate</div></pre></td></tr></table></figure>
-<p>virtualenv拷贝了Python可执行文件的副本，并创建一些有用的脚本和安装了项目需要的软件包，你可以在项目的整个生命周期中安装/升级/删除这些包。 它也修改了一些搜索路径，例如PYTHONPATH，以确保：</p>
-<h2 id="当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。"><a href="#当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。" class="headerlink" title="当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。"></a>当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。</h2><h2 id="当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。"><a href="#当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。" class="headerlink" title="当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。"></a>当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。</h2>
+<p>virtualenv拷贝了Python可执行文件的副本，并创建一些有用的脚本和安装了项目需要的软件包，你可以在项目的整个生命周期中安装/升级/删除这些包。 它也修改了一些搜索路径，例如PYTHONPATH，以确保：<br>当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。<br>当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。</p>
+
           
         
       
