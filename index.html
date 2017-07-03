@@ -319,6 +319,172 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/07/03/Python独立开发环境配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/03/Python独立开发环境配置/" itemprop="url">
+                  Python独立开发环境virtualenv配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T17:38:05+08:00">
+                2017-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/03/Python独立开发环境配置/" class="leancloud_visitors" data-flag-title="Python独立开发环境virtualenv配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><h3 id="什么是virtualenv"><a href="#什么是virtualenv" class="headerlink" title="什么是virtualenv"></a>什么是virtualenv</h3><p>Virtualenv是一个用来创建独立的Python环境的包。</p>
+</blockquote>
+<p>你可以为每个项目建立不同的/独立的Python环境，你将为每个项目安装所有需要的软件包到它们各自独立的环境中。</p>
+<h2 id="安装与使用virtualenv"><a href="#安装与使用virtualenv" class="headerlink" title="安装与使用virtualenv"></a>安装与使用virtualenv</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install virtualenv</div></pre></td></tr></table></figure>
+<p>virtualenv安装完毕后，可以通过运行下面的命令在项目目录myproject创建独立的python环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir myproject</div><div class="line"><span class="built_in">cd</span> myproject</div><div class="line">virtualenv --no-site-packages myproject</div></pre></td></tr></table></figure></p>
+<p>参数–no-site-packages代表已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的Python运行环境。</p>
+<p>以上代码安装的是系统默认的python版本，如果需要安装指定版本的python，比如安装python2.7可以用以下代码。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir myproject</div><div class="line"><span class="built_in">cd</span> myproject</div><div class="line">virtualenv --no-site-packages --python=C:\Python27\python.exe myproject</div></pre></td></tr></table></figure></p>
+<h2 id="通过下面的命令激活这个virtualenv：activate为激活文件"><a href="#通过下面的命令激活这个virtualenv：activate为激活文件" class="headerlink" title="通过下面的命令激活这个virtualenv：activate为激活文件"></a>通过下面的命令激活这个virtualenv：activate为激活文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> bin/activate</div></pre></td></tr></table></figure>
+<p>windows执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> Scripts</div><div class="line">activate</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(myproject) D:\houyimin\learnpython\myproject\Scripts&gt;</div></pre></td></tr></table></figure>
+<p>注意到命令提示符变了，有个(myproject)前缀，表示当前环境是一个名为myproject的Python环境。</p>
+<h2 id="运行下面的命令退出virtualenv环境。"><a href="#运行下面的命令退出virtualenv环境。" class="headerlink" title="运行下面的命令退出virtualenv环境。"></a>运行下面的命令退出virtualenv环境。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deactivate</div></pre></td></tr></table></figure>
+<p>virtualenv拷贝了Python可执行文件的副本，并创建一些有用的脚本和安装了项目需要的软件包，你可以在项目的整个生命周期中安装/升级/删除这些包。 它也修改了一些搜索路径，例如PYTHONPATH，以确保：</p>
+<h2 id="当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。"><a href="#当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。" class="headerlink" title="当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。"></a>当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。</h2><h2 id="当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。"><a href="#当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。" class="headerlink" title="当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。"></a>当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/06/29/PHP导出大数据到Excel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1426,7 +1592,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
