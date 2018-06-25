@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[awk文件比对]]></title>
+    <url>%2F2018%2F06%2F25%2Fawk%E6%96%87%E4%BB%B6%E6%AF%94%E5%AF%B9%2F</url>
+    <content type="text"><![CDATA[文件以制表符\t分隔1、将某几列作为主键key，对某列求和1awk '&#123;sum[$1,$2]+=$3&#125;END&#123;for(c in sum)&#123;print c,sum[c] &#125;&#125;' 1.txt &gt; 3.txt 2、两个文件比较 while((getline &lt; “1.txt”)&gt;0 //读到文件末尾1cat 2|awk -F"\t" 'BEGIN&#123;while((getline &lt; "1")&gt;0) hash[$1$2]=$3&#125;&#123;if(hash[$1$2]-$3&gt;1 || hash[$1$2]-$3&lt;-1) print $0"|"hash[$1$2]&#125;' 3、提取某列输出重复数据项1cat 1 |awk '&#123;print $1&#125;' |sort|uniq -c|awk '&#123;if($1==2) print $0&#125;' 4、在文件1不在文件2的数据项1cat 1 2 1|sort |uniq -c|awk '&#123;if($1==2) print $0&#125;' 5、找出2个文件差异项1cat 1.txt 2.txt |sort |uniq -u]]></content>
+      <categories>
+        <category>awk</category>
+      </categories>
+      <tags>
+        <tag>awk</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MYSQL备份]]></title>
     <url>%2F2018%2F04%2F09%2FMYSQL%E5%A4%87%E4%BB%BD%2F</url>
     <content type="text"><![CDATA[mysql mysqldump 只导出表结构 不导出数据1mysqldump --opt -d 数据库名 -u root -p &gt; xxx.sql 备份数据库12#mysqldump 数据库名 &gt;数据库备份名 #mysqldump -A -u用户名 -p密码 数据库名&gt;数据库备份名 #mysqldump -d -A --add-drop-table -uroot -p &gt;xxx.sql 1.导出结构不导出数据1mysqldump --opt -d 数据库名 -u root -p &gt; xxx.sql 2.导出数据不导出结构1mysqldump -t 数据库名 -uroot -p &gt; xxx.sql 3.导出数据和表结构1mysqldump 数据库名 -uroot -p &gt; xxx.sql 4.导出特定表的结构1mysqldump -uroot -p -B 数据库名 --table 表名 &gt; xxx.sql 导入数据：12#mysql 数据库名 &lt; 文件名 #source /tmp/xxx.sql]]></content>
