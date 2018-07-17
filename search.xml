@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Python导出CSV]]></title>
+    <url>%2F2018%2F07%2F17%2FPython%E5%AF%BC%E5%87%BACSV%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132#!/usr/bin/env python# -*- coding: utf-8 -*-import pymysqlimport ioimport sysimport csvimport timesys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030') #改变标准输出的默认编码 sql ="SELECT hospital_id, type FROM `tb_hospital`"start = time.time()db = pymysql.connect(host='127.0.0.1',user='root', password='123456', port=3306, db='db_kr',charset='utf8')cursor = db.cursor()cursor.execute(sql)results = cursor.fetchall()print('Count:', cursor.rowcount)i=0with open('hospital_type.csv', 'a+', encoding='utf-8',newline='') as csvfile: writer = csv.writer(csvfile) writer.writerow([ 'hospital_id', '类型']) for row in results: i = i + 1 print("第",i) writer.writerow(row)end = time.time()print('Cost time:',end-start)]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[awk文件比对]]></title>
     <url>%2F2018%2F06%2F25%2Fawk%E6%96%87%E4%BB%B6%E6%AF%94%E5%AF%B9%2F</url>
     <content type="text"><![CDATA[文件以制表符\t分隔1、将某几列作为主键key，对某列求和1awk '&#123;sum[$1,$2]+=$3&#125;END&#123;for(c in sum)&#123;print c,sum[c] &#125;&#125;' 1.txt &gt; 3.txt 2、两个文件比较 while((getline &lt; “1.txt”)&gt;0 //读到文件末尾1cat 2|awk -F"\t" 'BEGIN&#123;while((getline &lt; "1")&gt;0) hash[$1$2]=$3&#125;&#123;if(hash[$1$2]-$3&gt;1 || hash[$1$2]-$3&lt;-1) print $0"|"hash[$1$2]&#125;' 3、提取某列输出重复数据项1cat 1 |awk '&#123;print $1&#125;' |sort|uniq -c|awk '&#123;if($1==2) print $0&#125;' 4、在文件1不在文件2的数据项1cat 1 2 1|sort |uniq -c|awk '&#123;if($1==2) print $0&#125;' 5、找出2个文件差异项1cat 1.txt 2.txt |sort |uniq -u]]></content>
