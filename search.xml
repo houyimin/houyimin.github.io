@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[本地配置多个ssh key]]></title>
+    <url>%2F2018%2F07%2F23%2F%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAssh-key%2F</url>
+    <content type="text"><![CDATA[1、为gitlab生成ssh key1ssh-keygen -t rsa -C 'yourEmail@xx.com' -f ~/.ssh/gitlab-rsa 2、为github生成ssh key1ssh-keygen -t rsa -C 'yourEmail2@xx.com' -f ~/.ssh/github-rsa 3、在~/.ssh目录下新建名称为config的文件（无后缀名）。用于配置多个不同的host使用不同的ssh key，内容如下： 12345678910111213141516# gitlabHost gitlab.com HostName gitlab.com PreferredAuthentications publickey IdentityFile ~/.ssh/gitlab-rsa# githubHost github.com HostName github.com PreferredAuthentications publickey IdentityFile ~/.ssh/github-rsa ​# 配置文件参数# Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件# HostName : 要登录主机的主机名# User : 登录名# IdentityFile : 指明上面User对应的identityFile路径 4、按照上面的步骤分别往gitlab和github上添加生成的公钥gitlab_id-rsa.pub和github_id-rsa.pub]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Python导出CSV]]></title>
     <url>%2F2018%2F07%2F17%2FPython%E5%AF%BC%E5%87%BACSV%2F</url>
     <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132#!/usr/bin/env python# -*- coding: utf-8 -*-import pymysqlimport ioimport sysimport csvimport timesys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030') #改变标准输出的默认编码 sql ="SELECT hospital_id, type FROM `tb_hospital`"start = time.time()db = pymysql.connect(host='127.0.0.1',user='root', password='123456', port=3306, db='db_kr',charset='utf8')cursor = db.cursor()cursor.execute(sql)results = cursor.fetchall()print('Count:', cursor.rowcount)i=0with open('hospital_type.csv', 'a+', encoding='utf-8',newline='') as csvfile: writer = csv.writer(csvfile) writer.writerow([ 'hospital_id', '类型']) for row in results: i = i + 1 print("第",i) writer.writerow(row)end = time.time()print('Cost time:',end-start)]]></content>
