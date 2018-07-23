@@ -112,7 +112,7 @@
 <meta property="og:url" content="https://houyimin.github.io/2018/07/23/本地配置多个ssh-key/index.html">
 <meta property="og:site_name" content="踏浪">
 <meta property="og:description" content="1、为gitlab生成ssh key1ssh-keygen -t rsa -C &apos;yourEmail@xx.com&apos; -f ~/.ssh/gitlab-rsa 2、为github生成ssh key1ssh-keygen -t rsa -C &apos;yourEmail2@xx.com&apos; -f ~/.ssh/github-rsa 3、在~/.ssh目录下新建名称为config的文件（无后缀名）。用于配置多个">
-<meta property="og:updated_time" content="2018-07-23T08:30:22.007Z">
+<meta property="og:updated_time" content="2018-07-23T08:38:20.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本地配置多个ssh key">
 <meta name="twitter:description" content="1、为gitlab生成ssh key1ssh-keygen -t rsa -C &apos;yourEmail@xx.com&apos; -f ~/.ssh/gitlab-rsa 2、为github生成ssh key1ssh-keygen -t rsa -C &apos;yourEmail2@xx.com&apos; -f ~/.ssh/github-rsa 3、在~/.ssh目录下新建名称为config的文件（无后缀名）。用于配置多个">
@@ -431,7 +431,9 @@
 <p>2、为github生成ssh key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">'yourEmail2@xx.com'</span> <span class="_">-f</span> ~/.ssh/github-rsa</div></pre></td></tr></table></figure></p>
 <p>3、在~/.ssh目录下新建名称为config的文件（无后缀名）。用于配置多个不同的host使用不同的ssh key，内容如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># gitlab</span></div><div class="line">Host gitlab.com</div><div class="line">    HostName gitlab.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/gitlab-rsa</div><div class="line"><span class="comment"># github</span></div><div class="line">Host github.com</div><div class="line">    HostName github.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/github-rsa</div><div class="line">  ​</div><div class="line"><span class="comment"># 配置文件参数</span></div><div class="line"><span class="comment"># Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件</span></div><div class="line"><span class="comment"># HostName : 要登录主机的主机名</span></div><div class="line"><span class="comment"># User : 登录名</span></div><div class="line"><span class="comment"># IdentityFile : 指明上面User对应的identityFile路径</span></div></pre></td></tr></table></figure>
-<p>4、按照上面的步骤分别往gitlab和github上添加生成的公钥gitlab_id-rsa.pub和github_id-rsa.pub</p>
+<p>4、按照上面的步骤分别往gitlab和github上添加生成的公钥gitlab-rsa.pub和github-rsa.pub</p>
+<p>5、查看ssh key<br>cat ~/.ssh/github-rsa.pub</p>
+<p>6、测试是否连接<br>ssh -T git@github.com</p>
 
       
     </div>
