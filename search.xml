@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[pyenv切换python版本]]></title>
+    <url>%2F2018%2F07%2F26%2Fpyenv%E5%88%87%E6%8D%A2python%E7%89%88%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[1、查看版本1pyenv install --list 指定版本安装1pyenv install 3.4.3 -v 2.安装后，记得要更新1pyenv rehash 3.查看已安装版本1pyenv versions system (set by /home/seisman/.pyenv/version)3.4.3 4.指定版本1pyenv global 3.4.3 5.切回原来版本1pyenv global system]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[本地配置多个ssh key]]></title>
     <url>%2F2018%2F07%2F23%2F%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAssh-key%2F</url>
     <content type="text"><![CDATA[1、为gitlab生成ssh key1ssh-keygen -t rsa -C 'yourEmail@xx.com' -f ~/.ssh/gitlab-rsa 2、为github生成ssh key1ssh-keygen -t rsa -C 'yourEmail2@xx.com' -f ~/.ssh/github-rsa 3、在~/.ssh目录下新建名称为config的文件（无后缀名）。用于配置多个不同的host使用不同的ssh key，内容如下： 12345678910111213141516# gitlabHost gitlab.com HostName gitlab.com PreferredAuthentications publickey IdentityFile ~/.ssh/gitlab-rsa# githubHost github.com HostName github.com PreferredAuthentications publickey IdentityFile ~/.ssh/github-rsa ​# 配置文件参数# Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件# HostName : 要登录主机的主机名# User : 登录名# IdentityFile : 指明上面User对应的identityFile路径 4、按照上面的步骤分别往gitlab和github上添加生成的公钥gitlab-rsa.pub和github-rsa.pub 5、查看ssh keycat ~/.ssh/github-rsa.pub 6、测试是否连接ssh -T git@github.com]]></content>
