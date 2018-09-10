@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Docker 安装]]></title>
     <url>%2F2018%2F09%2F10%2FDocker-%E5%AE%89%E8%A3%85%2F</url>
-    <content type="text"><![CDATA[一、win7、win8 系统win7、win8 等需要利用 docker toolbox 来安装，国内可以使用阿里云的镜像来下载，下载地址：http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/ 下载安装完成后，点击 Docker QuickStart 图标来启动 Docker Toolbox 终端。 1docker run hello-world 二、 CentOS 6.8 安装 DockerCentOS 7 的内核一般都是3.10的，而CentOS 6.X 的内核一般都是2.6，在2.6的内核下，Docker运行会比较卡，所以一般会选择升级到3.10版本。 安装docker-io1[root@localhost ~]# yum install docker-io 三、使用 yum 安装（CentOS 7下） Docker 要求 CentOS 系统的内核版本高于 3.10 。 通过 uname -r 命令查看你当前的内核版本 1[root@runoob ~]# uname -r 3.10.0-327.el7.x86_64 参考链接： 使用 yum 安装（CentOS 7下） [参考链接]Docker 教程 CentOS 6.8 安装 Docker]]></content>
+    <content type="text"><![CDATA[一、win7、win8 系统win7、win8 等需要利用 docker toolbox 来安装，国内可以使用阿里云的镜像来下载，下载地址：http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/ 下载安装完成后，点击 Docker QuickStart 图标来启动 Docker Toolbox 终端。 1docker run hello-world 二、 CentOS 6.8 安装 DockerCentOS 7 的内核一般都是3.10的，而CentOS 6.X 的内核一般都是2.6，在2.6的内核下，Docker运行会比较卡，所以一般会选择升级到3.10版本。 安装docker-io1[root@localhost ~]# yum install docker-io 三、使用 yum 安装（CentOS 7下） Docker 要求 CentOS 系统的内核版本高于 3.10 。 通过 uname -r 命令查看你当前的内核版本 1[root@runoob ~]# uname -r 3.10.0-327.el7.x86_64 参考链接： 使用 yum 安装（CentOS 7下） 配置 Docker 加速器参考链接： Docker 加速器） [参考链接]Docker 教程 CentOS 6.8 安装 Docker]]></content>
       <categories>
         <category>Docker</category>
       </categories>
