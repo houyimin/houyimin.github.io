@@ -19,13 +19,12 @@ git clone git@github.com:XXX.github.io.git
 ```
 
 2. 删除文件夹里除了.git的其他所有文件
-3. 把你的blog文件夹内的所有文件全部复制到XXX.github.io/下
-4. 创建一个叫hexo（或者blog，名字随意）的分支，并切换到这个分支
+3. 创建一个叫hexo（或者blog，名字随意）的分支，并切换到这个分支
 
 ``` bash
 git checkout -b hexo
 ```
-
+4. 把你的blog文件夹内的所有文件全部复制到XXX.github.io/下
 5. 添加文件，推送到远程仓库
 
 
