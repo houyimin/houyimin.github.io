@@ -1,6 +1,9 @@
 ---
 title: hexo多终端发布博客
-tags:hexo
+tags:
+ - Hexo
+categories:
+ - Hexo
 ---
 > 网站的部署其实就是生成静态文件，hexo下所有生成的静态文件会放在public/文件夹中，所谓部署deploy其实就是 
 将public/文件夹中内容上传到git仓库

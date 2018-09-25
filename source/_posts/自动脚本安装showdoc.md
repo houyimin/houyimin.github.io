@@ -1,6 +1,9 @@
 ---
 title: 自动脚本安装showdoc
-tags:showdoc
+tags:
+ - showdoc
+categories:
+ - PHP
 ---
 ShowDoc就是一个非常适合IT团队的在线文档分享工具，它可以加快团队之间沟通的效率。 [ShowDoc](https://www.showdoc.cc).
 
