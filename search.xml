@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[自动脚本安装showdoc]]></title>
+    <url>%2F2018%2F09%2F25%2F%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85showdoc%2F</url>
+    <content type="text"><![CDATA[ShowDoc就是一个非常适合IT团队的在线文档分享工具，它可以加快团队之间沟通的效率。 ShowDoc. 安装自动脚本脚本利用docker来安装运行环境，适用于linux服务器。1234#下载脚本并赋予权限wget https://www.showdoc.cc/script/showdoc;chmod +x showdoc;#默认安装中文版。如果想安装英文版，请加上en参数，如 ./showdoc en./showdoc 其他命令123456789#执行上面命令便会自动安装完成。下面附上脚本其他命令，以便管理showdoc时可以用得上。#停止./showdoc stop #重启./showdoc restart#升级showdoc到最新版./showdoc update#卸载showdoc./showdoc uninstall 使用说明安装好后，showdoc的数据都会存放在 /showdoc_data/html 目录下。./showdoc 脚本可放置在任何目录，方便以后使用。也可以重新从官方地址下载。 你可以打开 http://xxx.com:4999 来访问showdoc (xxx.com为你的服务器域名或者IP)。账户密码是showdoc/123456 从手动方式升级到自动脚本方式 把原来showdoc目录的Sqlite/showdoc.db.php覆盖/showdoc_data/html/Sqlite/showdoc.db.php ，Public/Uploads覆盖 /showdoc_data/html/Public/Uploads 执行命令 12chmod 777 -R /showdoc_data/html ./showdoc update 自动安装shell脚本123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120#!/bin/bashif [[ -n "$1" ]] ; then action=$1else action='install'fiif [ "$action" == "start" ] ;then sudo -s service docker start sudo -s docker start showdoc exit 1 fiif [ "$action" == "restart" ] ;then sudo -s docker restart showdoc exit 1fiif [ "$action" == "stop" ] ;then sudo -s docker stop showdoc exit 1fiif [ "$action" == "update" ] ;then DATE=$(date +%Y%m%d_%H%M%S_%N) if [ ! -d "/showdoc_data/html" ]; then echo "/showdoc_data/html 目录不存在" exit 1 ; fi sudo -s docker stop showdoc rm -f master.tar.gz wget https://github.com/star7th/showdoc/archive/master.tar.gz if [ ! -f "master.tar.gz" ]; then docker start showdoc echo "文件下载失败" exit 1 fi sudo -s mv /showdoc_data/html /showdoc_data/html_bak_$&#123;DATE&#125; tar -zxvf master.tar.gz -C /showdoc_data/ sudo -s mv /showdoc_data/showdoc-master /showdoc_data/html ##// */ if [ ! -d "/showdoc_data/html" ]; then echo "/showdoc_data/html 目录不存在" exit 1 ; fi sudo -s chmod 777 -R /showdoc_data/html sudo -s docker start showdoc sleep 10 curl http://localhost:4999/install/non_interactive.php?lang=zh \cp -f /showdoc_data/html_bak_$&#123;DATE&#125;/Sqlite/showdoc.db.php /showdoc_data/html/Sqlite/showdoc.db.php \cp -r -f /showdoc_data/html_bak_$&#123;DATE&#125;/Public/Uploads /showdoc_data/html/Public/Uploads sudo -s curl http://localhost:4999?s=/home/update/db rm -f master.tar.gz exit 1fiif [ "$action" == "uninstall" ] ;then read -r -p "即将卸载showdoc，你是否确认删除showdoc所有数据? [Y/n] " input case $input in [yY][eE][sS]|[yY]) echo "正在卸载..." sudo -s docker stop showdoc sudo -s docker rm showdoc sudo -s docker rmi registry.docker-cn.com/star7th/showdoc sudo -s rm -rf /showdoc_data ;; [nN][oO]|[nN]) ;; *) exit 1 ;; esac exit 1fiif ! [ -x "$(command -v docker)" ]; then echo '检测到Docker尚未安装。正在试图从网络安装...所需时间与你的网络环境有关' sudo -s curl -sSL https://get.daocloud.io/docker | sh sudo -s chkconfig docker on fiif ! [ -x "$(command -v docker)" ]; then echo '检测到Docker尚未安装。正在试图从网络安装...所需时间与你的网络环境有关' sudo -s curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh - sudo -s chkconfig docker on fiif ! [ -x "$(command -v docker)" ]; then echo 'Docker自动安装失败,建议你手动安装好docker环境后再启动本脚本' exit 1 fiif [ "$(docker images |grep showdoc)" ]; then echo "你已经安装过showdoc镜像" echo "如果你想更新showdoc，请执行 ./showdoc update " echo "如果你想重启showdoc，请执行 ./showdoc restart " echo "如果你想卸载showdoc，请执行 ./showdoc uninstall " exit 1 fisudo -s service docker startecho '正在拉取showdoc镜像，请稍后...所需时间与你的网络环境有关'sudo -s docker pull registry.docker-cn.com/star7th/showdocsudo -s mkdir /showdoc_dataif [ ! -d "/showdoc_data" ]; then echo "/showdoc_data 目录不存在，请确保有创建权限" exit 1 ;fisudo -s mkdir /showdoc_data/htmlsudo -s chmod 777 -R /showdoc_datasudo -s docker run -d --name showdoc -p 4999:80 -v /showdoc_data/html:/var/www/html/ registry.docker-cn.com/star7th/showdocsleep 10sudo -s docker exec showdoc \cp -fr /showdoc_data/html/ /var/www/sudo -s chmod 777 -R /showdoc_dataif [ "$action" == "en" ] ;then sudo -s curl http://localhost:4999/install/non_interactive.php?lang=enelse sudo -s curl http://localhost:4999/install/non_interactive.php?lang=zhfisudo -s wget http://localhost:4999/install/install.lockif [ -f "install.lock" ]; then rm -rf install.lock echo -e "\n \033[32m 安装成功，访问地址：http://localhost:4999 (你也可以用局域网或者公网IP/域名访问) \033[0m \n" echo -e " \033[32m 账户密码是showdoc/123456，登录后你便可以看到右上方的管理后台入口。建议登录后修改密码。 \033[0m \n" echo -e " \033[32m 对showdoc的问题或建议请至https://github.com/star7th/showdoc 提issue \033[0m \n"fi]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>showdoc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo多终端发布博客]]></title>
+    <url>%2F2018%2F09%2F25%2Fhexo%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%2F</url>
+    <content type="text"><![CDATA[网站的部署其实就是生成静态文件，hexo下所有生成的静态文件会放在public/文件夹中，所谓部署deploy其实就是将public/文件夹中内容上传到git仓库 换了电脑怎么办？在现有的guthub.io的repository下创建一个分支来管理 克隆仓库到本地 1git clone git@github.com:XXX.github.io.git 删除文件夹里除了.git的其他所有文件 创建一个叫hexo（或者blog，名字随意）的分支，并切换到这个分支 1git checkout -b hexo 把你的blog文件夹内的所有文件全部复制到XXX.github.io/下 添加文件，推送到远程仓库 12345678# 添加所有文件到暂存区git add --all#提交git commit -m ""#推送hexo分支的文件到github仓库git push --set-upstream origin hexo 最后的效果就是仓库中的master放到是生成博客页面的文件（也就是blog/public/下的的文件），分支hexo中存放的就是我们备份的必要的blog中的文件。 发布博客后，执行指令，将备份的文件推送到hexo分支 1234git add . #添加所有文件到暂存区git commit -m "提交一篇博客" #提交git push origin hexo 推送hexo分支到github 今后如果换电脑的话，配置好基本的环境，然后克隆hexo分支到本地,npm install 安装依赖 12git clone -b hexo git@github.com:XXX.github.io.git 综上所述新建博客hexo new post “你好，hexo” ，然后去blog\source_posts 编辑文章。以后每次写完博客，通过hexo g，hexo d发布博客，然后通过git三部曲git add . ; git commit -m “注释” ; git push origin hexo更新备份github的hexo分支即可]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker常用命令]]></title>
+    <url>%2F2018%2F09%2F14%2FDocker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[运行一个应用123docker pull nginxdocker run -d -p 8080:80 --name='nginx1' -v /local/html:/usr/share/nginx/html nginx -d:让容器在后台运行。-p:将容器80端口映射到宿主机8080端口。 查看正在运行的容器1docker ps 使用 docker port 可以查看指定 （ID或者名字）容器的某个确定端口映射到宿主机的端口号1docker port 7a38a1ad55c6 查看WEB应用程序日志1docker logs -f 7a38a1ad55c6 检查WEB应用程序,使用 docker inspect 来查看Docker的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。1docker inspect determined_swanson 停止、启动、删除容器123docker stop determined_swanson docker start determined_swansondocker rm determined_swanson docker exec ：在运行的容器中执行命令-d :分离模式: 在后台运行 -i :即使没有附加也保持STDIN 打开 -t :分配一个伪终端 在容器mynginx中以交互模式执行容器内/root/runoob.sh脚本1docker exec -it mynginx /bin/sh /root/runoob.sh 在容器mynginx中以交互模式执行容器内/root/runoob.sh脚本1docker exec -i -t mynginx /bin/bash]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker 安装]]></title>
+    <url>%2F2018%2F09%2F10%2FDocker-%E5%AE%89%E8%A3%85%2F</url>
+    <content type="text"><![CDATA[一、win7、win8 系统win7、win8 等需要利用 docker toolbox 来安装，国内可以使用阿里云的镜像来下载，下载地址：http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/ 下载安装完成后，点击 Docker QuickStart 图标来启动 Docker Toolbox 终端。 1docker run hello-world 二、 CentOS 6.8 安装 DockerCentOS 7 的内核一般都是3.10的，而CentOS 6.X 的内核一般都是2.6，在2.6的内核下，Docker运行会比较卡，所以一般会选择升级到3.10版本。 安装docker-io1[root@localhost ~]# yum install docker-io 三、使用 yum 安装（CentOS 7下） Docker 要求 CentOS 系统的内核版本高于 3.10 。 通过 uname -r 命令查看你当前的内核版本 1[root@runoob ~]# uname -r 3.10.0-327.el7.x86_64 参考链接： 使用 yum 安装（CentOS 7下） 配置 Docker 加速器参考链接： Docker 加速器） [参考链接] Docker 教程 CentOS 6.8 安装 Docker]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[pyenv切换python版本]]></title>
+    <url>%2F2018%2F07%2F26%2Fpyenv%E5%88%87%E6%8D%A2python%E7%89%88%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[1、查看版本1pyenv install --list 指定版本安装1pyenv install 3.4.3 -v 2.安装后，记得要更新1pyenv rehash 3.查看已安装版本1pyenv versions system (set by /home/seisman/.pyenv/version)3.4.3 4.指定版本1pyenv global 3.4.3 5.切回原来版本1pyenv global system]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[本地配置多个ssh key]]></title>
+    <url>%2F2018%2F07%2F23%2F%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAssh-key%2F</url>
+    <content type="text"><![CDATA[1、为gitlab生成ssh key1ssh-keygen -t rsa -C 'yourEmail@xx.com' -f ~/.ssh/gitlab-rsa 2、为github生成ssh key1ssh-keygen -t rsa -C 'yourEmail2@xx.com' -f ~/.ssh/github-rsa 3、在~/.ssh目录下新建名称为config的文件（无后缀名）。用于配置多个不同的host使用不同的ssh key，内容如下： 12345678910111213141516# gitlabHost gitlab.com HostName gitlab.com PreferredAuthentications publickey IdentityFile ~/.ssh/gitlab-rsa# githubHost github.com HostName github.com PreferredAuthentications publickey IdentityFile ~/.ssh/github-rsa ​# 配置文件参数# Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件# HostName : 要登录主机的主机名# User : 登录名# IdentityFile : 指明上面User对应的identityFile路径 4、按照上面的步骤分别往gitlab和github上添加生成的公钥gitlab-rsa.pub和github-rsa.pub 5、查看ssh keycat ~/.ssh/github-rsa.pub 6、测试是否连接ssh -T git@github.com]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python导出CSV]]></title>
+    <url>%2F2018%2F07%2F17%2FPython%E5%AF%BC%E5%87%BACSV%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132#!/usr/bin/env python# -*- coding: utf-8 -*-import pymysqlimport ioimport sysimport csvimport timesys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030') #改变标准输出的默认编码 sql ="SELECT hospital_id, type FROM `tb_hospital`"start = time.time()db = pymysql.connect(host='127.0.0.1',user='root', password='123456', port=3306, db='db_kr',charset='utf8')cursor = db.cursor()cursor.execute(sql)results = cursor.fetchall()print('Count:', cursor.rowcount)i=0with open('hospital_type.csv', 'a+', encoding='utf-8',newline='') as csvfile: writer = csv.writer(csvfile) writer.writerow([ 'hospital_id', '类型']) for row in results: i = i + 1 print("第",i) writer.writerow(row)end = time.time()print('Cost time:',end-start)]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[awk文件比对]]></title>
+    <url>%2F2018%2F06%2F25%2Fawk%E6%96%87%E4%BB%B6%E6%AF%94%E5%AF%B9%2F</url>
+    <content type="text"><![CDATA[文件以制表符\t分隔1、将某几列作为主键key，对某列求和1awk '&#123;sum[$1,$2]+=$3&#125;END&#123;for(c in sum)&#123;print c,sum[c] &#125;&#125;' 1.txt &gt; 3.txt 2、两个文件比较 while((getline &lt; “1.txt”)&gt;0 //读到文件末尾1cat 2|awk -F"\t" 'BEGIN&#123;while((getline &lt; "1")&gt;0) hash[$1$2]=$3&#125;&#123;if(hash[$1$2]-$3&gt;1 || hash[$1$2]-$3&lt;-1) print $0"|"hash[$1$2]&#125;' 3、提取某列输出重复数据项1cat 1 |awk '&#123;print $1&#125;' |sort|uniq -c|awk '&#123;if($1==2) print $0&#125;' 4、在文件1不在文件2的数据项1cat 1 2 1|sort |uniq -c|awk '&#123;if($1==2) print $0&#125;' 5、找出2个文件差异项1cat 1.txt 2.txt |sort |uniq -u]]></content>
+      <categories>
+        <category>awk</category>
+      </categories>
+      <tags>
+        <tag>awk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MYSQL备份]]></title>
+    <url>%2F2018%2F04%2F09%2FMYSQL%E5%A4%87%E4%BB%BD%2F</url>
+    <content type="text"><![CDATA[mysql mysqldump 只导出表结构 不导出数据1mysqldump --opt -d 数据库名 -u root -p &gt; xxx.sql 备份数据库12#mysqldump 数据库名 &gt;数据库备份名 #mysqldump -A -u用户名 -p密码 数据库名&gt;数据库备份名 #mysqldump -d -A --add-drop-table -uroot -p &gt;xxx.sql 1.导出结构不导出数据1mysqldump --opt -d 数据库名 -u root -p &gt; xxx.sql 2.导出数据不导出结构1mysqldump -t 数据库名 -uroot -p &gt; xxx.sql 3.导出数据和表结构1mysqldump 数据库名 -uroot -p &gt; xxx.sql 4.导出特定表的结构1mysqldump -uroot -p -B 数据库名 --table 表名 &gt; xxx.sql 导入数据：12#mysql 数据库名 &lt; 文件名 #source /tmp/xxx.sql]]></content>
+      <categories>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MYSQL 导入导出CSV]]></title>
+    <url>%2F2018%2F04%2F09%2FMysql-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BACSV%2F</url>
+    <content type="text"><![CDATA[MYSQL命令行导出 csv文件12345678mysql &gt; SELECT *FROM table_name INTO OUTFILE 'D:/test.csv' FIELDS TERMINATED BY ',' -----字段间以,号分隔 OPTIONALLY ENCLOSED BY '"' ------字段用"号括起 escaped by '"' ------字段中使用的转义符为" LINES TERMINATED BY '\n'; ------行以\n结束 MYSQL命令行导入 csv文件基本语法123456789load data [low_priority] [local] infile 'file_name txt' [replace | ignore]into table tbl_name[fields[terminated by't'][OPTIONALLY] enclosed by ''][escaped by'\' ]][lines terminated by'n'][ignore number lines][(col_name, )] 示例1234567891011LOAD DATA LOCAL INFILE 'D:/test.csv' REPLACE INTO TABLE table_name FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '' ESCAPED BY '\"' LINES TERMINATED BY '\n' ( field1, field2, create_date, update_date); load data infile语句从一个文本文件中以很高的速度读入一个表中。使用这个命令之前，mysqld进程（服务）必须已经在运行。为了安全原因，当读取位于服务器上的文本文件时，文件必须处于数据库目录或可被所有人读取。另外，为了对服务器上文件使用load data infile，在服务器主机上你必须有file的权限。 1 如果你指定关键词low_priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令：load data low_priority infile “/home/mark/data sql” into table Orders; 2 如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。3 replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如：load data low_priority infile “/home/mark/data sql” replace into table Orders; 4 分隔符（1） fields关键字指定了文件字段的分割格式，如果用到这个关键字，MySQL剖析器希望看到至少有下面的一个选项：terminated by分隔符：意思是以什么字符作为分隔符enclosed by字段括起字符escaped by转义字符terminated by描述字段的分隔符，默认情况下是tab字符（\t）enclosed by描述的是字段的括起字符。escaped by描述的转义字符。默认的是反斜杠（backslash：\ ）例如：load data infile “/home/mark/Orders txt” replace into table Orders fields terminated by’,’ enclosed by ‘“‘; （2）lines 关键字指定了每条记录的分隔符默认为’\n’即为换行符如果两个字段都指定了那fields必须在lines之前。如果不指定fields关键字缺省值与如果你这样写的相同： fields terminated by’\t’ enclosed by ’ ‘’ ‘ escaped by’\‘如果你不指定一个lines子句，缺省值与如果你这样写的相同： lines terminated by’\n’例如：load data infile “/jiaoben/load.txt” replace into table test fields terminated by ‘,’ lines terminated by ‘/n’; 5 load data infile 可以按指定的列把文件导入到数据库中。 当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列/字段/field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候下面的例子显示了如何向指定的栏目(field)中导入数据：load data infile “/home/Order txt” into table Orders(Order_Number, Order_Date, Customer_ID); 6 当在服务器主机上寻找文件时，服务器使用下列规则：（1）如果给出一个绝对路径名，服务器使用该路径名。（2）如果给出一个有一个或多个前置部件的相对路径名，服务器相对服务器的数据目录搜索文件。（3）如果给出一个没有前置部件的一个文件名，服务器在当前数据库的数据库目录寻找文件。例如： /myfile txt”给出的文件是从服务器的数据目录读取，而作为“myfile txt”给出的一个文件是从当前数据库的数据库目录下读取。 [参考链接] mysql导入数据load data infile用法(将txt文件中的数据导入表中)]]></content>
+      <categories>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python安装]]></title>
+    <url>%2F2017%2F10%2F12%2FPython%E5%AE%89%E8%A3%85%2F</url>
+    <content type="text"><![CDATA[安装Python 3.X在Windows上安装Python根据你的Windows版本（64位还是32位）从Python的官方网站www.python.org下载，然后，运行下载的EXE安装包 在Linux上安装Python打开WEB浏览器访问www.python.org/download选择适用于Unix/Linux的源码压缩包。这里，我选择的版本是 3.5.2 123456789101112下载#wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz解压压缩包#tar -zxvf Python-3.5.2.tgz进入目录#cd Python-3.5.2/添加配置#./configure编译程序#make执行安装#make install 执行以上操作后，Python会安装在 /usr/local/bin 目录中，Python库安装在/usr/local/lib/pythonXX，XX为你使用的Python的版本号。 验证 安装成功以后，就可以查看 Python 的版本了：1234# python -VPython 2.7.5# python3 -VPython 3.5.2 设置 3.x 为默认版本查看 Python 的路径，在 /usr/bin 下面。可以看到 python 链接的是 python 2.7，所以，执行 python 就相当于执行 python 2.7。12345678910111213141516# ls -al /usr/bin | grep python-rwxr-xr-x. 1 root root 11216 12月 1 2015 abrt-action-analyze-pythonlrwxrwxrwx. 1 root root 7 8月 30 12:11 python -&gt; python2lrwxrwxrwx. 1 root root 9 8月 30 12:11 python2 -&gt; python2.7-rwxr-xr-x. 1 root root 7136 11月 20 2015 python2.7将原来 python 的软链接重命名：# mv /usr/bin/python /usr/bin/python.bak将 python 链接至 python3：# ln -s /usr/local/bin/python3 /usr/bin/python这时，再查看 Python 的版本：# python -VPython 3.5.2输出的是 3.x，说明已经使用的是 python3了。 [参考链接] Python 环境搭建 Linux 升级 Python 至 3.x]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux在history添加时间和用户]]></title>
+    <url>%2F2017%2F09%2F30%2FLinux%E5%9C%A8history%E6%B7%BB%E5%8A%A0%E6%97%B6%E9%97%B4%E5%92%8C%E7%94%A8%E6%88%B7%2F</url>
+    <content type="text"><![CDATA[设置显示时间和用户1echo 'export HISTTIMEFORMAT="[%Y.%m.%d %H:%M:%S] [`whoami`] "' &gt;&gt; /etc/profile 执行source使配置生效12source /etc/profile]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python独立开发环境virtualenv配置]]></title>
+    <url>%2F2017%2F07%2F03%2FPython%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[什么是virtualenv Virtualenv是一个用来创建独立的Python环境的包。 你可以为每个项目建立不同的/独立的Python环境，你将为每个项目安装所有需要的软件包到它们各自独立的环境中。 安装与使用virtualenv1pip install virtualenv virtualenv安装完毕后，可以通过运行下面的命令在项目目录myproject创建独立的python环境123mkdir myprojectcd myprojectvirtualenv --no-site-packages myproject 参数–no-site-packages代表已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的Python运行环境。 以上代码安装的是系统默认的python版本，如果需要安装指定版本的python，比如安装python2.7可以用以下代码。123mkdir myprojectcd myprojectvirtualenv --no-site-packages --python=C:\Python27\python.exe myproject 通过下面的命令激活这个virtualenv：activate为激活文件1source bin/activate windows执行12cd Scriptsactivate 1(myproject) D:\houyimin\learnpython\myproject\Scripts&gt; 注意到命令提示符变了，有个(myproject)前缀，表示当前环境是一个名为myproject的Python环境。 运行下面的命令退出virtualenv环境。1deactivate virtualenv拷贝了Python可执行文件的副本，并创建一些有用的脚本和安装了项目需要的软件包，你可以在项目的整个生命周期中安装/升级/删除这些包。 它也修改了一些搜索路径，例如PYTHONPATH，以确保：当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径。当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP导出大数据到Excel]]></title>
+    <url>%2F2017%2F06%2F29%2FPHP%E5%AF%BC%E5%87%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%B0Excel%2F</url>
+    <content type="text"><![CDATA[数据量很大时（5万条以上），用 PHPExcel 导出 xls 将十分缓慢且占用很大内存，最终造成运行超时或内存不足。可以通过设置 PHP 的运行时间和内存限制来阻止错误发生，但仍然不能确保导出完成。 12set_time_limit(0);ini_set("memory_limit","512M"); 一、 可生成多个链接分页进行导出要彻底解决这个问题可以将数据分批导出成 CSV 格式的文件，这种格式简单导出快，并且也能用到 Excel 中。 我们用php提供的fputcsv来导出一百万的数据，原理就是打开一个标准输出流，然后把数据按一万条来分割，每一万条就刷新缓冲区。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556&lt;?phpset_time_limit(0);ini_set('memory_limit', '128M'); $fileName = date('YmdHis', time());header('Content-Type: application/vnd.ms-execl');header('Content-Disposition: attachment;filename="' . $fileName . '.csv"'); $begin = microtime(true); //打开php标准输出流//以写入追加的方式打开$fp = fopen('php://output', 'a'); $db = new mysqli('127.0.0.1', 'root', '', 'test'); if($db-&gt;connect_error) &#123; die('connect error');&#125; //我们试着用fputcsv从数据库中导出1百万的数据//我们每次取1万条数据，分100步来执行//如果线上环境无法支持一次性读取1万条数据，可把$nums调小，$step相应增大。$step = 100;$nums = 10000; //设置标题$title = array('ID', '用户名', '用户年龄', '用户描述', '用户手机', '用户QQ', '用户邮箱', '用户地址');foreach($title as $key =&gt; $item) &#123; $title[$key] = iconv('UTF-8', 'GBK', $item);&#125;//将标题写到标准输出中fputcsv($fp, $title); for($s = 1; $s &lt;= $step; ++$s) &#123; $start = ($s - 1) * $nums; $result = $db-&gt;query("SELECT * FROM tb_users ORDER BY id LIMIT &#123;$start&#125;,&#123;$nums&#125;"); if($result) &#123; while($row = $result-&gt;fetch_assoc()) &#123; foreach($row as $key =&gt; $item) &#123; //这里必须转码，不然会乱码 $row[$key] = iconv('UTF-8', 'GBK', $item); &#125; fputcsv($fp, $row); &#125; $result-&gt;free(); //每1万条数据就刷新缓冲区 ob_flush(); flush(); &#125;&#125; $end = microtime(true);echo '用时：', $end - $begin; 生成一个文件数据过大，可以生成下载链接进行单个导出。1234567891011121314151617181920212223242526//表单&lt;form action="&lt;?php echo $this-&gt;createUrl('/offlinead/default/index');?&gt;" id="myform" method="get" &gt; &lt;button type="button" class="btn btn-info" id="exportBtn"&gt;导出Excel&lt;/button&gt; &lt;/form&gt; // 导出excel js $("#exportBtn").click(function () &#123; var params = $("#myform").serialize(); var url = "&lt;?php echo $this-&gt;createUrl('/offlinead/default/index'); ?&gt;"; //获取查询数据的条数 $.get(url+"?is_get_num=1&amp;export=1&amp;" + params, function(data) &#123; var downDataList = ""; if(data["rows"]) &#123; //rows是数据总条数，pageSize是一页多少条 var pageNum = Math.ceil(data["rows"] / data["pageSize"]); for(var i = 1; i &lt;= pageNum; ++i) &#123; downDataList += "&lt;a href='"+url+"?export=1&amp;" + params + "&amp;page=" + i + "'&gt;下载汇总结果" + i + "&lt;/a&gt;&amp;nbsp;&amp;nbsp;"; &#125; $("#searchDataList").html(downDataList); &#125; else &#123; commonjs.alert("没有数据"); &#125; &#125;, "json"); return false; &#125;); 二、 生成多个文件到一个目录，打包导出JS代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546 var pageNum = 0; //总页数 // 导出excel $("#exportBtn").click(function () &#123; var params = $("#myform").serialize(); var url = "&lt;?php echo $this-&gt;createUrl('/offlinead/default/index'); ?&gt;"; //获取查询数据的条数 $.get(url+"?is_get_num=1&amp;export=1&amp;" + params, function(data) &#123; if(data["rows"]) &#123; //rows是数据总条数，pageSize是一页多少条 pageNum = Math.ceil(data["rows"] / data["pageSize"]); excel(1); //生成excel文件 console.log("正在生成第一页\n"); &#125; else &#123; commonjs.alert("没有数据"); &#125; &#125;, "json"); return false; &#125;);//生成csv文件 function excel(page) &#123; //向后台发送处理数据 $.ajax(&#123; type: "POST", dataType: "text", url: '&lt;?php echo Yii::app()-&gt;createUrl("/offlinead/default/index"); ?&gt;?' + $("#myform").serialize() + '&amp;export=1&amp;page='+page, //分页生成excel地址 data: "", error: function () &#123; commonjs.alert("下载失败"); &#125;, success: function (data) &#123; if (data == 1) &#123; var nowpage = page+1; if (nowpage &lt;= pageNum+1) &#123; excel(nowpage); // console.log("正在生成第"+nowpage+"页\n"); &#125; &#125; else if(data == 0) &#123; commonjs.alert("下载失败"); &#125;else&#123; location.href = data; //跳转到生成的zip包进行下载 &#125; &#125; &#125;); &#125; PHP代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758$list = $this-&gt;getOrder($this-&gt;page,$this-&gt;pageSize);//当前页查询到的数据if ($this-&gt;page &lt;= $pagenum) &#123; //当前页小于总页数，生成csv $date = date("Ymd"); $p =$this-&gt;page;//当前页数 $filename = $this-&gt;_upload_path.$date."-".$p.'.csv';//$this-&gt;_upload_path生成文件路径 $this-&gt;exportCSVCommand($filename,$list);//生成csv echo 1; //生成单页数据成功 &#125;else&#123; //全部生成完以后，对生成目录进行打包 $zip=new ZipArchive();//php打包类,xxx.zip为压缩包文件名 if($zip-&gt;open($this-&gt;_upload_path.'xxx.zip', ZipArchive::OVERWRITE)=== TRUE)&#123; $this-&gt;addFileToZip($this-&gt;_upload_path, $zip); //调用方法，对要打包的根目录进行操作，并将ZipArchive的对象传递给方法 $zip-&gt;close(); //关闭处理的zip文件 echo $this-&gt;_upload_path.'xxx.zip';//返回前端压缩包目录，进行下载 &#125;else&#123; echo 0; //打包失败 &#125; &#125;//根据数组生成excel文件 public function exportArrayCommand($fileName, $array) &#123; $fp = fopen($fileName, 'w'); // 计数器 $cnt = 0; // 每隔$limit行，刷新一下输出buffer $limit = 10000; // 逐行取出数据，不浪费内存 foreach ($array as $row) &#123; $cnt ++; if ($limit == $cnt) &#123; //刷新一下输出buffer，防止由于数据过多造成问题 ob_flush(); flush(); $cnt = 0; &#125; foreach ($row as $i =&gt; $v) &#123; $row[$i] = iconv('utf-8', 'gb2312', $v); &#125; fputcsv($fp, $row); &#125; fclose($fp); &#125;//将指定目录文件，加入到压缩文件对象 public function addFileToZip($path,$zip)&#123; $handler=opendir($path); //打开当前文件夹由$path指定。 while(($filename=readdir($handler))!==false)&#123; if($filename != "." &amp;&amp; $filename != "..")&#123;//文件夹文件名字为'.'和‘..’，不要对他们进行操作 if(is_dir($path.DIRECTORY_SEPARATOR.$filename))&#123;// 如果读取的某个对象是文件夹，则递归 addFileToZip($path."/".$filename, $zip); &#125;else&#123; //将文件加入zip对象 $zip-&gt;addFile($path."/".$filename); &#125; &#125; &#125; @closedir($path); &#125;]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[设置cmd命令提示符窗口的界面语言]]></title>
+    <url>%2F2017%2F06%2F29%2F%E8%AE%BE%E7%BD%AEcmd%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E7%AA%97%E5%8F%A3%E7%9A%84%E7%95%8C%E9%9D%A2%E8%AF%AD%E8%A8%80%2F</url>
+    <content type="text"><![CDATA[chcp 是 “change code page”的缩写，chcp命令查看当前代码页 “chcp 437” 命令的作用是更改代码页。 437 是美国英语的代码页936 是中文的代码页，936就是cmd默认的代码页]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PHPStorm 设置调试工具XDebug]]></title>
+    <url>%2F2017%2F06%2F07%2FPHPStorm-%E8%AE%BE%E7%BD%AE%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7XDebug%2F</url>
+    <content type="text"><![CDATA[安装XDebug如果使用的PHP开发环境是phpStudy，本身已经安装了XDebug扩展，只需在php.ini中开启即可。12345[XDebug]xdebug.profiler_output_dir="D:\phpStudy\tmp\xdebug"xdebug.trace_output_dir="D:\phpStudy\tmp\xdebug"zend_extension="D:\phpStudy\php\php-5.5.38\ext\php_xdebug.dll"xdebug.remote_enable = on 如果没有安装，可以到 xdebug网站 下载相应版本的XDebug扩展php_xdebug.dll,只需将phpinfo的内容复制到输入框，第一种方式可以打印phpinfo()，复制网页内容，第二种方式在命令行将phpinfo的内容输出到文件中 php -i &gt;phpinfo.txt ，复制phpinfo.txt的内容到输入框。最后点击按钮 Analyse my phpinfo() output 就会显示你要下载的版本。 设置PHPStorm一、 添加服务器信息1、 进入File&gt;Settings&gt;Languages &amp; Frameworks&gt;PHP&gt;Servers，根据自己的域名进行设置，www.xywang.net是我配置的要进行debug的域名。 2、进入File&gt;Settings&gt;Languages &amp; Frameworks&gt;PHP&gt;Debug&gt;DBGp Proxy 填写：123IDE key: phpStorm host: www.xywang.net port: 80 3、最后点菜单栏的Run&gt;Edit Configurations… 在弹出的窗口中添加一个调试配置：点击左上角加号，选择PHP Web Application，选择刚才配置的Server，选择默认浏览器为chrome 二、安装chrome调试插件Xdebug helper安装好后在浏览器右上角会有一个灰色的小甲虫，右键选项中设置IDE key为PhpStorm,调试时要选择Debug选项成为绿色。 开始调试调试时，在phpstrom中设置好断点，并点击右上角开始监听调试按钮，最后刷新网页即可进行调试。]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python3.5安装加密模块pycrypto]]></title>
+    <url>%2F2017%2F06%2F01%2Fpython3-5%E5%AE%89%E8%A3%85%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9D%97pycrypto%2F</url>
+    <content type="text"><![CDATA[安装代码如下1pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo的NexT主题：添加来必力评论]]></title>
+    <url>%2F2017%2F05%2F26%2FHexo%E7%9A%84NexT%E4%B8%BB%E9%A2%98%EF%BC%9A%E6%B7%BB%E5%8A%A0%E6%9D%A5%E5%BF%85%E5%8A%9B%E8%AF%84%E8%AE%BA%2F</url>
+    <content type="text"><![CDATA[来必力是什么？ 使用社交网站账户登录，免去注册过程。 提高用户的参与和沟通意愿。 管理/删除我的评论内容。 提供管理页面，管理网站文章及评论内容。 安装来必力1 、登陆来必力网站注册2 、在后台的代码管理页面 查看一般网站的安装代码,复制data-uid的值 3、打开next主题的配置文件 \themes\next_config.yml，找到 livere_uid 设置为该值即可。123# Support for LiveRe comments system.# You can get your uid from https://livere.com/insight/myCode (General web site)livere_uid: 这里填写data-uid的值 基本设置1 、注意需要在来必力后台管理的设置中添加网站名称和网站的URL，可根据情况选择要显示的SNS第三方登陆按钮。 2、评论提醒：在评论提醒开启登记新评论时，接受提醒，填写接受提醒的邮箱地址以及选择提醒周期。3、评论管理中可针对接收到的评论进行管理。]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo的NexT主题：显示网站访问人数和总访问量]]></title>
+    <url>%2F2017%2F05%2F18%2FHexo%E7%9A%84NexT%E4%B8%BB%E9%A2%98%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E4%BA%BA%E6%95%B0%E5%92%8C%E6%80%BB%E8%AE%BF%E9%97%AE%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[显示统计标签打开\themes\next\layout_partials\footer.swig文件，复制以下代码至你想要放置的位置。12345678910111213141516&lt;div class="busuanzi-count"&gt; &lt;script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt; &lt;span class="site-uv"&gt; &lt;i class="fa fa-user"&gt; 本站访客数&lt;/i&gt; &lt;span class="busuanzi-value" id="busuanzi_value_site_uv"&gt;&lt;/span&gt; 人 &lt;/span&gt; &lt;span class="site-pv"&gt; &lt;i class="fa fa-eye"&gt; 本站总访问量&lt;/i&gt; &lt;span class="busuanzi-value" id="busuanzi_value_site_pv"&gt;&lt;/span&gt; 次 &lt;/span&gt;&lt;/div&gt;]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F04%2F12%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
