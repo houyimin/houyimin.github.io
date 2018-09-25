@@ -48,9 +48,8 @@ CentOS 7 的内核一般都是3.10的，而CentOS 6.X 的内核一般都是2.6�
 
 参考链接： [Docker 加速器）](https://www.daocloud.io/mirror#accelerator-doc)
 
-{% cq %} 
+
  ### [参考链接]
  [Docker 教程](http://www.runoob.com/docker/docker-tutorial.html)
 	
  [CentOS 6.8 安装 Docker](https://blog.csdn.net/jeffleo/article/details/70904368)	
-{% endcq %}

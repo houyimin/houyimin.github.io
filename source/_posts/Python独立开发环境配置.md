@@ -7,10 +7,10 @@ categories:
  - Python
 ---
 
-{% cq %} 
+
  ### 什么是virtualenv
  Virtualenv是一个用来创建独立的Python环境的包。
-{% endcq %}
+
 
 
 你可以为每个项目建立不同的/独立的Python环境，你将为每个项目安装所有需要的软件包到它们各自独立的环境中。

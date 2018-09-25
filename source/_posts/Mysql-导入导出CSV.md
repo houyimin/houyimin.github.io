@@ -87,8 +87,7 @@ load data infile "/home/Order txt" into table Orders(Order_Number, Order_Date, C
 例如： /myfile txt”给出的文件是从服务器的数据目录读取，而作为“myfile txt”给出的一个文件是从当前数据库的数据库目录下读取。
 
 
-{% cq %} 
+
  ### [参考链接]
  [mysql导入数据load data infile用法(将txt文件中的数据导入表中)](https://blog.csdn.net/u014082714/article/details/53173975)
 	
-{% endcq %}

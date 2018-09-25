@@ -63,8 +63,7 @@ Python 3.5.2
 输出的是 3.x，说明已经使用的是 python3了。
 ```
 
-{% cq %} 
+
  ### [参考链接]
  [Python 环境搭建](http://www.runoob.com/python/python-install.html)
  [Linux 升级 Python 至 3.x](http://blog.csdn.net/liang19890820/article/details/51079633)	
-{% endcq %}

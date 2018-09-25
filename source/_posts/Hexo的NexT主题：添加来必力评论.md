@@ -6,13 +6,13 @@ tags:
 categories:
  - Hexo
 ---
-{% cq %} 
+ 
  ### [来必力](https://livere.com)是什么？
  使用社交网站账户登录，免去注册过程。
  提高用户的参与和沟通意愿。
  管理/删除我的评论内容。
  提供管理页面，管理网站文章及评论内容。
-{% endcq %}
+
 
 ## 安装来必力 
 ### 1 、登陆[来必力](https://livere.com)网站注册
@@ -24,7 +24,7 @@ categories:
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 livere_uid: 这里填写data-uid的值
 ```
-{% note success %} 基本设置 {% endnote %}
+## 基本设置 
 
 ### 1 、注意需要在来必力后台管理的设置中添加网站名称和网站的URL，可根据情况选择要显示的SNS第三方登陆按钮。
 ![安装代码](/uploads/20170526151406.png)
