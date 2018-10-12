@@ -310,6 +310,327 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/04/09/MYSQL备份/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/09/MYSQL备份/" itemprop="url">MYSQL备份</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T14:20:57+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/09/MYSQL备份/" class="leancloud_visitors" data-flag-title="MYSQL备份">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="mysql-mysqldump-只导出表结构-不导出数据"><a href="#mysql-mysqldump-只导出表结构-不导出数据" class="headerlink" title="mysql mysqldump 只导出表结构 不导出数据"></a>mysql mysqldump 只导出表结构 不导出数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump --opt -d 数据库名 -u root -p &gt; xxx.sql</span><br></pre></td></tr></table></figure>
+<h3 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysqldump　数据库名　&gt;数据库备份名 #mysqldump　-A　-u用户名　-p密码　数据库名&gt;数据库备份名 </span></span><br><span class="line"><span class="comment">#mysqldump　-d　-A　--add-drop-table　-uroot　-p　&gt;xxx.sql</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-导出结构不导出数据"><a href="#1-导出结构不导出数据" class="headerlink" title="1.导出结构不导出数据"></a>1.导出结构不导出数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　--opt　-d　数据库名　-u　root　-p　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
+<h3 id="2-导出数据不导出结构"><a href="#2-导出数据不导出结构" class="headerlink" title="2.导出数据不导出结构"></a>2.导出数据不导出结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　-t　数据库名　-uroot　-p　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
+<h3 id="3-导出数据和表结构"><a href="#3-导出数据和表结构" class="headerlink" title="3.导出数据和表结构"></a>3.导出数据和表结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　数据库名　-uroot　-p　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
+<h3 id="4-导出特定表的结构"><a href="#4-导出特定表的结构" class="headerlink" title="4.导出特定表的结构"></a>4.导出特定表的结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　-uroot　-p　-B　数据库名　--table　表名　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
+<h3 id="导入数据："><a href="#导入数据：" class="headerlink" title="导入数据："></a>导入数据：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysql　数据库名　&lt;　文件名 </span></span><br><span class="line"><span class="comment">#source　/tmp/xxx.sql</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/04/09/Mysql-导入导出CSV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/09/Mysql-导入导出CSV/" itemprop="url">MYSQL 导入导出CSV</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T11:47:03+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/09/Mysql-导入导出CSV/" class="leancloud_visitors" data-flag-title="MYSQL 导入导出CSV">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MYSQL命令行导出-csv文件"><a href="#MYSQL命令行导出-csv文件" class="headerlink" title="MYSQL命令行导出 csv文件"></a>MYSQL命令行导出 csv文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; SELECT</span><br><span class="line">	*</span><br><span class="line">FROM</span><br><span class="line">	table_name INTO OUTFILE <span class="string">'D:/test.csv'</span> </span><br><span class="line">	FIELDS TERMINATED BY <span class="string">','</span>  -----字段间以,号分隔</span><br><span class="line">	OPTIONALLY ENCLOSED BY <span class="string">'"'</span> ------字段用<span class="string">"号括起</span></span><br><span class="line"><span class="string">	escaped by '"</span><span class="string">'   ------字段中使用的转义符为"</span></span><br><span class="line"><span class="string">	LINES TERMINATED BY '</span>\n<span class="string">'; ------行以\n结束</span></span><br></pre></td></tr></table></figure>
+<h2 id="MYSQL命令行导入-csv文件"><a href="#MYSQL命令行导入-csv文件" class="headerlink" title="MYSQL命令行导入 csv文件"></a>MYSQL命令行导入 csv文件</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">load data  [low_priority] [<span class="built_in">local</span>] infile <span class="string">'file_name txt'</span> [replace | ignore]</span><br><span class="line">into table tbl_name</span><br><span class="line">[fields</span><br><span class="line">[terminated by<span class="string">'t'</span>]</span><br><span class="line">[OPTIONALLY] enclosed by <span class="string">''</span>]</span><br><span class="line">[escaped by<span class="string">'\'</span> ]]</span><br><span class="line">[lines terminated by<span class="string">'n'</span>]</span><br><span class="line">[ignore number lines]</span><br><span class="line">[(col_name,   )]</span><br></pre></td></tr></table></figure>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA LOCAL INFILE <span class="string">'D:/test.csv'</span> </span><br><span class="line">REPLACE INTO TABLE table_name </span><br><span class="line">FIELDS TERMINATED BY <span class="string">','</span> </span><br><span class="line">OPTIONALLY ENCLOSED BY <span class="string">''</span> </span><br><span class="line">ESCAPED BY <span class="string">'\"'</span> </span><br><span class="line">LINES TERMINATED BY <span class="string">'\n'</span> (</span><br><span class="line">    field1,</span><br><span class="line">	field2,</span><br><span class="line">    create_date,</span><br><span class="line">    update_date</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>load data infile语句从一个文本文件中以很高的速度读入一个表中。使用这个命令之前，mysqld进程（服务）必须已经在运行。为了安全原因，当读取位于服务器上的文本文件时，文件必须处于数据库目录或可被所有人读取。另外，为了对服务器上文件使用load data infile，在服务器主机上你必须有file的权限。</p>
+<h3 id="1-如果你指定关键词low-priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令："><a href="#1-如果你指定关键词low-priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令：" class="headerlink" title="1  如果你指定关键词low_priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令："></a>1  如果你指定关键词low_priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令：</h3><p>load data  low_priority infile “/home/mark/data sql” into table Orders;</p>
+<h3 id="2-如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。"><a href="#2-如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。" class="headerlink" title="2  如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。"></a>2  如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。</h3><h3 id="3-replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如："><a href="#3-replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如：" class="headerlink" title="3  replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如："></a>3  replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如：</h3><p>load data  low_priority infile “/home/mark/data sql” replace into table Orders;</p>
+<h3 id="4-分隔符"><a href="#4-分隔符" class="headerlink" title="4 分隔符"></a>4 分隔符</h3><p>（1） fields关键字指定了文件字段的分割格式，如果用到这个关键字，MySQL剖析器希望看到至少有下面的一个选项：<br>terminated by分隔符：意思是以什么字符作为分隔符<br>enclosed by字段括起字符<br>escaped by转义字符<br>terminated by描述字段的分隔符，默认情况下是tab字符（\t）<br>enclosed by描述的是字段的括起字符。<br>escaped by描述的转义字符。默认的是反斜杠（backslash：\ ）<br>例如：load data infile “/home/mark/Orders txt” replace into table Orders fields terminated by’,’ enclosed by ‘“‘;</p>
+<p>（2）lines 关键字指定了每条记录的分隔符默认为’\n’即为换行符<br>如果两个字段都指定了那fields必须在lines之前。如果不指定fields关键字缺省值与如果你这样写的相同： fields terminated by’\t’ enclosed by ’ ‘’ ‘ escaped by’\‘<br>如果你不指定一个lines子句，缺省值与如果你这样写的相同： lines terminated by’\n’<br>例如：load data infile “/jiaoben/load.txt” replace into table test fields terminated by ‘,’ lines terminated by ‘/n’;</p>
+<h3 id="5-load-data-infile-可以按指定的列把文件导入到数据库中。-当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列-字段-field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候"><a href="#5-load-data-infile-可以按指定的列把文件导入到数据库中。-当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列-字段-field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候" class="headerlink" title="5  load data infile 可以按指定的列把文件导入到数据库中。 当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列/字段/field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候"></a>5  load data infile 可以按指定的列把文件导入到数据库中。 当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列/字段/field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候</h3><p>下面的例子显示了如何向指定的栏目(field)中导入数据：<br>load data infile “/home/Order txt” into table Orders(Order_Number, Order_Date, Customer_ID);</p>
+<h3 id="6-当在服务器主机上寻找文件时，服务器使用下列规则："><a href="#6-当在服务器主机上寻找文件时，服务器使用下列规则：" class="headerlink" title="6  当在服务器主机上寻找文件时，服务器使用下列规则："></a>6  当在服务器主机上寻找文件时，服务器使用下列规则：</h3><p>（1）如果给出一个绝对路径名，服务器使用该路径名。<br>（2）如果给出一个有一个或多个前置部件的相对路径名，服务器相对服务器的数据目录搜索文件。<br>（3）如果给出一个没有前置部件的一个文件名，服务器在当前数据库的数据库目录寻找文件。<br>例如： /myfile txt”给出的文件是从服务器的数据目录读取，而作为“myfile txt”给出的一个文件是从当前数据库的数据库目录下读取。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="[参考链接]"></a>[参考链接]</h3><p> <a href="https://blog.csdn.net/u014082714/article/details/53173975" target="_blank" rel="noopener">mysql导入数据load data infile用法(将txt文件中的数据导入表中)</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/10/12/Python安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1541,303 +1862,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/" itemprop="url">Hexo的NexT主题：显示网站访问人数和总访问量</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T18:08:19+08:00">
-                2017-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/" class="leancloud_visitors" data-flag-title="Hexo的NexT主题：显示网站访问人数和总访问量">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="显示统计标签"><a href="#显示统计标签" class="headerlink" title="显示统计标签"></a>显示统计标签</h2><h3 id="打开-themes-next-layout-partials-footer-swig文件，复制以下代码至你想要放置的位置。"><a href="#打开-themes-next-layout-partials-footer-swig文件，复制以下代码至你想要放置的位置。" class="headerlink" title="打开\themes\next\layout_partials\footer.swig文件，复制以下代码至你想要放置的位置。"></a>打开\themes\next\layout_partials\footer.swig文件，复制以下代码至你想要放置的位置。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"busuanzi-count"</span>&gt;</span><br><span class="line">  &lt;script async=<span class="string">""</span> src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;span class=<span class="string">"site-uv"</span>&gt;</span><br><span class="line">  &lt;i class=<span class="string">"fa fa-user"</span>&gt; 本站访客数&lt;/i&gt;</span><br><span class="line">  &lt;span class=<span class="string">"busuanzi-value"</span> id=<span class="string">"busuanzi_value_site_uv"</span>&gt;&lt;/span&gt;</span><br><span class="line">  人</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">  &lt;span class=<span class="string">"site-pv"</span>&gt;</span><br><span class="line">  &lt;i class=<span class="string">"fa fa-eye"</span>&gt; 本站总访问量&lt;/i&gt;</span><br><span class="line">  &lt;span class=<span class="string">"busuanzi-value"</span> id=<span class="string">"busuanzi_value_site_pv"</span>&gt;&lt;/span&gt;</span><br><span class="line">  次</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/04/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T00:00:00+08:00">
-                2017-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/04/12/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=357126&auto=0&height=66"></iframe>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1887,7 +1916,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1898,7 +1927,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1909,7 +1938,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

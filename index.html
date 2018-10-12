@@ -310,6 +310,346 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/12/PHP微信公众号素材管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/12/PHP微信公众号素材管理/" itemprop="url">PHP微信公众号素材管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T17:18:57+08:00">
+                2018-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/公众号/" itemprop="url" rel="index">
+                    <span itemprop="name">公众号</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/12/PHP微信公众号素材管理/" class="leancloud_visitors" data-flag-title="PHP微信公众号素材管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>获取access_token可参考上篇文章 <a href="/2018/10/12/PHP微信公众号开发-一/" title="PHP微信公众号开发(一)">PHP微信公众号开发(一)</a></p>
+</blockquote>
+<h2 id="本文讲解公众号图文和图片素材的获取"><a href="#本文讲解公众号图文和图片素材的获取" class="headerlink" title="本文讲解公众号图文和图片素材的获取"></a>本文讲解公众号图文和图片素材的获取</h2><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1444738734" target="_blank" rel="noopener">获取素材列表接口文档</a></p>
+<h3 id="接口的地址及参数"><a href="#接口的地址及参数" class="headerlink" title="接口的地址及参数"></a>接口的地址及参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http请求方式: POST</span><br><span class="line">https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"type"</span>:TYPE,</span><br><span class="line">    <span class="string">"offset"</span>:OFFSET,</span><br><span class="line">    <span class="string">"count"</span>:COUNT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">参数	是否必须	说明</span><br><span class="line"><span class="built_in">type</span>	是	素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）</span><br><span class="line">offset	是	从全部素材的该偏移位置开始返回，0表示从第一个素材 返回</span><br><span class="line">count	是	返回素材的数量，取值在1到20之间</span><br></pre></td></tr></table></figure>
+<h3 id="offset为获取列表的偏移量，count为获取数量-最多每页取20条数据-。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。"><a href="#offset为获取列表的偏移量，count为获取数量-最多每页取20条数据-。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。" class="headerlink" title="offset为获取列表的偏移量，count为获取数量(最多每页取20条数据)。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。"></a>offset为获取列表的偏移量，count为获取数量(最多每页取20条数据)。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。</h3><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1444738733" target="_blank" rel="noopener">获取素材总数接口文档</a></p>
+<h3 id="接口的地址及参数-1"><a href="#接口的地址及参数-1" class="headerlink" title="接口的地址及参数"></a>接口的地址及参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">http请求方式: GET</span><br><span class="line">https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN</span><br><span class="line"></span><br><span class="line">//返回说明</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"voice_count"</span>:COUNT, 语音总数量</span><br><span class="line">  <span class="string">"video_count"</span>:COUNT, 视频总数量</span><br><span class="line">  <span class="string">"image_count"</span>:COUNT, 图片总数量</span><br><span class="line">  <span class="string">"news_count"</span>:COUNT 图文总数量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 获取素材列表</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$is_get_all</span> [是否获取全部素材]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$offset</span>     [全部素材的偏移位置，0表示从第一个素材]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$count</span>      [返回素材的数量，取值在1到20之间]</span><br><span class="line">    * @param  string  <span class="variable">$type</span>       [素材的类型,图片（image）、视频（video）、语音 （voice）、图文（news）]</span><br><span class="line">    * @<span class="built_in">return</span> [<span class="built_in">type</span>]              [description]</span><br><span class="line">    */</span><br><span class="line">   public <span class="keyword">function</span> actionBatchMaterial(<span class="variable">$is_get_all</span> = 0,<span class="variable">$offset</span> = 0,<span class="variable">$count</span> = 20,<span class="variable">$type</span> = <span class="string">'news'</span>)&#123;</span><br><span class="line"></span><br><span class="line">   	<span class="variable">$options</span> = array(</span><br><span class="line">		<span class="string">'appid'</span>=&gt;<span class="variable">$appid</span>, //公众号AppID</span><br><span class="line">		<span class="string">'appsecret'</span>=&gt;<span class="variable">$appsecret</span>, //公众号AppSecret</span><br><span class="line">	);</span><br><span class="line">	<span class="variable">$this</span>-&gt;wechat = new Wechat(<span class="variable">$options</span>); //此类文件可从参考链接(微信公众平台php sdk)获取</span><br><span class="line"></span><br><span class="line">   	<span class="variable">$list_count</span> = 0; //素材数量 </span><br><span class="line">   	<span class="keyword">if</span> (<span class="variable">$is_get_all</span>) &#123; //获取全部素材</span><br><span class="line">    	<span class="variable">$material_count</span> = <span class="variable">$this</span>-&gt;getForeverCount(); //获取素材总数</span><br><span class="line">    	<span class="keyword">if</span> (<span class="variable">$material_count</span>) &#123;</span><br><span class="line">    		switch (<span class="variable">$type</span>) &#123;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'news'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'news_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'image'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'image_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'video'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'video_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'voice'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'voice_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			default:</span><br><span class="line">    				<span class="built_in">echo</span> <span class="string">"素材类型错误"</span>.PHP_EOL;</span><br><span class="line">    				<span class="built_in">exit</span>();</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="variable">$material_list</span> = [];</span><br><span class="line"></span><br><span class="line">   	<span class="keyword">if</span> (<span class="variable">$is_get_all</span> &amp;&amp; <span class="variable">$list_count</span>) &#123;</span><br><span class="line">   		<span class="variable">$page</span> = ceil(<span class="variable">$list_count</span>/<span class="variable">$count</span>);//计算总页数</span><br><span class="line">   		<span class="keyword">for</span> (<span class="variable">$i</span>=0; <span class="variable">$i</span> &lt; <span class="variable">$page</span>; <span class="variable">$i</span>++) &#123; //分页获取素材数据</span><br><span class="line">   			<span class="variable">$foreverList</span> = <span class="variable">$this</span>-&gt;getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>);</span><br><span class="line">   			<span class="keyword">if</span> (<span class="variable">$foreverList</span>) &#123;</span><br><span class="line">   				<span class="variable">$material_list</span>[] = <span class="variable">$foreverList</span>[<span class="string">'item'</span>];</span><br><span class="line">   			&#125;</span><br><span class="line">   			<span class="variable">$offset</span> += <span class="variable">$count</span>;//计算下页偏移量</span><br><span class="line">   		&#125;</span><br><span class="line">   	&#125;<span class="keyword">else</span>&#123; //默认同步最新一页数据</span><br><span class="line">		<span class="variable">$foreverList</span> = <span class="variable">$this</span>-&gt;getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>);</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable">$foreverList</span>) &#123;</span><br><span class="line">  				<span class="variable">$material_list</span>[] = <span class="variable">$foreverList</span>[<span class="string">'item'</span>];</span><br><span class="line">  			&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">   	</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * [获取图文素材总数]</span><br><span class="line">	&#123;</span><br><span class="line">	  <span class="string">"voice_count"</span>:COUNT,</span><br><span class="line">	  <span class="string">"video_count"</span>:COUNT,</span><br><span class="line">	  <span class="string">"image_count"</span>:COUNT,</span><br><span class="line">	  <span class="string">"news_count"</span>:COUNT</span><br><span class="line">	&#125;</span><br><span class="line">    * @<span class="built_in">return</span> [<span class="built_in">type</span>] [description]</span><br><span class="line">    */</span><br><span class="line">   private <span class="keyword">function</span> <span class="function"><span class="title">getForeverCount</span></span>()&#123;</span><br><span class="line">   	<span class="variable">$count</span> = <span class="variable">$this</span>-&gt;wechat-&gt;getForeverCount();</span><br><span class="line">   	<span class="keyword">if</span> (!empty(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg) ) &#123;</span><br><span class="line">   		<span class="built_in">exit</span>(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg);</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="built_in">return</span> <span class="variable">$count</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">    * 获取素材列表</span><br><span class="line">    * @param  string  <span class="variable">$type</span>       [素材的类型,图片（image）、视频（video）、语音 （voice）、图文（news）]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$offset</span>     [全部素材的偏移位置，0表示从第一个素材]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$count</span>      [返回素材的数量，取值在1到20之间]</span><br><span class="line">    * @<span class="built_in">return</span> [<span class="built_in">type</span>]         [description]</span><br><span class="line">    */</span><br><span class="line">   private <span class="keyword">function</span> getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>)&#123;</span><br><span class="line">   	<span class="variable">$list</span> = <span class="variable">$this</span>-&gt;wechat-&gt;getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>);</span><br><span class="line">   	<span class="keyword">if</span> (!empty(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg) ) &#123;</span><br><span class="line">   		<span class="built_in">exit</span>(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg);</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="built_in">return</span> <span class="variable">$list</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="[参考链接]"></a>[参考链接]</h3><p> <a href="https://github.com/dodgepudding/wechat-php-sdk/blob/master/wechat.class.php" target="_blank" rel="noopener">微信公众平台php sdk</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/12/PHP微信公众号开发-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/12/PHP微信公众号开发-一/" itemprop="url">PHP微信公众号开发(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T17:15:18+08:00">
+                2018-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/公众号/" itemprop="url" rel="index">
+                    <span itemprop="name">公众号</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/12/PHP微信公众号开发-一/" class="leancloud_visitors" data-flag-title="PHP微信公众号开发(一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、access-token的使用"><a href="#一、access-token的使用" class="headerlink" title="一、access_token的使用"></a>一、access_token的使用</h2><h3 id="获取access-token微信官方文档"><a href="#获取access-token微信官方文档" class="headerlink" title="获取access_token微信官方文档"></a><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140183" target="_blank" rel="noopener">获取access_token微信官方文档</a></h3><blockquote>
+<p>access_token是公众号的全局唯一接口调用凭据，公众号调用各接口时都需使用access_token。开发者需要进行妥善保存。access_token的存储至少要保留512个字符空间。access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效。</p>
+</blockquote>
+<h3 id="1、建议公众号开发者使用中控服务器统一获取和刷新Access-token，其他业务逻辑服务器所使用的access-token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access-token覆盖而影响业务；"><a href="#1、建议公众号开发者使用中控服务器统一获取和刷新Access-token，其他业务逻辑服务器所使用的access-token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access-token覆盖而影响业务；" class="headerlink" title="1、建议公众号开发者使用中控服务器统一获取和刷新Access_token，其他业务逻辑服务器所使用的access_token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access_token覆盖而影响业务；"></a>1、建议公众号开发者使用中控服务器统一获取和刷新Access_token，其他业务逻辑服务器所使用的access_token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access_token覆盖而影响业务；</h3><h3 id="2、公众号需要使用AppID和AppSecret调用本接口来获取access-token。并且需要将调用此接口的服务器IP加到微信后台-“微信公众平台-开发-基本配置”的IP白名单中"><a href="#2、公众号需要使用AppID和AppSecret调用本接口来获取access-token。并且需要将调用此接口的服务器IP加到微信后台-“微信公众平台-开发-基本配置”的IP白名单中" class="headerlink" title="2、公众号需要使用AppID和AppSecret调用本接口来获取access_token。并且需要将调用此接口的服务器IP加到微信后台 “微信公众平台-开发-基本配置”的IP白名单中"></a>2、公众号需要使用AppID和AppSecret调用本接口来获取access_token。并且需要将调用此接口的服务器IP加到微信后台 “微信公众平台-开发-基本配置”的IP白名单中</h3><p><img src="https://i.imgur.com/UoHiJQc.png" alt=""><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https请求方式: GET</span><br><span class="line">https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</span><br><span class="line"></span><br><span class="line">返回JSON</span><br><span class="line">&#123;<span class="string">"access_token"</span>:<span class="string">"ACCESS_TOKEN"</span>,<span class="string">"expires_in"</span>:7200&#125;`</span><br></pre></td></tr></table></figure></p>
+<h3 id="获取的access-token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access-token的值。"><a href="#获取的access-token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access-token的值。" class="headerlink" title="获取的access_token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access_token的值。"></a>获取的access_token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access_token的值。</h3><h3 id="yii代码示例"><a href="#yii代码示例" class="headerlink" title="yii代码示例"></a>yii代码示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">class WeChatAccessToken</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">    //获取微信Access_Token</span><br><span class="line">    public static <span class="keyword">function</span> getAccessToken()</span><br><span class="line">    &#123;</span><br><span class="line">        //检测本地是否已经拥有access_token，并且检测access_token是否过期</span><br><span class="line">        <span class="variable">$accessToken</span> = self::_checkAccessToken();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$accessToken</span> === <span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="variable">$accessToken</span> = self::_getAccessToken();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">return</span> isset(<span class="variable">$accessToken</span>[<span class="string">'access_token'</span>])?<span class="variable">$accessToken</span>[<span class="string">'access_token'</span>]:<span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //从微信服务器获取微信ACCESS_TOKEN</span><br><span class="line">    private static <span class="keyword">function</span> _getAccessToken()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$appid</span>     = \Yii::<span class="variable">$app</span>-&gt;params[<span class="string">'wechat'</span>][<span class="string">'appid'</span>];</span><br><span class="line">        <span class="variable">$appsecret</span> = \Yii::<span class="variable">$app</span>-&gt;params[<span class="string">'wechat'</span>][<span class="string">'appsecret'</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="variable">$url</span> = <span class="string">'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid='</span>.<span class="variable">$appid</span>.<span class="string">'&amp;secret='</span>.<span class="variable">$appsecret</span>;</span><br><span class="line">        <span class="variable">$accessToken</span> = Helper::curlGet(<span class="variable">$url</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$accessTokenArr</span> = json_decode(<span class="variable">$accessToken</span>,<span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">if</span>(!isset(<span class="variable">$accessTokenArr</span>[<span class="string">'access_token'</span>]))&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$accessTokenArr</span>[<span class="string">'time'</span>] = time();</span><br><span class="line">        </span><br><span class="line">        //缓冲 token</span><br><span class="line">        Yii::<span class="variable">$app</span>-&gt;redis_cache-&gt;<span class="built_in">set</span>(<span class="string">'weixin_access_token'</span>,json_encode(<span class="variable">$accessTokenArr</span>),7260);</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$accessTokenArr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //检测微信ACCESS_TOKEN是否过期</span><br><span class="line">    private static <span class="keyword">function</span> _checkAccessToken()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$data</span> = Yii::<span class="variable">$app</span>-&gt;redis_cache-&gt;get(<span class="string">'weixin_access_token'</span>);</span><br><span class="line">        <span class="variable">$accessToken</span>[<span class="string">'value'</span>] = <span class="variable">$data</span>;</span><br><span class="line">        <span class="keyword">if</span>(!empty(<span class="variable">$accessToken</span>[<span class="string">'value'</span>]))&#123;</span><br><span class="line">            <span class="variable">$accessToken</span> = json_decode(<span class="variable">$accessToken</span>[<span class="string">'value'</span>], <span class="literal">true</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(time() - <span class="variable">$accessToken</span>[<span class="string">'time'</span>] &lt; <span class="variable">$accessToken</span>[<span class="string">'expires_in'</span>]-10)&#123;</span><br><span class="line">                <span class="built_in">return</span> <span class="variable">$accessToken</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Helper</span><br><span class="line">&#123;</span><br><span class="line">    //GET 请求</span><br><span class="line">	public static <span class="keyword">function</span> curlGet(<span class="variable">$url</span>)&#123;</span><br><span class="line">		<span class="variable">$oCurl</span> = curl_init();</span><br><span class="line">		<span class="keyword">if</span>(stripos(<span class="variable">$url</span>,<span class="string">"https://"</span>)!==FALSE)&#123;</span><br><span class="line">			curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_SSL_VERIFYPEER, FALSE);</span><br><span class="line">			curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_SSL_VERIFYHOST, FALSE);</span><br><span class="line">			curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1</span><br><span class="line">		&#125;</span><br><span class="line">		curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_URL, <span class="variable">$url</span>);</span><br><span class="line">		curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_RETURNTRANSFER, 1 );</span><br><span class="line">		<span class="variable">$sContent</span> = curl_exec(<span class="variable">$oCurl</span>);</span><br><span class="line">		<span class="variable">$aStatus</span> = curl_getinfo(<span class="variable">$oCurl</span>);</span><br><span class="line">		curl_close(<span class="variable">$oCurl</span>);</span><br><span class="line">		<span class="keyword">if</span>(intval(<span class="variable">$aStatus</span>[<span class="string">"http_code"</span>])==200)&#123;</span><br><span class="line">			<span class="built_in">return</span> <span class="variable">$sContent</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/09/25/自动脚本安装showdoc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1590,332 +1930,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/04/09/MYSQL备份/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/09/MYSQL备份/" itemprop="url">MYSQL备份</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T14:20:57+08:00">
-                2018-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/09/MYSQL备份/" class="leancloud_visitors" data-flag-title="MYSQL备份">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="mysql-mysqldump-只导出表结构-不导出数据"><a href="#mysql-mysqldump-只导出表结构-不导出数据" class="headerlink" title="mysql mysqldump 只导出表结构 不导出数据"></a>mysql mysqldump 只导出表结构 不导出数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump --opt -d 数据库名 -u root -p &gt; xxx.sql</span><br></pre></td></tr></table></figure>
-<h3 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysqldump　数据库名　&gt;数据库备份名 #mysqldump　-A　-u用户名　-p密码　数据库名&gt;数据库备份名 </span></span><br><span class="line"><span class="comment">#mysqldump　-d　-A　--add-drop-table　-uroot　-p　&gt;xxx.sql</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-导出结构不导出数据"><a href="#1-导出结构不导出数据" class="headerlink" title="1.导出结构不导出数据"></a>1.导出结构不导出数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　--opt　-d　数据库名　-u　root　-p　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
-<h3 id="2-导出数据不导出结构"><a href="#2-导出数据不导出结构" class="headerlink" title="2.导出数据不导出结构"></a>2.导出数据不导出结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　-t　数据库名　-uroot　-p　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
-<h3 id="3-导出数据和表结构"><a href="#3-导出数据和表结构" class="headerlink" title="3.导出数据和表结构"></a>3.导出数据和表结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　数据库名　-uroot　-p　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
-<h3 id="4-导出特定表的结构"><a href="#4-导出特定表的结构" class="headerlink" title="4.导出特定表的结构"></a>4.导出特定表的结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump　-uroot　-p　-B　数据库名　--table　表名　&gt;　xxx.sql</span><br></pre></td></tr></table></figure>
-<h3 id="导入数据："><a href="#导入数据：" class="headerlink" title="导入数据："></a>导入数据：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysql　数据库名　&lt;　文件名 </span></span><br><span class="line"><span class="comment">#source　/tmp/xxx.sql</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/04/09/Mysql-导入导出CSV/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/09/Mysql-导入导出CSV/" itemprop="url">MYSQL 导入导出CSV</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T11:47:03+08:00">
-                2018-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/09/Mysql-导入导出CSV/" class="leancloud_visitors" data-flag-title="MYSQL 导入导出CSV">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="MYSQL命令行导出-csv文件"><a href="#MYSQL命令行导出-csv文件" class="headerlink" title="MYSQL命令行导出 csv文件"></a>MYSQL命令行导出 csv文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; SELECT</span><br><span class="line">	*</span><br><span class="line">FROM</span><br><span class="line">	table_name INTO OUTFILE <span class="string">'D:/test.csv'</span> </span><br><span class="line">	FIELDS TERMINATED BY <span class="string">','</span>  -----字段间以,号分隔</span><br><span class="line">	OPTIONALLY ENCLOSED BY <span class="string">'"'</span> ------字段用<span class="string">"号括起</span></span><br><span class="line"><span class="string">	escaped by '"</span><span class="string">'   ------字段中使用的转义符为"</span></span><br><span class="line"><span class="string">	LINES TERMINATED BY '</span>\n<span class="string">'; ------行以\n结束</span></span><br></pre></td></tr></table></figure>
-<h2 id="MYSQL命令行导入-csv文件"><a href="#MYSQL命令行导入-csv文件" class="headerlink" title="MYSQL命令行导入 csv文件"></a>MYSQL命令行导入 csv文件</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">load data  [low_priority] [<span class="built_in">local</span>] infile <span class="string">'file_name txt'</span> [replace | ignore]</span><br><span class="line">into table tbl_name</span><br><span class="line">[fields</span><br><span class="line">[terminated by<span class="string">'t'</span>]</span><br><span class="line">[OPTIONALLY] enclosed by <span class="string">''</span>]</span><br><span class="line">[escaped by<span class="string">'\'</span> ]]</span><br><span class="line">[lines terminated by<span class="string">'n'</span>]</span><br><span class="line">[ignore number lines]</span><br><span class="line">[(col_name,   )]</span><br></pre></td></tr></table></figure>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA LOCAL INFILE <span class="string">'D:/test.csv'</span> </span><br><span class="line">REPLACE INTO TABLE table_name </span><br><span class="line">FIELDS TERMINATED BY <span class="string">','</span> </span><br><span class="line">OPTIONALLY ENCLOSED BY <span class="string">''</span> </span><br><span class="line">ESCAPED BY <span class="string">'\"'</span> </span><br><span class="line">LINES TERMINATED BY <span class="string">'\n'</span> (</span><br><span class="line">    field1,</span><br><span class="line">	field2,</span><br><span class="line">    create_date,</span><br><span class="line">    update_date</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>load data infile语句从一个文本文件中以很高的速度读入一个表中。使用这个命令之前，mysqld进程（服务）必须已经在运行。为了安全原因，当读取位于服务器上的文本文件时，文件必须处于数据库目录或可被所有人读取。另外，为了对服务器上文件使用load data infile，在服务器主机上你必须有file的权限。</p>
-<h3 id="1-如果你指定关键词low-priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令："><a href="#1-如果你指定关键词low-priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令：" class="headerlink" title="1  如果你指定关键词low_priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令："></a>1  如果你指定关键词low_priority，那么MySQL将会等到没有其他人读这个表的时候，才把插入数据。可以使用如下的命令：</h3><p>load data  low_priority infile “/home/mark/data sql” into table Orders;</p>
-<h3 id="2-如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。"><a href="#2-如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。" class="headerlink" title="2  如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。"></a>2  如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器上。</h3><h3 id="3-replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如："><a href="#3-replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如：" class="headerlink" title="3  replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如："></a>3  replace和ignore关键词控制对现有的唯一键记录的重复的处理。如果你指定replace，新行将代替有相同的唯一键值的现有行。如果你指定ignore，跳过有唯一键的现有行的重复行的输入。如果你不指定任何一个选项，当找到重复键时，出现一个错误，并且文本文件的余下部分被忽略。例如：</h3><p>load data  low_priority infile “/home/mark/data sql” replace into table Orders;</p>
-<h3 id="4-分隔符"><a href="#4-分隔符" class="headerlink" title="4 分隔符"></a>4 分隔符</h3><p>（1） fields关键字指定了文件字段的分割格式，如果用到这个关键字，MySQL剖析器希望看到至少有下面的一个选项：<br>terminated by分隔符：意思是以什么字符作为分隔符<br>enclosed by字段括起字符<br>escaped by转义字符<br>terminated by描述字段的分隔符，默认情况下是tab字符（\t）<br>enclosed by描述的是字段的括起字符。<br>escaped by描述的转义字符。默认的是反斜杠（backslash：\ ）<br>例如：load data infile “/home/mark/Orders txt” replace into table Orders fields terminated by’,’ enclosed by ‘“‘;</p>
-<p>（2）lines 关键字指定了每条记录的分隔符默认为’\n’即为换行符<br>如果两个字段都指定了那fields必须在lines之前。如果不指定fields关键字缺省值与如果你这样写的相同： fields terminated by’\t’ enclosed by ’ ‘’ ‘ escaped by’\‘<br>如果你不指定一个lines子句，缺省值与如果你这样写的相同： lines terminated by’\n’<br>例如：load data infile “/jiaoben/load.txt” replace into table test fields terminated by ‘,’ lines terminated by ‘/n’;</p>
-<h3 id="5-load-data-infile-可以按指定的列把文件导入到数据库中。-当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列-字段-field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候"><a href="#5-load-data-infile-可以按指定的列把文件导入到数据库中。-当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列-字段-field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候" class="headerlink" title="5  load data infile 可以按指定的列把文件导入到数据库中。 当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列/字段/field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候"></a>5  load data infile 可以按指定的列把文件导入到数据库中。 当我们要把数据的一部分内容导入的时候，，需要加入一些栏目（列/字段/field）到MySQL数据库中，以适应一些额外的需要。比方说，我们要从Access数据库升级到MySQL数据库的时候</h3><p>下面的例子显示了如何向指定的栏目(field)中导入数据：<br>load data infile “/home/Order txt” into table Orders(Order_Number, Order_Date, Customer_ID);</p>
-<h3 id="6-当在服务器主机上寻找文件时，服务器使用下列规则："><a href="#6-当在服务器主机上寻找文件时，服务器使用下列规则：" class="headerlink" title="6  当在服务器主机上寻找文件时，服务器使用下列规则："></a>6  当在服务器主机上寻找文件时，服务器使用下列规则：</h3><p>（1）如果给出一个绝对路径名，服务器使用该路径名。<br>（2）如果给出一个有一个或多个前置部件的相对路径名，服务器相对服务器的数据目录搜索文件。<br>（3）如果给出一个没有前置部件的一个文件名，服务器在当前数据库的数据库目录寻找文件。<br>例如： /myfile txt”给出的文件是从服务器的数据目录读取，而作为“myfile txt”给出的一个文件是从当前数据库的数据库目录下读取。</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="[参考链接]"></a>[参考链接]</h3><p> <a href="https://blog.csdn.net/u014082714/article/details/53173975" target="_blank" rel="noopener">mysql导入数据load data infile用法(将txt文件中的数据导入表中)</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1965,7 +1984,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1976,7 +1995,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1987,7 +2006,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
