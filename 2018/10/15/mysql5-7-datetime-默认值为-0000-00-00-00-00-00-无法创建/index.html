@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -86,13 +86,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="踏浪">
-<meta property="og:url" content="https://houyimin.github.io/archives/2018/04/index.html">
+<meta name="description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos; mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题###解决方法 1、查看sql_mode">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql5.7 datetime 默认值为&#39;0000-00-00 00:00:00&#39;无法创建">
+<meta property="og:url" content="https://houyimin.github.io/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/index.html">
 <meta property="og:site_name" content="踏浪">
+<meta property="og:description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos; mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题###解决方法 1、查看sql_mode">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-15T09:59:32.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="踏浪">
+<meta name="twitter:title" content="mysql5.7 datetime 默认值为&#39;0000-00-00 00:00:00&#39;无法创建">
+<meta name="twitter:description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos; mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题###解决方法 1、查看sql_mode">
 
 
 
@@ -122,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://houyimin.github.io/archives/2018/04/"/>
+  <link rel="canonical" href="https://houyimin.github.io/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/"/>
 
 
 
@@ -137,7 +142,7 @@
 
 
 
-  <title>归档 | 踏浪</title>
+  <title>mysql5.7 datetime 默认值为'0000-00-00 00:00:00'无法创建 | 踏浪</title>
   
 
 
@@ -166,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/houyimin" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -295,111 +300,224 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 23 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/04/09/MYSQL备份/" itemprop="url">
-              
-                <span itemprop="name">MYSQL备份</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">mysql5.7 datetime 默认值为'0000-00-00 00:00:00'无法创建</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-09T14:20:57+08:00"
-              content="2018-04-09" >
-          04-09
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T17:51:06+08:00">
+                2018-10-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/" class="leancloud_visitors" data-flag-title="mysql5.7 datetime 默认值为'0000-00-00 00:00:00'无法创建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/09/Mysql-导入导出CSV/" itemprop="url">
-              
-                <span itemprop="name">MYSQL 导入导出CSV</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-09T11:47:03+08:00"
-              content="2018-04-09" >
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`create_date` datetime NOT NULL DEFAULT <span class="string">'0000-00-00 00:00:00'</span></span><br></pre></td></tr></table></figure>
+<h3 id="mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题"><a href="#mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题" class="headerlink" title="mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题"></a>mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题</h3><p>###解决方法</p>
+<p>1、查看sql_mode：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select @@sql_mode;</span><br><span class="line">ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure></p>
+<p>NO_ZERO_IN_DATE：在严格模式下，不允许日期和月份为零<br>NO_ZERO_DATE：设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。</p>
+<p>NO_ZERO_IN_DATE,NO_ZERO_DATE是无法默认为’0000-00-00 00:00:00’的根源，去掉之后再次新建表就可以了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET GLOBAL sql_mode=<span class="string">'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>2、改mysql模式<br>修改my.cnf文件，在[mysqld]中添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql-mode=ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
+<p>3、把语句改为以下就可以执行创建表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_date DATETIME NOT NULL DEFAULT <span class="string">'0000-01-01 00:00:00'</span></span><br></pre></td></tr></table></figure></p>
+
+      
     </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="踏浪 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/reward/wechat-reward-image.png" alt="踏浪 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/reward/alipay-reward-image.jpg" alt="踏浪 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"><i class="fa fa-tag"></i> Mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/12/PHP微信公众号素材管理/" rel="next" title="PHP微信公众号素材管理">
+                <i class="fa fa-chevron-left"></i> PHP微信公众号素材管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -407,6 +525,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODcyNC81Mjk1"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -427,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -516,6 +652,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题"><span class="nav-number">1.</span> <span class="nav-text">mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -666,6 +818,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -694,6 +850,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

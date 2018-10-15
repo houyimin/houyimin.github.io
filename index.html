@@ -310,6 +310,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/" itemprop="url">mysql5.7 datetime 默认值为'0000-00-00 00:00:00'无法创建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T17:51:06+08:00">
+                2018-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/" class="leancloud_visitors" data-flag-title="mysql5.7 datetime 默认值为'0000-00-00 00:00:00'无法创建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`create_date` datetime NOT NULL DEFAULT <span class="string">'0000-00-00 00:00:00'</span></span><br></pre></td></tr></table></figure>
+<h3 id="mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题"><a href="#mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题" class="headerlink" title="mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题"></a>mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题</h3><p>###解决方法</p>
+<p>1、查看sql_mode：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select @@sql_mode;</span><br><span class="line">ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure></p>
+<p>NO_ZERO_IN_DATE：在严格模式下，不允许日期和月份为零<br>NO_ZERO_DATE：设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。</p>
+<p>NO_ZERO_IN_DATE,NO_ZERO_DATE是无法默认为’0000-00-00 00:00:00’的根源，去掉之后再次新建表就可以了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET GLOBAL sql_mode=<span class="string">'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>2、改mysql模式<br>修改my.cnf文件，在[mysqld]中添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql-mode=ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
+<p>3、把语句改为以下就可以执行创建表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_date DATETIME NOT NULL DEFAULT <span class="string">'0000-01-01 00:00:00'</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/12/PHP微信公众号素材管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1752,162 +1912,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/06/25/awk文件比对/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/25/awk文件比对/" itemprop="url">awk文件比对</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T17:30:34+08:00">
-                2018-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/awk/" itemprop="url" rel="index">
-                    <span itemprop="name">awk</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/25/awk文件比对/" class="leancloud_visitors" data-flag-title="awk文件比对">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="文件以制表符-t分隔"><a href="#文件以制表符-t分隔" class="headerlink" title="文件以制表符\t分隔"></a>文件以制表符\t分隔</h2><h3 id="1、将某几列作为主键key，对某列求和"><a href="#1、将某几列作为主键key，对某列求和" class="headerlink" title="1、将某几列作为主键key，对某列求和"></a>1、将某几列作为主键key，对某列求和</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">'&#123;sum[$1,$2]+=$3&#125;END&#123;for(c in sum)&#123;print c,sum[c] &#125;&#125;'</span> 1.txt &gt; 3.txt</span><br></pre></td></tr></table></figure>
-<h3 id="2、两个文件比较-while-getline-lt-“1-txt”-gt-0-读到文件末尾"><a href="#2、两个文件比较-while-getline-lt-“1-txt”-gt-0-读到文件末尾" class="headerlink" title="2、两个文件比较  while((getline &lt; “1.txt”)&gt;0 //读到文件末尾"></a>2、两个文件比较  while((getline &lt; “1.txt”)&gt;0 //读到文件末尾</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 2|awk -F<span class="string">"\t"</span> <span class="string">'BEGIN&#123;while((getline &lt; "1")&gt;0) hash[$1$2]=$3&#125;&#123;if(hash[$1$2]-$3&gt;1 || hash[$1$2]-$3&lt;-1) print $0"|"hash[$1$2]&#125;'</span></span><br></pre></td></tr></table></figure>
-<h3 id="3、提取某列输出重复数据项"><a href="#3、提取某列输出重复数据项" class="headerlink" title="3、提取某列输出重复数据项"></a>3、提取某列输出重复数据项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 1 |awk <span class="string">'&#123;print $1&#125;'</span> |sort|uniq -c|awk <span class="string">'&#123;if($1==2) print $0&#125;'</span></span><br></pre></td></tr></table></figure>
-<h3 id="4、在文件1不在文件2的数据项"><a href="#4、在文件1不在文件2的数据项" class="headerlink" title="4、在文件1不在文件2的数据项"></a>4、在文件1不在文件2的数据项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 1 2 1|sort |uniq -c|awk <span class="string">'&#123;if($1==2) print $0&#125;'</span></span><br></pre></td></tr></table></figure>
-<h3 id="5、找出2个文件差异项"><a href="#5、找出2个文件差异项" class="headerlink" title="5、找出2个文件差异项"></a>5、找出2个文件差异项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 1.txt 2.txt |sort |uniq -u</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1962,7 +1966,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
