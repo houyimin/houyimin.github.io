@@ -62,4 +62,5 @@ Windows
 
 > 参考链接
 	[使用Python将HTML转成PDF](http://www.cnblogs.com/taceywong/p/5643978.html)
+	[python-pdfkit github](https://github.com/JazzCore/python-pdfkit)
  	wkhtmltopdf安装教程 [Installing-wkhtmltopdf](https://github.com/JazzCore/python-pdfkit/wiki/Installing-wkhtmltopdf)
