@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos; mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题###解决方法 1、查看sql_mode">
+<meta name="description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos;  mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题  解决方法1、查看sql_mode：">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql5.7 datetime 默认值为&#39;0000-00-00 00:00:00&#39;无法创建">
 <meta property="og:url" content="https://houyimin.github.io/2018/10/15/mysql5-7-datetime-默认值为-0000-00-00-00-00-00-无法创建/index.html">
 <meta property="og:site_name" content="踏浪">
-<meta property="og:description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos; mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题###解决方法 1、查看sql_mode">
+<meta property="og:description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos;  mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题  解决方法1、查看sql_mode：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-15T09:59:32.725Z">
+<meta property="og:updated_time" content="2018-10-15T10:02:30.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql5.7 datetime 默认值为&#39;0000-00-00 00:00:00&#39;无法创建">
-<meta name="twitter:description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos; mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题###解决方法 1、查看sql_mode">
+<meta name="twitter:description" content="1`create_date` datetime NOT NULL DEFAULT &apos;0000-00-00 00:00:00&apos;  mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题  解决方法1、查看sql_mode：">
 
 
 
@@ -415,13 +415,15 @@
 
       
         <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`create_date` datetime NOT NULL DEFAULT <span class="string">'0000-00-00 00:00:00'</span></span><br></pre></td></tr></table></figure>
-<h3 id="mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题"><a href="#mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题" class="headerlink" title="mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题"></a>mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题</h3><p>###解决方法</p>
-<p>1、查看sql_mode：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select @@sql_mode;</span><br><span class="line">ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题</p>
+</blockquote>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>1、查看sql_mode：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select @@sql_mode;</span><br><span class="line"></span><br><span class="line">//结果</span><br><span class="line">ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure></p>
 <p>NO_ZERO_IN_DATE：在严格模式下，不允许日期和月份为零<br>NO_ZERO_DATE：设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。</p>
-<p>NO_ZERO_IN_DATE,NO_ZERO_DATE是无法默认为’0000-00-00 00:00:00’的根源，去掉之后再次新建表就可以了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET GLOBAL sql_mode=<span class="string">'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>将NO_ZERO_IN_DATE,NO_ZERO_DATE 去掉之后再次新建表就可以了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET GLOBAL sql_mode=<span class="string">'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>2、改mysql模式<br>修改my.cnf文件，在[mysqld]中添加</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql-mode=ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
-<p>3、把语句改为以下就可以执行创建表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_date DATETIME NOT NULL DEFAULT <span class="string">'0000-01-01 00:00:00'</span></span><br></pre></td></tr></table></figure></p>
+<p>3、把语句改为以下就可以执行创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_date DATETIME NOT NULL DEFAULT <span class="string">'0000-01-01 00:00:00'</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -498,6 +500,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/21/pyhon爬取公众号文章列表/" rel="prev" title="pyhon爬取公众号文章列表">
+                pyhon爬取公众号文章列表 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -583,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -662,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql5-7设置datetime默认值为-0000-00-00-00-00-00时会报错，-Err-1067-Invalid-default-value-for-‘create-date’-这是由于-SQL-MODE-的问题"><span class="nav-number">1.</span> <span class="nav-text">mysql5.7设置datetime默认值为 0000-00-00 00:00:00时会报错，[Err] 1067 - Invalid default value for ‘create_date’,这是由于 SQL_MODE 的问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">1.</span> <span class="nav-text">解决方法</span></a></li></ol></div>
             
 
           </div>
