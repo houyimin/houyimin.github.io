@@ -424,12 +424,22 @@
       
         
           
-            <h2 id="Linux-split命令用于将一个文件分割成数个。"><a href="#Linux-split命令用于将一个文件分割成数个。" class="headerlink" title="Linux split命令用于将一个文件分割成数个。"></a>Linux split命令用于将一个文件分割成数个。</h2><h3 id="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"><a href="#该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。" class="headerlink" title="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"></a>该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split [--<span class="built_in">help</span>][--version][-&lt;行数&gt;][-b &lt;字节&gt;][-C &lt;字节&gt;][-l &lt;行数&gt;][要切割的文件][输出文件名]</span><br></pre></td></tr></table></figure>
+            <blockquote>
+<p> Linux split命令用于将一个文件分割成数个。</p>
+</blockquote>
+<h3 id="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"><a href="#该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。" class="headerlink" title="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"></a>该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split [--help][--version][-&lt;行数&gt;][-b &lt;字节&gt;][-C &lt;字节&gt;][-l &lt;行数&gt;][要切割的文件][输出文件名]</span><br></pre></td></tr></table></figure>
 <p>参数说明：</p>
-<p>-&lt;行数&gt; : 指定每多少行切成一个小文件<br>-b&lt;字节&gt; : 指定每多少字节切成一个小文件<br>–help : 在线帮助<br>–version : 显示版本信息<br>-C&lt;字节&gt; : 与参数”-b”相似，但是在切 割时将尽量维持每行的完整性<br>[输出文件名] : 设置切割后文件的前置文件名， split会自动在前置文件名后再加上编号</p>
-<h2 id="指定分割文件行数"><a href="#指定分割文件行数" class="headerlink" title="指定分割文件行数"></a>指定分割文件行数</h2><h3 id="例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）"><a href="#例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）" class="headerlink" title="例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）"></a>例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split -l 5000 1.txt -d -a 4 o_</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-&lt;行数&gt; : 指定每多少行切成一个小文件</li>
+<li>-b&lt;字节&gt; : 指定每多少字节切成一个小文件</li>
+<li>–help : 在线帮助</li>
+<li>–version : 显示版本信息</li>
+<li>-C&lt;字节&gt; : 与参数”-b”相似，但是在切 割时将尽量维持每行的完整性</li>
+<li>[输出文件名] : 设置切割后文件的前置文件名， split会自动在前置文件名后再加上编号</li>
+</ul>
+<h3 id="指定分割文件行数"><a href="#指定分割文件行数" class="headerlink" title="指定分割文件行数"></a>指定分割文件行数</h3><h3 id="例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）"><a href="#例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）" class="headerlink" title="例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）"></a>例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split -l 5000 1.txt -d -a 4 o_</span><br></pre></td></tr></table></figure>
 <h3 id="生成文件名如下："><a href="#生成文件名如下：" class="headerlink" title="生成文件名如下："></a>生成文件名如下：</h3><p>‘o_0000’,’o_0001’,’o_0002’,’o_0003’</p>
-<h2 id="指定分割后文件大小"><a href="#指定分割后文件大小" class="headerlink" title="指定分割后文件大小"></a>指定分割后文件大小</h2><p>split -b 10m 1.log log</p>
+<h3 id="指定分割后文件大小"><a href="#指定分割后文件大小" class="headerlink" title="指定分割后文件大小"></a>指定分割后文件大小</h3><p>split -b 10m 1.log log</p>
 
           
         
