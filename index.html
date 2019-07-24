@@ -310,6 +310,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/07/24/Linux-split文件分割命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/24/Linux-split文件分割命令/" itemprop="url">Linux split文件分割命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T13:39:17+08:00">
+                2019-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/24/Linux-split文件分割命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/24/Linux-split文件分割命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/07/24/Linux-split文件分割命令/" class="leancloud_visitors" data-flag-title="Linux split文件分割命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Linux-split命令用于将一个文件分割成数个。"><a href="#Linux-split命令用于将一个文件分割成数个。" class="headerlink" title="Linux split命令用于将一个文件分割成数个。"></a>Linux split命令用于将一个文件分割成数个。</h2><h3 id="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"><a href="#该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。" class="headerlink" title="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"></a>该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split [--<span class="built_in">help</span>][--version][-&lt;行数&gt;][-b &lt;字节&gt;][-C &lt;字节&gt;][-l &lt;行数&gt;][要切割的文件][输出文件名]</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p>-&lt;行数&gt; : 指定每多少行切成一个小文件<br>-b&lt;字节&gt; : 指定每多少字节切成一个小文件<br>–help : 在线帮助<br>–version : 显示版本信息<br>-C&lt;字节&gt; : 与参数”-b”相似，但是在切 割时将尽量维持每行的完整性<br>[输出文件名] : 设置切割后文件的前置文件名， split会自动在前置文件名后再加上编号</p>
+<h2 id="指定分割文件行数"><a href="#指定分割文件行数" class="headerlink" title="指定分割文件行数"></a>指定分割文件行数</h2><h3 id="例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）"><a href="#例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）" class="headerlink" title="例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）"></a>例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split -l 5000 1.txt -d -a 4 o_</span><br></pre></td></tr></table></figure>
+<h3 id="生成文件名如下："><a href="#生成文件名如下：" class="headerlink" title="生成文件名如下："></a>生成文件名如下：</h3><p>‘o_0000’,’o_0001’,’o_0002’,’o_0003’</p>
+<h2 id="指定分割后文件大小"><a href="#指定分割后文件大小" class="headerlink" title="指定分割后文件大小"></a>指定分割后文件大小</h2><p>split -b 10m 1.log log</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/05/09/awk文本处理示例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2060,180 +2228,6 @@ BEGIN{FS=&quot;:&quot;}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/09/10/Docker-安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492093859784&di=6878707129cce248c781634d6d3ee069&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-06-08%2F095920280.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/Docker-安装/" itemprop="url">Docker 安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:21:45+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/10/Docker-安装/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/10/Docker-安装/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/09/10/Docker-安装/" class="leancloud_visitors" data-flag-title="Docker 安装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、win7、win8-系统"><a href="#一、win7、win8-系统" class="headerlink" title="一、win7、win8 系统"></a>一、win7、win8 系统</h2><p>win7、win8 等需要利用 docker toolbox 来安装，国内可以使用阿里云的镜像来下载，<br>下载地址：<a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/" target="_blank" rel="noopener">http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/</a></p>
-<p>下载安装完成后，点击 Docker QuickStart 图标来启动 Docker Toolbox 终端。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
-<h2 id="二、-CentOS-6-8-安装-Docker"><a href="#二、-CentOS-6-8-安装-Docker" class="headerlink" title="二、 CentOS 6.8 安装 Docker"></a>二、 CentOS 6.8 安装 Docker</h2><p>CentOS 7 的内核一般都是3.10的，而CentOS 6.X 的内核一般都是2.6，在2.6的内核下，Docker运行会比较卡，所以一般会选择升级到3.10版本。</p>
-<h3 id="安装docker-io"><a href="#安装docker-io" class="headerlink" title="安装docker-io"></a>安装docker-io</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum install docker-io</span></span><br></pre></td></tr></table></figure>
-<h2 id="三、使用-yum-安装（CentOS-7下）"><a href="#三、使用-yum-安装（CentOS-7下）" class="headerlink" title="三、使用 yum 安装（CentOS 7下）"></a>三、使用 yum 安装（CentOS 7下）</h2><p>  Docker 要求 CentOS 系统的内核版本高于 3.10  。</p>
-<p>通过 uname -r 命令查看你当前的内核版本    </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@runoob ~]<span class="comment"># uname -r  3.10.0-327.el7.x86_64</span></span><br></pre></td></tr></table></figure>
-<p>参考链接： <a href="http://www.runoob.com/docker/centos-docker-install.html" target="_blank" rel="noopener">使用 yum 安装（CentOS 7下）</a></p>
-<h2 id="配置-Docker-加速器"><a href="#配置-Docker-加速器" class="headerlink" title="配置 Docker 加速器"></a>配置 Docker 加速器</h2><p>参考链接： <a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">Docker 加速器）</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="[参考链接]"></a>[参考链接]</h3><p> <a href="http://www.runoob.com/docker/docker-tutorial.html" target="_blank" rel="noopener">Docker 教程</a></p>
-<p> <a href="https://blog.csdn.net/jeffleo/article/details/70904368" target="_blank" rel="noopener">CentOS 6.8 安装 Docker</a>    </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2288,7 +2282,7 @@ BEGIN{FS=&quot;:&quot;}
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
