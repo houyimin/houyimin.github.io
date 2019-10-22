@@ -310,6 +310,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/12/PHP微信公众号开发-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/12/PHP微信公众号开发-一/" itemprop="url">PHP微信公众号开发(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T17:15:18+08:00">
+                2018-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/公众号/" itemprop="url" rel="index">
+                    <span itemprop="name">公众号</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/12/PHP微信公众号开发-一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/12/PHP微信公众号开发-一/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/12/PHP微信公众号开发-一/" class="leancloud_visitors" data-flag-title="PHP微信公众号开发(一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、access-token的使用"><a href="#一、access-token的使用" class="headerlink" title="一、access_token的使用"></a>一、access_token的使用</h2><h3 id="获取access-token微信官方文档"><a href="#获取access-token微信官方文档" class="headerlink" title="获取access_token微信官方文档"></a><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140183" target="_blank" rel="noopener">获取access_token微信官方文档</a></h3><blockquote>
+<p>access_token是公众号的全局唯一接口调用凭据，公众号调用各接口时都需使用access_token。开发者需要进行妥善保存。access_token的存储至少要保留512个字符空间。access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效。</p>
+</blockquote>
+<h3 id="1、建议公众号开发者使用中控服务器统一获取和刷新Access-token，其他业务逻辑服务器所使用的access-token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access-token覆盖而影响业务；"><a href="#1、建议公众号开发者使用中控服务器统一获取和刷新Access-token，其他业务逻辑服务器所使用的access-token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access-token覆盖而影响业务；" class="headerlink" title="1、建议公众号开发者使用中控服务器统一获取和刷新Access_token，其他业务逻辑服务器所使用的access_token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access_token覆盖而影响业务；"></a>1、建议公众号开发者使用中控服务器统一获取和刷新Access_token，其他业务逻辑服务器所使用的access_token均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致access_token覆盖而影响业务；</h3><h3 id="2、公众号需要使用AppID和AppSecret调用本接口来获取access-token。并且需要将调用此接口的服务器IP加到微信后台-“微信公众平台-开发-基本配置”的IP白名单中"><a href="#2、公众号需要使用AppID和AppSecret调用本接口来获取access-token。并且需要将调用此接口的服务器IP加到微信后台-“微信公众平台-开发-基本配置”的IP白名单中" class="headerlink" title="2、公众号需要使用AppID和AppSecret调用本接口来获取access_token。并且需要将调用此接口的服务器IP加到微信后台 “微信公众平台-开发-基本配置”的IP白名单中"></a>2、公众号需要使用AppID和AppSecret调用本接口来获取access_token。并且需要将调用此接口的服务器IP加到微信后台 “微信公众平台-开发-基本配置”的IP白名单中</h3><p><img src="https://i.imgur.com/UoHiJQc.png" alt=""><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https请求方式: GET</span><br><span class="line">https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</span><br><span class="line"></span><br><span class="line">返回JSON</span><br><span class="line">&#123;<span class="string">"access_token"</span>:<span class="string">"ACCESS_TOKEN"</span>,<span class="string">"expires_in"</span>:7200&#125;`</span><br></pre></td></tr></table></figure></p>
+<h3 id="获取的access-token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access-token的值。"><a href="#获取的access-token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access-token的值。" class="headerlink" title="获取的access_token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access_token的值。"></a>获取的access_token可存储于文件、缓存或数据库中，保存其过期时间，当获取的时候判断是否过期，过期则更新access_token的值。</h3><h3 id="yii代码示例"><a href="#yii代码示例" class="headerlink" title="yii代码示例"></a>yii代码示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">class WeChatAccessToken</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">    //获取微信Access_Token</span><br><span class="line">    public static <span class="keyword">function</span> getAccessToken()</span><br><span class="line">    &#123;</span><br><span class="line">        //检测本地是否已经拥有access_token，并且检测access_token是否过期</span><br><span class="line">        <span class="variable">$accessToken</span> = self::_checkAccessToken();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$accessToken</span> === <span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="variable">$accessToken</span> = self::_getAccessToken();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">return</span> isset(<span class="variable">$accessToken</span>[<span class="string">'access_token'</span>])?<span class="variable">$accessToken</span>[<span class="string">'access_token'</span>]:<span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //从微信服务器获取微信ACCESS_TOKEN</span><br><span class="line">    private static <span class="keyword">function</span> _getAccessToken()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$appid</span>     = \Yii::<span class="variable">$app</span>-&gt;params[<span class="string">'wechat'</span>][<span class="string">'appid'</span>];</span><br><span class="line">        <span class="variable">$appsecret</span> = \Yii::<span class="variable">$app</span>-&gt;params[<span class="string">'wechat'</span>][<span class="string">'appsecret'</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="variable">$url</span> = <span class="string">'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid='</span>.<span class="variable">$appid</span>.<span class="string">'&amp;secret='</span>.<span class="variable">$appsecret</span>;</span><br><span class="line">        <span class="variable">$accessToken</span> = Helper::curlGet(<span class="variable">$url</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$accessTokenArr</span> = json_decode(<span class="variable">$accessToken</span>,<span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">if</span>(!isset(<span class="variable">$accessTokenArr</span>[<span class="string">'access_token'</span>]))&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$accessTokenArr</span>[<span class="string">'time'</span>] = time();</span><br><span class="line">        </span><br><span class="line">        //缓冲 token</span><br><span class="line">        Yii::<span class="variable">$app</span>-&gt;redis_cache-&gt;<span class="built_in">set</span>(<span class="string">'weixin_access_token'</span>,json_encode(<span class="variable">$accessTokenArr</span>),7260);</span><br><span class="line">        <span class="built_in">return</span> <span class="variable">$accessTokenArr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //检测微信ACCESS_TOKEN是否过期</span><br><span class="line">    private static <span class="keyword">function</span> _checkAccessToken()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$data</span> = Yii::<span class="variable">$app</span>-&gt;redis_cache-&gt;get(<span class="string">'weixin_access_token'</span>);</span><br><span class="line">        <span class="variable">$accessToken</span>[<span class="string">'value'</span>] = <span class="variable">$data</span>;</span><br><span class="line">        <span class="keyword">if</span>(!empty(<span class="variable">$accessToken</span>[<span class="string">'value'</span>]))&#123;</span><br><span class="line">            <span class="variable">$accessToken</span> = json_decode(<span class="variable">$accessToken</span>[<span class="string">'value'</span>], <span class="literal">true</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(time() - <span class="variable">$accessToken</span>[<span class="string">'time'</span>] &lt; <span class="variable">$accessToken</span>[<span class="string">'expires_in'</span>]-10)&#123;</span><br><span class="line">                <span class="built_in">return</span> <span class="variable">$accessToken</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Helper</span><br><span class="line">&#123;</span><br><span class="line">    //GET 请求</span><br><span class="line">	public static <span class="keyword">function</span> curlGet(<span class="variable">$url</span>)&#123;</span><br><span class="line">		<span class="variable">$oCurl</span> = curl_init();</span><br><span class="line">		<span class="keyword">if</span>(stripos(<span class="variable">$url</span>,<span class="string">"https://"</span>)!==FALSE)&#123;</span><br><span class="line">			curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_SSL_VERIFYPEER, FALSE);</span><br><span class="line">			curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_SSL_VERIFYHOST, FALSE);</span><br><span class="line">			curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1</span><br><span class="line">		&#125;</span><br><span class="line">		curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_URL, <span class="variable">$url</span>);</span><br><span class="line">		curl_setopt(<span class="variable">$oCurl</span>, CURLOPT_RETURNTRANSFER, 1 );</span><br><span class="line">		<span class="variable">$sContent</span> = curl_exec(<span class="variable">$oCurl</span>);</span><br><span class="line">		<span class="variable">$aStatus</span> = curl_getinfo(<span class="variable">$oCurl</span>);</span><br><span class="line">		curl_close(<span class="variable">$oCurl</span>);</span><br><span class="line">		<span class="keyword">if</span>(intval(<span class="variable">$aStatus</span>[<span class="string">"http_code"</span>])==200)&#123;</span><br><span class="line">			<span class="built_in">return</span> <span class="variable">$sContent</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/09/14/Docker常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1822,171 +1989,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/09/30/Linux在history添加时间和用户/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/30/Linux在history添加时间和用户/" itemprop="url">Linux在history添加时间和用户</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T15:55:51+08:00">
-                2017-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/30/Linux在history添加时间和用户/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/09/30/Linux在history添加时间和用户/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/09/30/Linux在history添加时间和用户/" class="leancloud_visitors" data-flag-title="Linux在history添加时间和用户">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="设置显示时间和用户"><a href="#设置显示时间和用户" class="headerlink" title="设置显示时间和用户"></a>设置显示时间和用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'export HISTTIMEFORMAT="[%Y.%m.%d %H:%M:%S] [`whoami`] "'</span> &gt;&gt; /etc/profile</span><br></pre></td></tr></table></figure>
-<h3 id="执行source使配置生效"><a href="#执行source使配置生效" class="headerlink" title="执行source使配置生效"></a>执行source使配置生效</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-<p><img src="/uploads/history.png" alt="history"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2041,7 +2043,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
