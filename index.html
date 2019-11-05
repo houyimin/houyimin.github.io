@@ -597,11 +597,19 @@
 <p>Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。</p>
 <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]</span><br></pre></td></tr></table></figure>
 <h3 id="动作说明"><a href="#动作说明" class="headerlink" title="动作说明"></a>动作说明</h3><p>a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～<br>c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！<br>d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；<br>i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；<br>p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～<br>s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！</p>
-<p>删除文件里的逗号</p>
+<p>1、删除文件里的逗号</p>
 <pre><code>$ sed  &apos;s/[,]//&apos; 1.txt
-</code></pre><p>删除文件特殊字符</p>
+</code></pre><p>2、删除文件特殊字符</p>
 <p>1)、首先在vi命令模式下:set list可以将不可看见的特殊字符打印出来<br>2)、这些不可见的特殊字符是可以输入的方式如下<br>比如^I是Tab(\t),^M是WIN的换行(\n\r)<br>请注意^I 不是^ I, ^M也不是^ M<br>^I 是Ctrl + V Ctrl + I<br>^M 是Ctrl + V Ctrl + M<br>3)、然后用sed -i ‘s/^M//g’ a.txt进行删除（这个里边的^M是用2)中的方式输入的,在终端里边是不显示的，如果你要测试的话可以先用sed ‘s/^M//g’ a.txt 看看效果）</p>
 <pre><code>$ sed -i &apos;s/^M//g&apos; 1.txt
+</code></pre><p>参数-i 使用此参数后，所有改动将在原文件上执行</p>
+<p>3、将每行结尾加逗号</p>
+<pre><code>sed  &apos;s/.*/&amp;,/&apos; 1.txt
+&amp;号，当它用在替换字符串中的时候，代表的是原始的查找匹配数据
+</code></pre><p>4、删除最后一行逗号</p>
+<pre><code>sed  &apos;$ s/,//&apos; 1.txt
+</code></pre><p>5、修改原文件的同时生成.bak备份文件</p>
+<pre><code>sed -i.bak &apos;s/.*/&amp;,/&apos; 1.txt
 </code></pre><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="[参考链接]"></a>[参考链接]</h3><p> <a href="https://www.runoob.com/linux/linux-comm-sed.html" target="_blank" rel="noopener">Linux sed 命令</a><br> <a href="http://www.dewen.net.cn/q/3919/如何去掉文件中的一些特殊字符？" target="_blank" rel="noopener">如何去掉文件中的一些特殊字符</a></p>
 
           
