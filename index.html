@@ -310,6 +310,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/11/05/安装elasticsearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/05/安装elasticsearch/" itemprop="url">安装elasticsearch</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-05T18:48:02+08:00">
+                2019-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/05/安装elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/05/安装elasticsearch/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/11/05/安装elasticsearch/" class="leancloud_visitors" data-flag-title="安装elasticsearch">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">下载</span><br><span class="line">curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.2-linux-x86_64.tar.gz</span><br><span class="line">解压</span><br><span class="line">tar -xzvf elasticsearch-7.4.2-linux-x86_64.tar.gz</span><br><span class="line">cd elasticsearch-7.4.2</span><br><span class="line">启动</span><br><span class="line">./bin/elasticsearch</span><br></pre></td></tr></table></figure>
+<h3 id="确认是否启动"><a href="#确认是否启动" class="headerlink" title="确认是否启动"></a>确认是否启动</h3><p>发送HTTP GET请求在9200端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:9200</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;iZ2ze0fk8pd9zkdd29mpz6Z&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</span><br><span class="line">  &quot;cluster_uuid&quot; : &quot;-Jxq4rGVT_qJLnzJdnj75A&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;7.4.2&quot;,</span><br><span class="line">    &quot;build_flavor&quot; : &quot;default&quot;,</span><br><span class="line">    &quot;build_type&quot; : &quot;tar&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;2f90bbf7b93631e52bafb59b3b049cb44ec25e96&quot;,</span><br><span class="line">    &quot;build_date&quot; : &quot;2019-10-28T20:40:44.881551Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;8.2.0&quot;,</span><br><span class="line">    &quot;minimum_wire_compatibility_version&quot; : &quot;6.8.0&quot;,</span><br><span class="line">    &quot;minimum_index_compatibility_version&quot; : &quot;6.0.0-beta1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="报错及解决方法"><a href="#报错及解决方法" class="headerlink" title="报错及解决方法"></a>报错及解决方法</h2><p>1、内存不足<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.RuntimeException: starting java failed with [1]</span><br><span class="line">output:</span><br><span class="line">#</span><br><span class="line"># There is insufficient memory for the Java Runtime Environment to continue.</span><br><span class="line"># Native memory allocation (mmap) failed to map 2060255232 bytes for committing reserved memory.</span><br><span class="line"># An error report file with more information is saved as:</span><br><span class="line"># logs/hs_err_pid29117.log</span><br><span class="line">error:</span><br><span class="line">OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.</span><br><span class="line">OpenJDK 64-Bit Server VM warning: INFO: os::commit_memory(0x0000000085330000, 2060255232, 0) failed; error=&apos;Not enough space&apos; (errno=12)</span><br><span class="line">	at org.elasticsearch.tools.launchers.JvmErgonomics.flagsFinal(JvmErgonomics.java:111)</span><br><span class="line">	at org.elasticsearch.tools.launchers.JvmErgonomics.finalJvmOptions(JvmErgonomics.java:79)</span><br><span class="line">	at org.elasticsearch.tools.launchers.JvmErgonomics.choose(JvmErgonomics.java:57)</span><br><span class="line">	at org.elasticsearch.tools.launchers.JvmOptionsParser.main(JvmOptionsParser.java:89)</span><br></pre></td></tr></table></figure></p>
+<p>修改 config目录的jvm.options文件，调小Xms的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Xms represents the initial size of total heap space</span><br><span class="line"># Xmx represents the maximum size of total heap space</span><br><span class="line"></span><br><span class="line">#-Xms2g</span><br><span class="line">#-Xms2g</span><br><span class="line"></span><br><span class="line">-Xms512m</span><br><span class="line">-Xms512m</span><br></pre></td></tr></table></figure></p>
+<p>2、无法使用root用户启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.</span><br><span class="line">[2019-11-05T19:57:15,328][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [iZ2ze0fk8pd9zkdd29mpz6Z] uncaught exception in thread [main]</span><br><span class="line">org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root</span><br></pre></td></tr></table></figure></p>
+<p>添加新用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#添加用户es</span><br><span class="line">useradd es</span><br><span class="line">#修改elasticsearch目录使用者/群组</span><br><span class="line">chown -R es:es /home/elasticsearch-7.4.2/</span><br><span class="line"></span><br><span class="line">#切换用户到es</span><br><span class="line">su es</span><br><span class="line">#启动elasticsearch</span><br><span class="line">./bin/elasticsearch</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/10/22/Linux-sed-命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2078,177 +2246,6 @@ BEGIN{FS=&quot;:&quot;}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/12/PHP微信公众号素材管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/12/PHP微信公众号素材管理/" itemprop="url">PHP微信公众号素材管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T17:18:57+08:00">
-                2018-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/公众号/" itemprop="url" rel="index">
-                    <span itemprop="name">公众号</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/12/PHP微信公众号素材管理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/12/PHP微信公众号素材管理/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/10/12/PHP微信公众号素材管理/" class="leancloud_visitors" data-flag-title="PHP微信公众号素材管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>获取access_token可参考上篇文章 <a href="/2018/10/12/PHP微信公众号开发-一/" title="PHP微信公众号开发(一)">PHP微信公众号开发(一)</a></p>
-</blockquote>
-<h2 id="本文讲解公众号图文和图片素材的获取"><a href="#本文讲解公众号图文和图片素材的获取" class="headerlink" title="本文讲解公众号图文和图片素材的获取"></a>本文讲解公众号图文和图片素材的获取</h2><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1444738734" target="_blank" rel="noopener">获取素材列表接口文档</a></p>
-<h3 id="接口的地址及参数"><a href="#接口的地址及参数" class="headerlink" title="接口的地址及参数"></a>接口的地址及参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http请求方式: POST</span><br><span class="line">https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"type"</span>:TYPE,</span><br><span class="line">    <span class="string">"offset"</span>:OFFSET,</span><br><span class="line">    <span class="string">"count"</span>:COUNT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">参数	是否必须	说明</span><br><span class="line"><span class="built_in">type</span>	是	素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）</span><br><span class="line">offset	是	从全部素材的该偏移位置开始返回，0表示从第一个素材 返回</span><br><span class="line">count	是	返回素材的数量，取值在1到20之间</span><br></pre></td></tr></table></figure>
-<h3 id="offset为获取列表的偏移量，count为获取数量-最多每页取20条数据-。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。"><a href="#offset为获取列表的偏移量，count为获取数量-最多每页取20条数据-。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。" class="headerlink" title="offset为获取列表的偏移量，count为获取数量(最多每页取20条数据)。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。"></a>offset为获取列表的偏移量，count为获取数量(最多每页取20条数据)。因此，我们想要获取全部素材的时候可以获取总素材数量，计算出总页数，循环得到每页偏移量进行分页获取。</h3><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1444738733" target="_blank" rel="noopener">获取素材总数接口文档</a></p>
-<h3 id="接口的地址及参数-1"><a href="#接口的地址及参数-1" class="headerlink" title="接口的地址及参数"></a>接口的地址及参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">http请求方式: GET</span><br><span class="line">https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN</span><br><span class="line"></span><br><span class="line">//返回说明</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"voice_count"</span>:COUNT, 语音总数量</span><br><span class="line">  <span class="string">"video_count"</span>:COUNT, 视频总数量</span><br><span class="line">  <span class="string">"image_count"</span>:COUNT, 图片总数量</span><br><span class="line">  <span class="string">"news_count"</span>:COUNT 图文总数量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 获取素材列表</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$is_get_all</span> [是否获取全部素材]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$offset</span>     [全部素材的偏移位置，0表示从第一个素材]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$count</span>      [返回素材的数量，取值在1到20之间]</span><br><span class="line">    * @param  string  <span class="variable">$type</span>       [素材的类型,图片（image）、视频（video）、语音 （voice）、图文（news）]</span><br><span class="line">    * @<span class="built_in">return</span> [<span class="built_in">type</span>]              [description]</span><br><span class="line">    */</span><br><span class="line">   public <span class="keyword">function</span> actionBatchMaterial(<span class="variable">$is_get_all</span> = 0,<span class="variable">$offset</span> = 0,<span class="variable">$count</span> = 20,<span class="variable">$type</span> = <span class="string">'news'</span>)&#123;</span><br><span class="line"></span><br><span class="line">   	<span class="variable">$options</span> = array(</span><br><span class="line">		<span class="string">'appid'</span>=&gt;<span class="variable">$appid</span>, //公众号AppID</span><br><span class="line">		<span class="string">'appsecret'</span>=&gt;<span class="variable">$appsecret</span>, //公众号AppSecret</span><br><span class="line">	);</span><br><span class="line">	<span class="variable">$this</span>-&gt;wechat = new Wechat(<span class="variable">$options</span>); //此类文件可从参考链接(微信公众平台php sdk)获取</span><br><span class="line"></span><br><span class="line">   	<span class="variable">$list_count</span> = 0; //素材数量 </span><br><span class="line">   	<span class="keyword">if</span> (<span class="variable">$is_get_all</span>) &#123; //获取全部素材</span><br><span class="line">    	<span class="variable">$material_count</span> = <span class="variable">$this</span>-&gt;getForeverCount(); //获取素材总数</span><br><span class="line">    	<span class="keyword">if</span> (<span class="variable">$material_count</span>) &#123;</span><br><span class="line">    		switch (<span class="variable">$type</span>) &#123;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'news'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'news_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'image'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'image_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'video'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'video_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			<span class="keyword">case</span> <span class="string">'voice'</span>:</span><br><span class="line">    				<span class="variable">$list_count</span> = <span class="variable">$material_count</span>[<span class="string">'voice_count'</span>];</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    			default:</span><br><span class="line">    				<span class="built_in">echo</span> <span class="string">"素材类型错误"</span>.PHP_EOL;</span><br><span class="line">    				<span class="built_in">exit</span>();</span><br><span class="line">    				<span class="built_in">break</span>;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="variable">$material_list</span> = [];</span><br><span class="line"></span><br><span class="line">   	<span class="keyword">if</span> (<span class="variable">$is_get_all</span> &amp;&amp; <span class="variable">$list_count</span>) &#123;</span><br><span class="line">   		<span class="variable">$page</span> = ceil(<span class="variable">$list_count</span>/<span class="variable">$count</span>);//计算总页数</span><br><span class="line">   		<span class="keyword">for</span> (<span class="variable">$i</span>=0; <span class="variable">$i</span> &lt; <span class="variable">$page</span>; <span class="variable">$i</span>++) &#123; //分页获取素材数据</span><br><span class="line">   			<span class="variable">$foreverList</span> = <span class="variable">$this</span>-&gt;getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>);</span><br><span class="line">   			<span class="keyword">if</span> (<span class="variable">$foreverList</span>) &#123;</span><br><span class="line">   				<span class="variable">$material_list</span>[] = <span class="variable">$foreverList</span>[<span class="string">'item'</span>];</span><br><span class="line">   			&#125;</span><br><span class="line">   			<span class="variable">$offset</span> += <span class="variable">$count</span>;//计算下页偏移量</span><br><span class="line">   		&#125;</span><br><span class="line">   	&#125;<span class="keyword">else</span>&#123; //默认同步最新一页数据</span><br><span class="line">		<span class="variable">$foreverList</span> = <span class="variable">$this</span>-&gt;getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>);</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable">$foreverList</span>) &#123;</span><br><span class="line">  				<span class="variable">$material_list</span>[] = <span class="variable">$foreverList</span>[<span class="string">'item'</span>];</span><br><span class="line">  			&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">   	</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">    * [获取图文素材总数]</span><br><span class="line">	&#123;</span><br><span class="line">	  <span class="string">"voice_count"</span>:COUNT,</span><br><span class="line">	  <span class="string">"video_count"</span>:COUNT,</span><br><span class="line">	  <span class="string">"image_count"</span>:COUNT,</span><br><span class="line">	  <span class="string">"news_count"</span>:COUNT</span><br><span class="line">	&#125;</span><br><span class="line">    * @<span class="built_in">return</span> [<span class="built_in">type</span>] [description]</span><br><span class="line">    */</span><br><span class="line">   private <span class="keyword">function</span> <span class="function"><span class="title">getForeverCount</span></span>()&#123;</span><br><span class="line">   	<span class="variable">$count</span> = <span class="variable">$this</span>-&gt;wechat-&gt;getForeverCount();</span><br><span class="line">   	<span class="keyword">if</span> (!empty(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg) ) &#123;</span><br><span class="line">   		<span class="built_in">exit</span>(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg);</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="built_in">return</span> <span class="variable">$count</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">    * 获取素材列表</span><br><span class="line">    * @param  string  <span class="variable">$type</span>       [素材的类型,图片（image）、视频（video）、语音 （voice）、图文（news）]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$offset</span>     [全部素材的偏移位置，0表示从第一个素材]</span><br><span class="line">    * @param  <span class="built_in">integer</span> <span class="variable">$count</span>      [返回素材的数量，取值在1到20之间]</span><br><span class="line">    * @<span class="built_in">return</span> [<span class="built_in">type</span>]         [description]</span><br><span class="line">    */</span><br><span class="line">   private <span class="keyword">function</span> getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>)&#123;</span><br><span class="line">   	<span class="variable">$list</span> = <span class="variable">$this</span>-&gt;wechat-&gt;getForeverList(<span class="variable">$type</span>,<span class="variable">$offset</span>,<span class="variable">$count</span>);</span><br><span class="line">   	<span class="keyword">if</span> (!empty(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg) ) &#123;</span><br><span class="line">   		<span class="built_in">exit</span>(<span class="variable">$this</span>-&gt;wechat-&gt;errMsg);</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="built_in">return</span> <span class="variable">$list</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="[参考链接]"></a>[参考链接]</h3><p> <a href="https://github.com/dodgepudding/wechat-php-sdk/blob/master/wechat.class.php" target="_blank" rel="noopener">微信公众平台php sdk</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2303,7 +2300,7 @@ BEGIN{FS=&quot;:&quot;}
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2314,7 +2311,7 @@ BEGIN{FS=&quot;:&quot;}
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2325,7 +2322,7 @@ BEGIN{FS=&quot;:&quot;}
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
