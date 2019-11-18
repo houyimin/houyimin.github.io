@@ -310,6 +310,284 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/11/18/elasticsearch集群配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/18/elasticsearch集群配置/" itemprop="url">elasticsearch集群配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-18T19:49:01+08:00">
+                2019-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/18/elasticsearch集群配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/elasticsearch集群配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/11/18/elasticsearch集群配置/" class="leancloud_visitors" data-flag-title="elasticsearch集群配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一 通过编辑配置文件启动集群 config/elasticsearch.yml</p>
+<h2 id="master配置"><a href="#master配置" class="headerlink" title="master配置"></a>master配置</h2><pre><code># 集群名称
+cluster.name: chenkl
+# 节点名称
+node.name: master
+# 存放数据目录,先创建该目录
+path.data: /home/elastic/data
+# 存放日志目录,先创建该目录
+path.logs: /home/elastic/logs
+# 节点IP
+network.host: 192.168.25.180
+# tcp端口
+transport.tcp.port: 9300
+# http端口
+http.port: 9200
+# 种子节点列表，主节点的IP地址必须在seed_hosts中
+discovery.seed_hosts: [&quot;192.168.25.180&quot;,&quot;192.168.25.181&quot;,&quot;192.168.25.182&quot;]
+# 主合格节点列表，若有多个主节点，则主节点进行对应的配置
+cluster.initial_master_nodes: [&quot;master&quot;]
+# 主节点相关配置
+node.master: true
+node.data: false
+node.ingest: false
+node.ml: false
+cluster.remote.connect: false
+# 跨域
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;
+</code></pre><h2 id="slave1"><a href="#slave1" class="headerlink" title="slave1"></a>slave1</h2><pre><code>cluster.name: chenkl
+node.name: slave1
+
+path.data: /home/elastic/data
+path.logs: /home/elastic/logs
+
+network.host: 192.168.25.181
+transport.tcp.port: 9300
+http.port: 9200
+
+discovery.seed_hosts: [&quot;192.168.25.180&quot;,&quot;192.168.25.181&quot;,&quot;192.168.25.182&quot;]
+cluster.initial_master_nodes: [&quot;master&quot;]
+
+node.master: false
+node.data: true
+node.ingest: false
+node.ml: false
+cluster.remote.connect: false
+
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;
+</code></pre><h2 id="slave2"><a href="#slave2" class="headerlink" title="slave2"></a>slave2</h2><pre><code>cluster.name: chenkl
+node.name: slave2
+
+path.data: /home/elastic/data
+path.logs: /home/elastic/logs
+
+network.host: 192.168.25.182
+transport.tcp.port: 9300
+http.port: 9200
+
+discovery.seed_hosts: [&quot;192.168.25.180&quot;,&quot;192.168.25.181&quot;,&quot;192.168.25.182&quot;]
+cluster.initial_master_nodes: [&quot;master&quot;]
+
+node.master: false
+node.data: true
+node.ingest: false
+node.ml: false
+cluster.remote.connect: false
+
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;
+</code></pre><h2 id="启动所有节点"><a href="#启动所有节点" class="headerlink" title="启动所有节点"></a>启动所有节点</h2><pre><code>cd /home/elasticsearch-7.2.0    
+./bin/elasticsearch
+</code></pre><p>问题  max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p>
+<pre><code>#切换到root用户
+vi /etc/sysctl.conf
+
+#在最后追加
+vm.max_map_count=262144
+
+#使用 sysctl -p 查看修改结果
+sysctl -p
+</code></pre><h2 id="查看集群是否启动成功"><a href="#查看集群是否启动成功" class="headerlink" title="查看集群是否启动成功"></a>查看集群是否启动成功</h2><h3 id="查询集群节点"><a href="#查询集群节点" class="headerlink" title="查询集群节点"></a>查询集群节点</h3><pre><code>curl -XGET &apos;http://localhost:9200/_cat/nodes?v&apos;
+
+ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+127.0.0.1           47          96   6    1.26    1.28     0.86 dilm      *      node-1
+127.0.0.1           26          96   6    1.26    1.28     0.86 dilm      -      node-2
+</code></pre><h3 id="查询单个节点信息"><a href="#查询单个节点信息" class="headerlink" title="查询单个节点信息"></a>查询单个节点信息</h3><pre><code>curl -XGET &apos;http://localhost:9200/&apos;
+
+
+{
+  &quot;name&quot; : &quot;node-2&quot;,
+  &quot;cluster_name&quot; : &quot;my-es&quot;,
+  &quot;cluster_uuid&quot; : &quot;LnsMM4p1Royo4Ea19viusw&quot;,
+  &quot;version&quot; : {
+    &quot;number&quot; : &quot;7.4.2&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;tar&quot;,
+    &quot;build_hash&quot; : &quot;2f90bbf7b93631e52bafb59b3b049cb44ec25e96&quot;,
+    &quot;build_date&quot; : &quot;2019-10-28T20:40:44.881551Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;8.2.0&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;6.8.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;6.0.0-beta1&quot;
+  },
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+}
+</code></pre><p>二、通过命令行参数启动集群节点</p>
+<pre><code>cd /home/elasticsearch-7.2.0
+
+节点1
+
+./bin/elasticsearch -Enode.name=node-1 -Ehttp.port=9200 -Epath.data=/home/elastic/data -Epath.logs=/home/elastic/log
+
+节点2
+
+./bin/elasticsearch -Enode.name=node-2 -Ehttp.port=8200 -Epath.data=/home/elastic/data1 -Epath.logs=/home/elastic/log1
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/11/05/elasticsearch配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -428,9 +706,13 @@
 </code></pre><h3 id="节点名称，以此作为集群中不同节点的区分条件"><a href="#节点名称，以此作为集群中不同节点的区分条件" class="headerlink" title="节点名称，以此作为集群中不同节点的区分条件"></a>节点名称，以此作为集群中不同节点的区分条件</h3><pre><code>node.name: node-1
 </code></pre><h3 id="网络地址和HTTP端口"><a href="#网络地址和HTTP端口" class="headerlink" title="网络地址和HTTP端口"></a>网络地址和HTTP端口</h3><pre><code>network.host: 192.168.0.1
 http.port: 9200
+
+外网访问
+network.host: 0.0.0.0   
 </code></pre><h3 id="数据存储路径"><a href="#数据存储路径" class="headerlink" title="数据存储路径"></a>数据存储路径</h3><pre><code>path.data: /path/to/data
 </code></pre><h3 id="日志文件路径"><a href="#日志文件路径" class="headerlink" title="日志文件路径"></a>日志文件路径</h3><pre><code>path.logs: /path/to/logs
-</code></pre>
+</code></pre><h3 id="Development-和-production-模式"><a href="#Development-和-production-模式" class="headerlink" title="Development 和 production 模式"></a>Development 和 production 模式</h3><p>以network.host是否绑定localhost判断开发模式或是生产模式</p>
+
           
         
       
@@ -2074,182 +2356,6 @@ BEGIN{FS=&quot;:&quot;}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/10/21/使用Python将HTML转成PDF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/21/使用Python将HTML转成PDF/" itemprop="url">使用Python将HTML转成PDF</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T16:37:40+08:00">
-                2018-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/21/使用Python将HTML转成PDF/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/21/使用Python将HTML转成PDF/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/10/21/使用Python将HTML转成PDF/" class="leancloud_visitors" data-flag-title="使用Python将HTML转成PDF">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>主要使用的是wkhtmltopdf的Python封装——pdfkit </p>
-</blockquote>
-<h3 id="1、Install-python-pdfkit"><a href="#1、Install-python-pdfkit" class="headerlink" title="1、Install python-pdfkit"></a>1、Install python-pdfkit</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pdfkit</span><br></pre></td></tr></table></figure>
-<h3 id="2、Install-wkhtmltopdf"><a href="#2、Install-wkhtmltopdf" class="headerlink" title="2、Install wkhtmltopdf"></a>2、Install wkhtmltopdf</h3><p>Linux<br>在<a href="https://wkhtmltopdf.org/downloads.html" target="_blank" rel="noopener">wkhtmltopdf</a>下载对应的文件, 解压文件到环境变量所在目录, 例如 /opt 或者 /usr/local/bin 然后在此执行.</p>
-<p>Debian / Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install wkhtmltopdf</span><br></pre></td></tr></table></figure></p>
-<p>Windows<br>在<a href="https://wkhtmltopdf.org/downloads.html" target="_blank" rel="noopener">wkhtmltopdf</a>下载对应安装包，安装完成后将可执行文件目录加入环境变量.</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import pdfkit</span><br><span class="line"></span><br><span class="line">   pdfkit.from_url(<span class="string">'http://google.com'</span>, <span class="string">'out.pdf'</span>)</span><br><span class="line">   pdfkit.from_file(<span class="string">'test.html'</span>, <span class="string">'out.pdf'</span>)</span><br><span class="line">   pdfkit.from_string(<span class="string">'Hello!'</span>, <span class="string">'out.pdf'</span>)</span><br></pre></td></tr></table></figure>
-<p>传递url或者文件列表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pdfkit.from_url([<span class="string">'google.com'</span>, <span class="string">'yandex.ru'</span>, <span class="string">'engadget.com'</span>], <span class="string">'out.pdf'</span>)</span><br><span class="line">   pdfkit.from_file([<span class="string">'file1.html'</span>, <span class="string">'file2.html'</span>], <span class="string">'out.pdf'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>传递一个打开的文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(<span class="string">'file.html'</span>) as f:</span><br><span class="line">       pdfkit.from_file(f, <span class="string">'out.pdf'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>如果你想对生成的PDF作进一步处理， 你可以将其读取到一个变量中:<br>设置输出文件为False，将结果赋给一个变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdf = pdfkit.from_url(<span class="string">'http://google.com'</span>, False)</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>参考链接<br>    <a href="http://www.cnblogs.com/taceywong/p/5643978.html" target="_blank" rel="noopener">使用Python将HTML转成PDF</a><br>    <a href="https://github.com/JazzCore/python-pdfkit" target="_blank" rel="noopener">python-pdfkit github</a><br>     wkhtmltopdf安装教程 <a href="https://github.com/JazzCore/python-pdfkit/wiki/Installing-wkhtmltopdf" target="_blank" rel="noopener">Installing-wkhtmltopdf</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2304,7 +2410,7 @@ BEGIN{FS=&quot;:&quot;}
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

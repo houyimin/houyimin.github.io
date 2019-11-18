@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="elasticsearch," />
 
 
 
@@ -86,13 +86,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="踏浪">
-<meta property="og:url" content="https://houyimin.github.io/page/4/index.html">
+<meta name="description" content="一 通过编辑配置文件启动集群 config/elasticsearch.yml master配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP">
+<meta name="keywords" content="elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch集群配置">
+<meta property="og:url" content="https://houyimin.github.io/2019/11/18/elasticsearch集群配置/index.html">
 <meta property="og:site_name" content="踏浪">
+<meta property="og:description" content="一 通过编辑配置文件启动集群 config/elasticsearch.yml master配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-18T12:12:21.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="踏浪">
+<meta name="twitter:title" content="elasticsearch集群配置">
+<meta name="twitter:description" content="一 通过编辑配置文件启动集群 config/elasticsearch.yml master配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP">
 
 
 
@@ -122,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://houyimin.github.io/page/4/"/>
+  <link rel="canonical" href="https://houyimin.github.io/2019/11/18/elasticsearch集群配置/"/>
 
 
 
@@ -137,7 +142,7 @@
 
 
 
-  <title>踏浪</title>
+  <title>elasticsearch集群配置 | 踏浪</title>
   
 
 
@@ -166,8 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/houyimin" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -295,9 +299,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -310,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/11/18/elasticsearch集群配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="踏浪">
@@ -327,9 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/" itemprop="url">Hexo的NexT主题：显示网站访问人数和总访问量</a></h1>
+          <h1 class="post-title" itemprop="name headline">elasticsearch集群配置</h1>
         
 
         <div class="post-meta">
@@ -341,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T18:08:19+08:00">
-                2017-05-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-18T19:49:01+08:00">
+                2019-11-18
               </time>
             
 
@@ -364,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
                   </a>
                 </span>
 
@@ -382,8 +384,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/" itemprop="commentCount"></span>
+                <a href="/2019/11/18/elasticsearch集群配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/elasticsearch集群配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,7 +393,7 @@
 
           
           
-             <span id="/2017/05/18/Hexo的NexT主题：显示网站访问人数和总访问量/" class="leancloud_visitors" data-flag-title="Hexo的NexT主题：显示网站访问人数和总访问量">
+             <span id="/2019/11/18/elasticsearch集群配置/" class="leancloud_visitors" data-flag-title="elasticsearch集群配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -422,12 +424,123 @@
       
 
       
-        
-          
-            <h2 id="显示统计标签"><a href="#显示统计标签" class="headerlink" title="显示统计标签"></a>显示统计标签</h2><h3 id="打开-themes-next-layout-partials-footer-swig文件，复制以下代码至你想要放置的位置。"><a href="#打开-themes-next-layout-partials-footer-swig文件，复制以下代码至你想要放置的位置。" class="headerlink" title="打开\themes\next\layout_partials\footer.swig文件，复制以下代码至你想要放置的位置。"></a>打开\themes\next\layout_partials\footer.swig文件，复制以下代码至你想要放置的位置。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"busuanzi-count"</span>&gt;</span><br><span class="line">  &lt;script async=<span class="string">""</span> src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;span class=<span class="string">"site-uv"</span>&gt;</span><br><span class="line">  &lt;i class=<span class="string">"fa fa-user"</span>&gt; 本站访客数&lt;/i&gt;</span><br><span class="line">  &lt;span class=<span class="string">"busuanzi-value"</span> id=<span class="string">"busuanzi_value_site_uv"</span>&gt;&lt;/span&gt;</span><br><span class="line">  人</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">  &lt;span class=<span class="string">"site-pv"</span>&gt;</span><br><span class="line">  &lt;i class=<span class="string">"fa fa-eye"</span>&gt; 本站总访问量&lt;/i&gt;</span><br><span class="line">  &lt;span class=<span class="string">"busuanzi-value"</span> id=<span class="string">"busuanzi_value_site_pv"</span>&gt;&lt;/span&gt;</span><br><span class="line">  次</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+        <p>一 通过编辑配置文件启动集群 config/elasticsearch.yml</p>
+<h2 id="master配置"><a href="#master配置" class="headerlink" title="master配置"></a>master配置</h2><pre><code># 集群名称
+cluster.name: chenkl
+# 节点名称
+node.name: master
+# 存放数据目录,先创建该目录
+path.data: /home/elastic/data
+# 存放日志目录,先创建该目录
+path.logs: /home/elastic/logs
+# 节点IP
+network.host: 192.168.25.180
+# tcp端口
+transport.tcp.port: 9300
+# http端口
+http.port: 9200
+# 种子节点列表，主节点的IP地址必须在seed_hosts中
+discovery.seed_hosts: [&quot;192.168.25.180&quot;,&quot;192.168.25.181&quot;,&quot;192.168.25.182&quot;]
+# 主合格节点列表，若有多个主节点，则主节点进行对应的配置
+cluster.initial_master_nodes: [&quot;master&quot;]
+# 主节点相关配置
+node.master: true
+node.data: false
+node.ingest: false
+node.ml: false
+cluster.remote.connect: false
+# 跨域
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;
+</code></pre><h2 id="slave1"><a href="#slave1" class="headerlink" title="slave1"></a>slave1</h2><pre><code>cluster.name: chenkl
+node.name: slave1
 
-          
-        
+path.data: /home/elastic/data
+path.logs: /home/elastic/logs
+
+network.host: 192.168.25.181
+transport.tcp.port: 9300
+http.port: 9200
+
+discovery.seed_hosts: [&quot;192.168.25.180&quot;,&quot;192.168.25.181&quot;,&quot;192.168.25.182&quot;]
+cluster.initial_master_nodes: [&quot;master&quot;]
+
+node.master: false
+node.data: true
+node.ingest: false
+node.ml: false
+cluster.remote.connect: false
+
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;
+</code></pre><h2 id="slave2"><a href="#slave2" class="headerlink" title="slave2"></a>slave2</h2><pre><code>cluster.name: chenkl
+node.name: slave2
+
+path.data: /home/elastic/data
+path.logs: /home/elastic/logs
+
+network.host: 192.168.25.182
+transport.tcp.port: 9300
+http.port: 9200
+
+discovery.seed_hosts: [&quot;192.168.25.180&quot;,&quot;192.168.25.181&quot;,&quot;192.168.25.182&quot;]
+cluster.initial_master_nodes: [&quot;master&quot;]
+
+node.master: false
+node.data: true
+node.ingest: false
+node.ml: false
+cluster.remote.connect: false
+
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;
+</code></pre><h2 id="启动所有节点"><a href="#启动所有节点" class="headerlink" title="启动所有节点"></a>启动所有节点</h2><pre><code>cd /home/elasticsearch-7.2.0    
+./bin/elasticsearch
+</code></pre><p>问题  max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p>
+<pre><code>#切换到root用户
+vi /etc/sysctl.conf
+
+#在最后追加
+vm.max_map_count=262144
+
+#使用 sysctl -p 查看修改结果
+sysctl -p
+</code></pre><h2 id="查看集群是否启动成功"><a href="#查看集群是否启动成功" class="headerlink" title="查看集群是否启动成功"></a>查看集群是否启动成功</h2><h3 id="查询集群节点"><a href="#查询集群节点" class="headerlink" title="查询集群节点"></a>查询集群节点</h3><pre><code>curl -XGET &apos;http://localhost:9200/_cat/nodes?v&apos;
+
+ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+127.0.0.1           47          96   6    1.26    1.28     0.86 dilm      *      node-1
+127.0.0.1           26          96   6    1.26    1.28     0.86 dilm      -      node-2
+</code></pre><h3 id="查询单个节点信息"><a href="#查询单个节点信息" class="headerlink" title="查询单个节点信息"></a>查询单个节点信息</h3><pre><code>curl -XGET &apos;http://localhost:9200/&apos;
+
+
+{
+  &quot;name&quot; : &quot;node-2&quot;,
+  &quot;cluster_name&quot; : &quot;my-es&quot;,
+  &quot;cluster_uuid&quot; : &quot;LnsMM4p1Royo4Ea19viusw&quot;,
+  &quot;version&quot; : {
+    &quot;number&quot; : &quot;7.4.2&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;tar&quot;,
+    &quot;build_hash&quot; : &quot;2f90bbf7b93631e52bafb59b3b049cb44ec25e96&quot;,
+    &quot;build_date&quot; : &quot;2019-10-28T20:40:44.881551Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;8.2.0&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;6.8.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;6.0.0-beta1&quot;
+  },
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+}
+</code></pre><p>二、通过命令行参数启动集群节点</p>
+<pre><code>cd /home/elasticsearch-7.2.0
+
+节点1
+
+./bin/elasticsearch -Enode.name=node-1 -Ehttp.port=9200 -Epath.data=/home/elastic/data -Epath.logs=/home/elastic/log
+
+节点2
+
+./bin/elasticsearch -Enode.name=node-2 -Ehttp.port=8200 -Epath.data=/home/elastic/data1 -Epath.logs=/home/elastic/log1
+</code></pre>
       
     </div>
     
@@ -435,170 +548,80 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="踏浪 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
 
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/reward/wechat-reward-image.png" alt="踏浪 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/reward/alipay-reward-image.jpg" alt="踏浪 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2017/04/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T00:00:00+08:00">
-                2017-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/elasticsearch/" rel="tag"><i class="fa fa-tag"></i> elasticsearch</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/12/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/04/12/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/12/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=357126&auto=0&height=66"></iframe>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/05/elasticsearch配置/" rel="next" title="elasticsearch配置">
+                <i class="fa fa-chevron-left"></i> elasticsearch配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -608,14 +631,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -623,6 +643,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -643,8 +670,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -732,6 +768,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#master配置"><span class="nav-number">1.</span> <span class="nav-text">master配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slave1"><span class="nav-number">2.</span> <span class="nav-text">slave1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slave2"><span class="nav-number">3.</span> <span class="nav-text">slave2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动所有节点"><span class="nav-number">4.</span> <span class="nav-text">启动所有节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看集群是否启动成功"><span class="nav-number">5.</span> <span class="nav-text">查看集群是否启动成功</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集群节点"><span class="nav-number">5.1.</span> <span class="nav-text">查询集群节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询单个节点信息"><span class="nav-number">5.2.</span> <span class="nav-text">查询单个节点信息</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -882,6 +934,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

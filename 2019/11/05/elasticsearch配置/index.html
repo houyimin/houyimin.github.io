@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="集群名称,以此作为是否同一集群的判断条件cluster.name: my-application   节点名称，以此作为集群中不同节点的区分条件node.name: node-1 网络地址和HTTP端口network.host: 192.168.0.1 http.port: 9200 数据存储路径path.data: /path/to/data 日志文件路径path.logs: /path/to/">
+<meta name="description" content="集群名称,以此作为是否同一集群的判断条件cluster.name: my-application   节点名称，以此作为集群中不同节点的区分条件node.name: node-1 网络地址和HTTP端口network.host: 192.168.0.1 http.port: 9200  外网访问 network.host: 0.0.0.0    数据存储路径path.data: /path/to/">
 <meta name="keywords" content="elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch配置">
 <meta property="og:url" content="https://houyimin.github.io/2019/11/05/elasticsearch配置/index.html">
 <meta property="og:site_name" content="踏浪">
-<meta property="og:description" content="集群名称,以此作为是否同一集群的判断条件cluster.name: my-application   节点名称，以此作为集群中不同节点的区分条件node.name: node-1 网络地址和HTTP端口network.host: 192.168.0.1 http.port: 9200 数据存储路径path.data: /path/to/data 日志文件路径path.logs: /path/to/">
+<meta property="og:description" content="集群名称,以此作为是否同一集群的判断条件cluster.name: my-application   节点名称，以此作为集群中不同节点的区分条件node.name: node-1 网络地址和HTTP端口network.host: 192.168.0.1 http.port: 9200  外网访问 network.host: 0.0.0.0    数据存储路径path.data: /path/to/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-05T13:06:48.151Z">
+<meta property="og:updated_time" content="2019-11-18T11:46:34.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch配置">
-<meta name="twitter:description" content="集群名称,以此作为是否同一集群的判断条件cluster.name: my-application   节点名称，以此作为集群中不同节点的区分条件node.name: node-1 网络地址和HTTP端口network.host: 192.168.0.1 http.port: 9200 数据存储路径path.data: /path/to/data 日志文件路径path.logs: /path/to/">
+<meta name="twitter:description" content="集群名称,以此作为是否同一集群的判断条件cluster.name: my-application   节点名称，以此作为集群中不同节点的区分条件node.name: node-1 网络地址和HTTP端口network.host: 192.168.0.1 http.port: 9200  外网访问 network.host: 0.0.0.0    数据存储路径path.data: /path/to/">
 
 
 
@@ -428,9 +428,13 @@
 </code></pre><h3 id="节点名称，以此作为集群中不同节点的区分条件"><a href="#节点名称，以此作为集群中不同节点的区分条件" class="headerlink" title="节点名称，以此作为集群中不同节点的区分条件"></a>节点名称，以此作为集群中不同节点的区分条件</h3><pre><code>node.name: node-1
 </code></pre><h3 id="网络地址和HTTP端口"><a href="#网络地址和HTTP端口" class="headerlink" title="网络地址和HTTP端口"></a>网络地址和HTTP端口</h3><pre><code>network.host: 192.168.0.1
 http.port: 9200
+
+外网访问
+network.host: 0.0.0.0   
 </code></pre><h3 id="数据存储路径"><a href="#数据存储路径" class="headerlink" title="数据存储路径"></a>数据存储路径</h3><pre><code>path.data: /path/to/data
 </code></pre><h3 id="日志文件路径"><a href="#日志文件路径" class="headerlink" title="日志文件路径"></a>日志文件路径</h3><pre><code>path.logs: /path/to/logs
-</code></pre>
+</code></pre><h3 id="Development-和-production-模式"><a href="#Development-和-production-模式" class="headerlink" title="Development 和 production 模式"></a>Development 和 production 模式</h3><p>以network.host是否绑定localhost判断开发模式或是生产模式</p>
+
       
     </div>
     
@@ -506,6 +510,10 @@ http.port: 9200
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/18/elasticsearch集群配置/" rel="prev" title="elasticsearch集群配置">
+                elasticsearch集群配置 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -589,7 +597,7 @@ http.port: 9200
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -668,7 +676,7 @@ http.port: 9200
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#集群名称-以此作为是否同一集群的判断条件"><span class="nav-number">1.</span> <span class="nav-text">集群名称,以此作为是否同一集群的判断条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点名称，以此作为集群中不同节点的区分条件"><span class="nav-number">2.</span> <span class="nav-text">节点名称，以此作为集群中不同节点的区分条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络地址和HTTP端口"><span class="nav-number">3.</span> <span class="nav-text">网络地址和HTTP端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储路径"><span class="nav-number">4.</span> <span class="nav-text">数据存储路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志文件路径"><span class="nav-number">5.</span> <span class="nav-text">日志文件路径</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#集群名称-以此作为是否同一集群的判断条件"><span class="nav-number">1.</span> <span class="nav-text">集群名称,以此作为是否同一集群的判断条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点名称，以此作为集群中不同节点的区分条件"><span class="nav-number">2.</span> <span class="nav-text">节点名称，以此作为集群中不同节点的区分条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络地址和HTTP端口"><span class="nav-number">3.</span> <span class="nav-text">网络地址和HTTP端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储路径"><span class="nav-number">4.</span> <span class="nav-text">数据存储路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志文件路径"><span class="nav-number">5.</span> <span class="nav-text">日志文件路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Development-和-production-模式"><span class="nav-number">6.</span> <span class="nav-text">Development 和 production 模式</span></a></li></ol></div>
             
 
           </div>
