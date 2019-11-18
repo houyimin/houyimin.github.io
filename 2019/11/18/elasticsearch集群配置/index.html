@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="一 通过编辑配置文件启动集群 config/elasticsearch.yml master配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP">
+<meta name="description" content="一 通过编辑配置文件启动集群 config/elasticsearch.ymlmaster配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP n">
 <meta name="keywords" content="elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch集群配置">
 <meta property="og:url" content="https://houyimin.github.io/2019/11/18/elasticsearch集群配置/index.html">
 <meta property="og:site_name" content="踏浪">
-<meta property="og:description" content="一 通过编辑配置文件启动集群 config/elasticsearch.yml master配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP">
+<meta property="og:description" content="一 通过编辑配置文件启动集群 config/elasticsearch.ymlmaster配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-18T12:12:21.100Z">
+<meta property="og:updated_time" content="2019-11-18T12:15:14.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch集群配置">
-<meta name="twitter:description" content="一 通过编辑配置文件启动集群 config/elasticsearch.yml master配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP">
+<meta name="twitter:description" content="一 通过编辑配置文件启动集群 config/elasticsearch.ymlmaster配置# 集群名称 cluster.name: chenkl # 节点名称 node.name: master # 存放数据目录,先创建该目录 path.data: /home/elastic/data # 存放日志目录,先创建该目录 path.logs: /home/elastic/logs # 节点IP n">
 
 
 
@@ -424,8 +424,7 @@
       
 
       
-        <p>一 通过编辑配置文件启动集群 config/elasticsearch.yml</p>
-<h2 id="master配置"><a href="#master配置" class="headerlink" title="master配置"></a>master配置</h2><pre><code># 集群名称
+        <h2 id="一-通过编辑配置文件启动集群-config-elasticsearch-yml"><a href="#一-通过编辑配置文件启动集群-config-elasticsearch-yml" class="headerlink" title="一 通过编辑配置文件启动集群 config/elasticsearch.yml"></a>一 通过编辑配置文件启动集群 config/elasticsearch.yml</h2><h3 id="master配置"><a href="#master配置" class="headerlink" title="master配置"></a>master配置</h3><pre><code># 集群名称
 cluster.name: chenkl
 # 节点名称
 node.name: master
@@ -452,7 +451,7 @@ cluster.remote.connect: false
 # 跨域
 http.cors.enabled: true
 http.cors.allow-origin: &quot;*&quot;
-</code></pre><h2 id="slave1"><a href="#slave1" class="headerlink" title="slave1"></a>slave1</h2><pre><code>cluster.name: chenkl
+</code></pre><h3 id="slave1"><a href="#slave1" class="headerlink" title="slave1"></a>slave1</h3><pre><code>cluster.name: chenkl
 node.name: slave1
 
 path.data: /home/elastic/data
@@ -473,7 +472,7 @@ cluster.remote.connect: false
 
 http.cors.enabled: true
 http.cors.allow-origin: &quot;*&quot;
-</code></pre><h2 id="slave2"><a href="#slave2" class="headerlink" title="slave2"></a>slave2</h2><pre><code>cluster.name: chenkl
+</code></pre><h3 id="slave2"><a href="#slave2" class="headerlink" title="slave2"></a>slave2</h3><pre><code>cluster.name: chenkl
 node.name: slave2
 
 path.data: /home/elastic/data
@@ -494,7 +493,7 @@ cluster.remote.connect: false
 
 http.cors.enabled: true
 http.cors.allow-origin: &quot;*&quot;
-</code></pre><h2 id="启动所有节点"><a href="#启动所有节点" class="headerlink" title="启动所有节点"></a>启动所有节点</h2><pre><code>cd /home/elasticsearch-7.2.0    
+</code></pre><h3 id="启动所有节点"><a href="#启动所有节点" class="headerlink" title="启动所有节点"></a>启动所有节点</h3><pre><code>cd /home/elasticsearch-7.2.0    
 ./bin/elasticsearch
 </code></pre><p>问题  max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p>
 <pre><code>#切换到root用户
@@ -505,7 +504,7 @@ vm.max_map_count=262144
 
 #使用 sysctl -p 查看修改结果
 sysctl -p
-</code></pre><h2 id="查看集群是否启动成功"><a href="#查看集群是否启动成功" class="headerlink" title="查看集群是否启动成功"></a>查看集群是否启动成功</h2><h3 id="查询集群节点"><a href="#查询集群节点" class="headerlink" title="查询集群节点"></a>查询集群节点</h3><pre><code>curl -XGET &apos;http://localhost:9200/_cat/nodes?v&apos;
+</code></pre><h3 id="查看集群是否启动成功"><a href="#查看集群是否启动成功" class="headerlink" title="查看集群是否启动成功"></a>查看集群是否启动成功</h3><h3 id="查询集群节点"><a href="#查询集群节点" class="headerlink" title="查询集群节点"></a>查询集群节点</h3><pre><code>curl -XGET &apos;http://localhost:9200/_cat/nodes?v&apos;
 
 ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
 127.0.0.1           47          96   6    1.26    1.28     0.86 dilm      *      node-1
@@ -530,8 +529,7 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
   },
   &quot;tagline&quot; : &quot;You Know, for Search&quot;
 }
-</code></pre><p>二、通过命令行参数启动集群节点</p>
-<pre><code>cd /home/elasticsearch-7.2.0
+</code></pre><h2 id="二、通过命令行参数启动集群节点"><a href="#二、通过命令行参数启动集群节点" class="headerlink" title="二、通过命令行参数启动集群节点"></a>二、通过命令行参数启动集群节点</h2><pre><code>cd /home/elasticsearch-7.2.0
 
 节点1
 
@@ -778,7 +776,7 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#master配置"><span class="nav-number">1.</span> <span class="nav-text">master配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slave1"><span class="nav-number">2.</span> <span class="nav-text">slave1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slave2"><span class="nav-number">3.</span> <span class="nav-text">slave2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动所有节点"><span class="nav-number">4.</span> <span class="nav-text">启动所有节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看集群是否启动成功"><span class="nav-number">5.</span> <span class="nav-text">查看集群是否启动成功</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集群节点"><span class="nav-number">5.1.</span> <span class="nav-text">查询集群节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询单个节点信息"><span class="nav-number">5.2.</span> <span class="nav-text">查询单个节点信息</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-通过编辑配置文件启动集群-config-elasticsearch-yml"><span class="nav-number">1.</span> <span class="nav-text">一 通过编辑配置文件启动集群 config/elasticsearch.yml</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#master配置"><span class="nav-number">1.1.</span> <span class="nav-text">master配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slave1"><span class="nav-number">1.2.</span> <span class="nav-text">slave1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slave2"><span class="nav-number">1.3.</span> <span class="nav-text">slave2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动所有节点"><span class="nav-number">1.4.</span> <span class="nav-text">启动所有节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看集群是否启动成功"><span class="nav-number">1.5.</span> <span class="nav-text">查看集群是否启动成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集群节点"><span class="nav-number">1.6.</span> <span class="nav-text">查询集群节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询单个节点信息"><span class="nav-number">1.7.</span> <span class="nav-text">查询单个节点信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、通过命令行参数启动集群节点"><span class="nav-number">2.</span> <span class="nav-text">二、通过命令行参数启动集群节点</span></a></li></ol></div>
             
 
           </div>
