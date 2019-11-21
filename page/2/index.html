@@ -310,6 +310,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/07/24/Linux-split文件分割命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/24/Linux-split文件分割命令/" itemprop="url">Linux split文件分割命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T13:39:17+08:00">
+                2019-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/24/Linux-split文件分割命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/24/Linux-split文件分割命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/07/24/Linux-split文件分割命令/" class="leancloud_visitors" data-flag-title="Linux split文件分割命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p> Linux split命令用于将一个文件分割成数个。</p>
+</blockquote>
+<h3 id="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"><a href="#该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。" class="headerlink" title="该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。"></a>该指令将大文件分割成较小的文件，在默认情况下将按照每1000行切割成一个小文件。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split [--help][--version][-&lt;行数&gt;][-b &lt;字节&gt;][-C &lt;字节&gt;][-l &lt;行数&gt;][要切割的文件][输出文件名]</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li>-&lt;行数&gt; : 指定每多少行切成一个小文件</li>
+<li>-b&lt;字节&gt; : 指定每多少字节切成一个小文件</li>
+<li>–help : 在线帮助</li>
+<li>–version : 显示版本信息</li>
+<li>-C&lt;字节&gt; : 与参数”-b”相似，但是在切 割时将尽量维持每行的完整性</li>
+<li>[输出文件名] : 设置切割后文件的前置文件名， split会自动在前置文件名后再加上编号</li>
+</ul>
+<h3 id="指定分割文件行数"><a href="#指定分割文件行数" class="headerlink" title="指定分割文件行数"></a>指定分割文件行数</h3><h3 id="例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）"><a href="#例如将一个1-txt文件分成前缀为-o-的多个小文件，每个文件5000行-l-5000-后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a-4）" class="headerlink" title="例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）"></a>例如将一个1.txt文件分成前缀为 o_ 的多个小文件，每个文件5000行(-l 5000)后缀为系数形式，系数不是字母而是数字（-d），后缀系数为四位数（-a 4）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">split -l 5000 1.txt -d -a 4 o_</span><br></pre></td></tr></table></figure>
+<h3 id="生成文件名如下："><a href="#生成文件名如下：" class="headerlink" title="生成文件名如下："></a>生成文件名如下：</h3><p>‘o_0000’,’o_0001’,’o_0002’,’o_0003’</p>
+<h3 id="指定分割后文件大小"><a href="#指定分割后文件大小" class="headerlink" title="指定分割后文件大小"></a>指定分割后文件大小</h3><p>split -b 10m 1.log log</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/05/09/awk文本处理示例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2047,175 +2225,6 @@ BEGIN{FS=&quot;:&quot;}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2018/07/23/本地配置多个ssh-key/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/本地配置多个ssh-key/" itemprop="url">本地配置多个ssh key</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-23T16:23:53+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/23/本地配置多个ssh-key/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/23/本地配置多个ssh-key/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/07/23/本地配置多个ssh-key/" class="leancloud_visitors" data-flag-title="本地配置多个ssh key">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、为gitlab生成ssh key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">'yourEmail@xx.com'</span> -f ~/.ssh/gitlab-rsa</span><br></pre></td></tr></table></figure></p>
-<p>2、为github生成ssh key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">'yourEmail2@xx.com'</span> -f ~/.ssh/github-rsa</span><br></pre></td></tr></table></figure></p>
-<p>3、在~/.ssh目录下新建名称为config的文件（无后缀名）。用于配置多个不同的host使用不同的ssh key，内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitlab</span></span><br><span class="line">Host gitlab.com</span><br><span class="line">    HostName gitlab.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/gitlab-rsa</span><br><span class="line"><span class="comment"># github</span></span><br><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/github-rsa</span><br><span class="line">  ​</span><br><span class="line"><span class="comment"># 配置文件参数</span></span><br><span class="line"><span class="comment"># Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件</span></span><br><span class="line"><span class="comment"># HostName : 要登录主机的主机名</span></span><br><span class="line"><span class="comment"># User : 登录名</span></span><br><span class="line"><span class="comment"># IdentityFile : 指明上面User对应的identityFile路径</span></span><br></pre></td></tr></table></figure>
-<p>4、按照上面的步骤分别往gitlab和github上添加生成的公钥gitlab-rsa.pub和github-rsa.pub</p>
-<p>5、查看ssh key<br>cat ~/.ssh/github-rsa.pub</p>
-<p>6、测试是否连接<br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2270,7 +2279,7 @@ BEGIN{FS=&quot;:&quot;}
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
