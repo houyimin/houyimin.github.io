@@ -438,27 +438,31 @@
             <blockquote>
 <p>Supervisor是个客户端/服务器系统可以在类UNIX操作系统上管理一些进程</p>
 </blockquote>
-<ol>
-<li><p>Supervisord将进程作为其子进程启动，并且可以配置为在崩溃时自动重新启动它们。它还可以自动配置为自行调用启动进程</p>
-</li>
-<li><p>如果以root用户身份启动Supervisor，则可以允许普通用户控制此类进程。 Supervisorctl允许用户通过简单的shell或Web UI发出”停止”，”启动”和”重新启动”命令来查看进程状态并管理受supervisord控制的子进程</p>
-</li>
-<li><p>进程通常需要成组地启动和停止，有时甚至需要按照”优先级顺序”执行。 Supervisor允许您为进程分配优先级，并允许用户通过supervisorctl发出命令，如”全部启动”和”全部重新启动”，这将按照预先分配的优先级顺序启动它们。此外，可以将进程分为”进程组”，并且可以将一组逻辑相关的进程作为一个单元停止和启动。</p>
-</li>
+<blockquote>
+<p>Supervisord将进程作为其子进程启动，并且可以配置为在崩溃时自动重新启动它们。它还可以自动配置为自行调用启动进程</p>
+</blockquote>
+<blockquote>
+<p>如果以root用户身份启动Supervisor，则可以允许普通用户控制此类进程。 Supervisorctl允许用户通过简单的shell或Web UI发出”停止”，”启动”和”重新启动”命令来查看进程状态并管理受supervisord控制的子进程</p>
+</blockquote>
+<blockquote>
+<p>进程通常需要成组地启动和停止，有时甚至需要按照”优先级顺序”执行。 Supervisor允许您为进程分配优先级，并允许用户通过supervisorctl发出命令，如”全部启动”和”全部重新启动”，这将按照预先分配的优先级顺序启动它们。此外，可以将进程分为”进程组”，并且可以将一组逻辑相关的进程作为一个单元停止和启动。</p>
+</blockquote>
+<h3 id="Supervisor-组件"><a href="#Supervisor-组件" class="headerlink" title="Supervisor 组件"></a>Supervisor 组件</h3><ol>
+<li>supervisord</li>
 </ol>
-<h2 id="Supervisor-组件"><a href="#Supervisor-组件" class="headerlink" title="Supervisor 组件"></a>Supervisor 组件</h2><p>1、supervisord</p>
 <p>supervisor的服务器端为supervisord    ，它负责自行调用启动子程序，响应来自客户端的命令，重新启动崩溃或退出的子进程，记录其子进程stdout和stderr输出。<br>服务进程使用配置文件，通常位于 /etc/supervisord.conf. 这个文件是 “Windows-INI” 类型的配置文件. 保持这个文件在文件系统的安全很重要， 因为它可能包含未加密的用户名和密码。</p>
-<p>2、supervisorctl</p>
+<ol start="2">
+<li>supervisorctl</li>
+</ol>
 <p>supervisor的客户端命令行部分是supervisorctl. 它提供了类似shell的接口访问 supervisord的功能. 通过 supervisorctl用户可以连接不同的 supervisord进程 (同时), 获取子进程的状态, 停止和启动子进程, 获取supervisord正在运行的子进程列表.</p>
-<p>3、Web Server</p>
+<ol start="3">
+<li>Web Server</li>
+</ol>
 <p>激活配置文件的[inet_http_server]部分后，可以访问URL（例如<a href="http://localhost:9001" target="_blank" rel="noopener">http://localhost:9001</a> ）以通过Web界面查看和控制进程状态</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install supervisor</span><br></pre></td></tr></table></figure>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>安装完 supervisor 之后，可以运行echo_supervisord_conf 命令输出默认的配置项，也可以重定向到一个配置文件里<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo_supervisord_conf &gt; /etc/supervisord.conf</span><br></pre></td></tr></table></figure></p>
-<p>1、主要配置项</p>
-<p>[supervisord]<br>logfile=/tmp/supervisord.log ; supervisord 主要的日志文件 </p>
-<p>[include]<br>files = /etc/supervisor/*.ini ; 加载需要管理程序的配置文件</p>
-<p>2、需要管理程序的配置文件格式如下，例如需要管理elasticsearch的配置文件，命名为 es1.ini，program中的es1代表程序的唯一标识，不能重复</p>
-<p>[program:es1]<br>command = /home/elastic/elasticsearch-7.4.2/bin/elasticsearch ;启动命令<br>autostart = true   ; 在 supervisord 启动的时候也自动启动<br>startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了<br>autorestart = true   ; 程序异常退出后自动重启<br>startretries = 3     ; 启动失败自动重试次数，默认是 3<br>user = es ;启动用户<br>redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false<br>stdout_logfile_maxbytes = 100MB  ; stdout 日志文件大小，默认 50MB<br>stdout_logfile_backups = 20     ; stdout 日志文件备份数<br>stdout_logfile = /var/log/es1/es1.log ; stdout日志文件</p>
+<p>1、主要配置项<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[supervisord]</span><br><span class="line">logfile=/tmp/supervisord.log ; supervisord 主要的日志文件 </span><br><span class="line">[include]</span><br><span class="line">files = /etc/supervisor/*.ini ; 加载需要管理程序的配置文件</span><br></pre></td></tr></table></figure></p>
+<p>2、需要管理程序的配置文件格式如下，例如需要管理elasticsearch的配置文件，命名为 es1.ini，program中的es1代表程序的唯一标识，不能重复<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[program:es1]</span><br><span class="line"><span class="built_in">command</span> = /home/elastic/elasticsearch-7.4.2/bin/elasticsearch ;启动命令</span><br><span class="line">autostart = <span class="literal">true</span>   ; 在 supervisord 启动的时候也自动启动</span><br><span class="line">startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了</span><br><span class="line">autorestart = <span class="literal">true</span>   ; 程序异常退出后自动重启</span><br><span class="line">startretries = 3     ; 启动失败自动重试次数，默认是 3</span><br><span class="line">user = es ;启动用户</span><br><span class="line">redirect_stderr = <span class="literal">true</span>  ; 把 stderr 重定向到 stdout，默认 <span class="literal">false</span></span><br><span class="line">stdout_logfile_maxbytes = 100MB  ; stdout 日志文件大小，默认 50MB</span><br><span class="line">stdout_logfile_backups = 20     ; stdout 日志文件备份数</span><br><span class="line">stdout_logfile = /var/<span class="built_in">log</span>/es1/es1.log ; stdout日志文件</span><br></pre></td></tr></table></figure></p>
 <h3 id="启动supervisord"><a href="#启动supervisord" class="headerlink" title="启动supervisord"></a>启动supervisord</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supervisord -c /etc/supervisord.conf</span><br></pre></td></tr></table></figure>
 <p>查看 supervisord 是否在运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep supervisord</span><br></pre></td></tr></table></figure></p>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>1、后台进程</p>
@@ -468,9 +472,9 @@
 <p>有时候用 Supervisor 托管的程序还会有子进程（如 Tornado），如果只杀死主进程，子进程就可能变成孤儿进程。通过这两项配置来确保所有子进程都能正确停止：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stopasgroup=<span class="literal">true</span></span><br><span class="line">killasgroup=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <h3 id="使用-supervisorctl"><a href="#使用-supervisorctl" class="headerlink" title="使用 supervisorctl"></a>使用 supervisorctl</h3><p>supervisorctl 是 supervisord 的一个命令行客户端工具</p>
-<p>输入 supervisorctl 进入交互命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ supervisorctl </span><br><span class="line"></span><br><span class="line">&gt; status    <span class="comment"># 查看程序状态</span></span><br><span class="line">&gt; stop es1   <span class="comment"># 关闭 es1 程序</span></span><br><span class="line">&gt; start es1  <span class="comment"># 启动 es1 程序</span></span><br><span class="line">&gt; restart es1    <span class="comment"># 重启 es1 程序</span></span><br></pre></td></tr></table></figure></p>
+<p>输入 supervisorctl 进入交互命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ supervisorctl </span><br><span class="line">&gt; status    <span class="comment"># 查看程序状态</span></span><br><span class="line">&gt; stop es1   <span class="comment"># 关闭 es1 程序</span></span><br><span class="line">&gt; start es1  <span class="comment"># 启动 es1 程序</span></span><br><span class="line">&gt; restart es1    <span class="comment"># 重启 es1 程序</span></span><br></pre></td></tr></table></figure></p>
 <p>除了进入 supervisorctl 的 shell 界面，也可以直接在 bash 终端运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ supervisorctl status</span><br><span class="line">$ supervisorctl stop es1</span><br><span class="line">$ supervisorctl start es1</span><br><span class="line">$ supervisorctl restart es1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ supervisorctl status</span><br><span class="line">$ supervisorctl stop es1</span><br><span class="line">$ supervisorctl start es1</span><br><span class="line">$ supervisorctl restart es1</span><br></pre></td></tr></table></figure>
           
         
       
