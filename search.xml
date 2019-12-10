@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[supervisor进程管理]]></title>
+    <url>%2F2019%2F12%2F10%2Fsupervisor%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[Supervisor是个客户端/服务器系统可以在类UNIX操作系统上管理一些进程 Supervisord将进程作为其子进程启动，并且可以配置为在崩溃时自动重新启动它们。它还可以自动配置为自行调用启动进程 如果以root用户身份启动Supervisor，则可以允许普通用户控制此类进程。 Supervisorctl允许用户通过简单的shell或Web UI发出”停止”，”启动”和”重新启动”命令来查看进程状态并管理受supervisord控制的子进程 进程通常需要成组地启动和停止，有时甚至需要按照”优先级顺序”执行。 Supervisor允许您为进程分配优先级，并允许用户通过supervisorctl发出命令，如”全部启动”和”全部重新启动”，这将按照预先分配的优先级顺序启动它们。此外，可以将进程分为”进程组”，并且可以将一组逻辑相关的进程作为一个单元停止和启动。 Supervisor 组件1、supervisord supervisor的服务器端为supervisord ，它负责自行调用启动子程序，响应来自客户端的命令，重新启动崩溃或退出的子进程，记录其子进程stdout和stderr输出。服务进程使用配置文件，通常位于 /etc/supervisord.conf. 这个文件是 “Windows-INI” 类型的配置文件. 保持这个文件在文件系统的安全很重要， 因为它可能包含未加密的用户名和密码。 2、supervisorctl supervisor的客户端命令行部分是supervisorctl. 它提供了类似shell的接口访问 supervisord的功能. 通过 supervisorctl用户可以连接不同的 supervisord进程 (同时), 获取子进程的状态, 停止和启动子进程, 获取supervisord正在运行的子进程列表. 3、Web Server 激活配置文件的[inet_http_server]部分后，可以访问URL（例如http://localhost:9001 ）以通过Web界面查看和控制进程状态 安装1pip install supervisor 配置安装完 supervisor 之后，可以运行echo_supervisord_conf 命令输出默认的配置项，也可以重定向到一个配置文件里1echo_supervisord_conf &gt; /etc/supervisord.conf 1、主要配置项 [supervisord]logfile=/tmp/supervisord.log ; supervisord 主要的日志文件 [include]files = /etc/supervisor/*.ini ; 加载需要管理程序的配置文件 2、需要管理程序的配置文件格式如下，例如需要管理elasticsearch的配置文件，命名为 es1.ini，program中的es1代表程序的唯一标识，不能重复 [program:es1]command = /home/elastic/elasticsearch-7.4.2/bin/elasticsearch ;启动命令autostart = true ; 在 supervisord 启动的时候也自动启动startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了autorestart = true ; 程序异常退出后自动重启startretries = 3 ; 启动失败自动重试次数，默认是 3user = es ;启动用户redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 falsestdout_logfile_maxbytes = 100MB ; stdout 日志文件大小，默认 50MBstdout_logfile_backups = 20 ; stdout 日志文件备份数stdout_logfile = /var/log/es1/es1.log ; stdout日志文件 启动supervisord1supervisord -c /etc/supervisord.conf 查看 supervisord 是否在运行：1ps aux | grep supervisord 注意1、后台进程 supervisord 要求管理的程序是非 daemon 程序，supervisord 会帮你把它转成 daemon 程序，因此如果用 supervisord 来管理进程，进程需要以非daemon的方式启动。 例如：管理nginx 的话，必须在 nginx 的配置文件里添加一行设置 daemon off 让 nginx 以非 daemon 方式启动 2、子进程 有时候用 Supervisor 托管的程序还会有子进程（如 Tornado），如果只杀死主进程，子进程就可能变成孤儿进程。通过这两项配置来确保所有子进程都能正确停止： 12stopasgroup=truekillasgroup=true 使用 supervisorctlsupervisorctl 是 supervisord 的一个命令行客户端工具 输入 supervisorctl 进入交互命令123456$ supervisorctl &gt; status # 查看程序状态&gt; stop es1 # 关闭 es1 程序&gt; start es1 # 启动 es1 程序&gt; restart es1 # 重启 es1 程序 除了进入 supervisorctl 的 shell 界面，也可以直接在 bash 终端运行 12345$ supervisorctl status$ supervisorctl stop es1$ supervisorctl start es1$ supervisorctl restart es1]]></content>
+      <categories>
+        <category>Python</category>
+        <category>supervisor</category>
+      </categories>
+      <tags>
+        <tag>Python,supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux文件比对sdiff]]></title>
     <url>%2F2019%2F11%2F21%2FLinux%E6%96%87%E4%BB%B6%E6%AF%94%E5%AF%B9sdiff%2F</url>
     <content type="text"><![CDATA[sdiff命令以并排形式显示文件差异。以下是其语法： sdiff [OPTION]... FILE1 FILE2 一、基本用法sdiff file1 file2 文件1和文件2内容一样，如下 $ cat file1 1 2 3 4 5 6 $ cat file2 1 2 3 4 5 6 输出比较结果： $ sdiff file1 file2 1 1 2 2 3 3 4 4 5 5 6 6 这意味着2个文件相同 二、使sdiff忽略大小写假设文件如下： $ cat file1 1A 2 3 4 5 6 $ cat file1 1a 2 3 4 5 6 输出： $ sdiff file1 file2 1A | 1a 2 2 3 3 4 4 5 5 6 6 第二列第一行中的管道（|）表示两个文件在第一行本身是不同的。但是，如果需要，可以强制sdiff忽略大小写，这可以使用-i命令行选项来完成。 $ sdiff -i file1 file2 1A 1a 2 2 3 3 4 4 5 5 6 6 三、忽略空格如果任何文件包含空格，默认情况下sdiff命令将显示差异。但是，如果需要，可以使用-Z命令行选项抑制此行为： $ sdiff file1 file2 1a | 1a 2 2 3 3 4 4 5 5 6 6 $ sdiff -Z file1 file2 1a 1a 2 2 3 3 4 4 5 5 6 6 四、不显示公共行sdiff -s file1 file2]]></content>

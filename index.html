@@ -310,6 +310,214 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/12/10/supervisor进程管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/10/supervisor进程管理/" itemprop="url">supervisor进程管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-10T16:02:32+08:00">
+                2019-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/supervisor/" itemprop="url" rel="index">
+                    <span itemprop="name">supervisor</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/10/supervisor进程管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/10/supervisor进程管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/12/10/supervisor进程管理/" class="leancloud_visitors" data-flag-title="supervisor进程管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Supervisor是个客户端/服务器系统可以在类UNIX操作系统上管理一些进程</p>
+</blockquote>
+<ol>
+<li><p>Supervisord将进程作为其子进程启动，并且可以配置为在崩溃时自动重新启动它们。它还可以自动配置为自行调用启动进程</p>
+</li>
+<li><p>如果以root用户身份启动Supervisor，则可以允许普通用户控制此类进程。 Supervisorctl允许用户通过简单的shell或Web UI发出”停止”，”启动”和”重新启动”命令来查看进程状态并管理受supervisord控制的子进程</p>
+</li>
+<li><p>进程通常需要成组地启动和停止，有时甚至需要按照”优先级顺序”执行。 Supervisor允许您为进程分配优先级，并允许用户通过supervisorctl发出命令，如”全部启动”和”全部重新启动”，这将按照预先分配的优先级顺序启动它们。此外，可以将进程分为”进程组”，并且可以将一组逻辑相关的进程作为一个单元停止和启动。</p>
+</li>
+</ol>
+<h2 id="Supervisor-组件"><a href="#Supervisor-组件" class="headerlink" title="Supervisor 组件"></a>Supervisor 组件</h2><p>1、supervisord</p>
+<p>supervisor的服务器端为supervisord    ，它负责自行调用启动子程序，响应来自客户端的命令，重新启动崩溃或退出的子进程，记录其子进程stdout和stderr输出。<br>服务进程使用配置文件，通常位于 /etc/supervisord.conf. 这个文件是 “Windows-INI” 类型的配置文件. 保持这个文件在文件系统的安全很重要， 因为它可能包含未加密的用户名和密码。</p>
+<p>2、supervisorctl</p>
+<p>supervisor的客户端命令行部分是supervisorctl. 它提供了类似shell的接口访问 supervisord的功能. 通过 supervisorctl用户可以连接不同的 supervisord进程 (同时), 获取子进程的状态, 停止和启动子进程, 获取supervisord正在运行的子进程列表.</p>
+<p>3、Web Server</p>
+<p>激活配置文件的[inet_http_server]部分后，可以访问URL（例如<a href="http://localhost:9001" target="_blank" rel="noopener">http://localhost:9001</a> ）以通过Web界面查看和控制进程状态</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install supervisor</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>安装完 supervisor 之后，可以运行echo_supervisord_conf 命令输出默认的配置项，也可以重定向到一个配置文件里<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo_supervisord_conf &gt; /etc/supervisord.conf</span><br></pre></td></tr></table></figure></p>
+<p>1、主要配置项</p>
+<p>[supervisord]<br>logfile=/tmp/supervisord.log ; supervisord 主要的日志文件 </p>
+<p>[include]<br>files = /etc/supervisor/*.ini ; 加载需要管理程序的配置文件</p>
+<p>2、需要管理程序的配置文件格式如下，例如需要管理elasticsearch的配置文件，命名为 es1.ini，program中的es1代表程序的唯一标识，不能重复</p>
+<p>[program:es1]<br>command = /home/elastic/elasticsearch-7.4.2/bin/elasticsearch ;启动命令<br>autostart = true   ; 在 supervisord 启动的时候也自动启动<br>startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了<br>autorestart = true   ; 程序异常退出后自动重启<br>startretries = 3     ; 启动失败自动重试次数，默认是 3<br>user = es ;启动用户<br>redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false<br>stdout_logfile_maxbytes = 100MB  ; stdout 日志文件大小，默认 50MB<br>stdout_logfile_backups = 20     ; stdout 日志文件备份数<br>stdout_logfile = /var/log/es1/es1.log ; stdout日志文件</p>
+<h3 id="启动supervisord"><a href="#启动supervisord" class="headerlink" title="启动supervisord"></a>启动supervisord</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supervisord -c /etc/supervisord.conf</span><br></pre></td></tr></table></figure>
+<p>查看 supervisord 是否在运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep supervisord</span><br></pre></td></tr></table></figure></p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>1、后台进程</p>
+<p>supervisord 要求管理的程序是非 daemon 程序，supervisord 会帮你把它转成 daemon 程序，因此如果用 supervisord 来管理进程，进程需要以非daemon的方式启动。</p>
+<p>例如：管理nginx 的话，必须在 nginx 的配置文件里添加一行设置 daemon off 让 nginx 以非 daemon 方式启动</p>
+<p>2、子进程</p>
+<p>有时候用 Supervisor 托管的程序还会有子进程（如 Tornado），如果只杀死主进程，子进程就可能变成孤儿进程。通过这两项配置来确保所有子进程都能正确停止：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stopasgroup=<span class="literal">true</span></span><br><span class="line">killasgroup=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用-supervisorctl"><a href="#使用-supervisorctl" class="headerlink" title="使用 supervisorctl"></a>使用 supervisorctl</h3><p>supervisorctl 是 supervisord 的一个命令行客户端工具</p>
+<p>输入 supervisorctl 进入交互命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ supervisorctl </span><br><span class="line"></span><br><span class="line">&gt; status    <span class="comment"># 查看程序状态</span></span><br><span class="line">&gt; stop es1   <span class="comment"># 关闭 es1 程序</span></span><br><span class="line">&gt; start es1  <span class="comment"># 启动 es1 程序</span></span><br><span class="line">&gt; restart es1    <span class="comment"># 重启 es1 程序</span></span><br></pre></td></tr></table></figure></p>
+<p>除了进入 supervisorctl 的 shell 界面，也可以直接在 bash 终端运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ supervisorctl status</span><br><span class="line">$ supervisorctl stop es1</span><br><span class="line">$ supervisorctl start es1</span><br><span class="line">$ supervisorctl restart es1</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/11/21/Linux文件比对sdiff/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2264,184 +2472,6 @@ network.host: 0.0.0.0
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/08/07/CURL常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="踏浪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏浪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/CURL常用命令/" itemprop="url">CURL常用命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T17:22:24+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/08/07/CURL常用命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/07/CURL常用命令/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/08/07/CURL常用命令/" class="leancloud_visitors" data-flag-title="CURL常用命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="下载单个文件"><a href="#下载单个文件" class="headerlink" title="下载单个文件"></a>下载单个文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 将文件下载到本地并命名为mygettext.html</span><br><span class="line"> curl -o mygettext.html http://www.gnu.org/software/gettext/manual/gettext.html</span><br><span class="line"> </span><br><span class="line"> # 将文件保存到本地并命名为gettext.html</span><br><span class="line"> curl -O http://www.gnu.org/software/gettext/manual/gettext.html</span><br></pre></td></tr></table></figure>
-<h2 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h2><p>通过使用-C选项可对大文件使用断点续传功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 当文件在下载完成之前结束该进程</span><br><span class="line">$ curl -O http://www.gnu.org/software/gettext/manual/gettext.html</span><br><span class="line">##############             20.1%</span><br><span class="line"></span><br><span class="line"># 通过添加-C选项继续对该文件进行下载，已经下载过的文件不会被重新下载</span><br><span class="line">curl -C - -O http://www.gnu.org/software/gettext/manual/gettext.html</span><br><span class="line">###############            21.1%</span><br></pre></td></tr></table></figure>
-<h2 id="下载指定时间内修改过的文件"><a href="#下载指定时间内修改过的文件" class="headerlink" title="下载指定时间内修改过的文件"></a>下载指定时间内修改过的文件</h2><p>当下载一个文件时，可对该文件的最后修改日期进行判断，如果该文件在指定日期内修改过，就进行下载，否则不下载。<br>该功能可通过使用-z选项来实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 若yy.html文件在2011/12/21之后有过更新才会进行下载</span><br><span class="line"> curl -z 21-Dec-11 http://www.example.com/yy.html</span><br></pre></td></tr></table></figure>
-<h2 id="CURL授权"><a href="#CURL授权" class="headerlink" title="CURL授权"></a>CURL授权</h2><p>在访问需要授权的页面时，可通过-u选项提供用户名和密码进行授权<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -u username:password URL </span><br><span class="line"># 通常的做法是在命令行只输入用户名，之后会提示输入密码，这样可以保证在查看历史记录时不会将密码泄露</span><br><span class="line">curl -u username URL</span><br></pre></td></tr></table></figure></p>
-<h2 id="从FTP服务器下载文件"><a href="#从FTP服务器下载文件" class="headerlink" title="从FTP服务器下载文件"></a>从FTP服务器下载文件</h2><p>CURL同样支持FTP下载，若在url中指定的是某个文件路径而非具体的某个要下载的文件名，CURL则会列出该目录下的所有文件名而并非下载该目录下的所有文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 列出public_html下的所有文件夹和文件</span><br><span class="line"> curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/</span><br><span class="line"> </span><br><span class="line"> # 下载xss.php文件</span><br><span class="line"> curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/xss.php</span><br></pre></td></tr></table></figure>
-<h2 id="保存与使用网站cookie信息"><a href="#保存与使用网站cookie信息" class="headerlink" title="保存与使用网站cookie信息"></a>保存与使用网站cookie信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 将网站的cookies信息保存到sugarcookies文件中</span><br><span class="line"> curl -D sugarcookies http://localhost/sugarcrm/index.php</span><br><span class="line"> </span><br><span class="line"> # 使用上次保存的cookie信息</span><br><span class="line"> curl -b sugarcookies http://localhost/sugarcrm/index.php</span><br></pre></td></tr></table></figure>
-<h2 id="传递请求数据"><a href="#传递请求数据" class="headerlink" title="传递请求数据"></a>传递请求数据</h2><p>默认curl使用GET方式请求数据，这种方式下直接通过URL传递数据<br>可以通过 –data/-d 方式指定使用POST方式传递数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># GET</span><br><span class="line">curl -u username https://api.github.com/user?access_token=XXXXXXXXXX</span><br><span class="line"></span><br><span class="line"># POST</span><br><span class="line">curl -u username --data &quot;param1=value1&amp;param2=value&quot; https://api.github.com</span><br><span class="line"></span><br><span class="line"># 也可以指定一个文件，将该文件中的内容当作数据传递给服务器端</span><br><span class="line">curl --data @filename https://github.api.com/authorizations</span><br></pre></td></tr></table></figure>
-<p>注：默认情况下，通过POST方式传递过去的数据中若有特殊字符，首先需要将特殊字符转义在传递给服务器端，如value值中包含有空格，则需要先将空格转换成%20，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -d &quot;value%201&quot; http://hostname.com</span><br></pre></td></tr></table></figure>
-<p>在新版本的CURL中，提供了新的选项 –data-urlencode，通过该选项提供的参数会自动转义特殊字符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --data-urlencode &quot;value 1&quot; http://hostname.com</span><br></pre></td></tr></table></figure></p>
-<p>除了使用GET和POST协议外，还可以通过 -X 选项指定其它协议，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -I -X DELETE https://api.github.cim</span><br></pre></td></tr></table></figure></p>
-<p>上传文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --form &quot;fileupload=@filename.txt&quot; http://hostname/resource</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2496,7 +2526,7 @@ network.host: 0.0.0.0
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2507,7 +2537,7 @@ network.host: 0.0.0.0
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2518,7 +2548,7 @@ network.host: 0.0.0.0
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
