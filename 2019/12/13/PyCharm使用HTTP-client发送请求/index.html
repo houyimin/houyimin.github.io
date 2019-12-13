@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="PyCharm," />
 
 
 
@@ -86,13 +86,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="踏浪">
-<meta property="og:url" content="https://houyimin.github.io/archives/page/3/index.html">
+<meta name="description" content="测试Web服务时，可以直接在PyCharm代码编辑器中创建，编辑和执行HTTP请求  HTTP请求存储在.http和.rest文件中 1、创建HTTP请求文件 在文件菜单，点New 创建 HTTP Request 2、写HTTP请求 格式如下1234Method Request-URI HTTP-VersionHeader-field: Header-valueRequest-Body [参考链">
+<meta name="keywords" content="PyCharm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyCharm使用HTTP client发送请求">
+<meta property="og:url" content="https://houyimin.github.io/2019/12/13/PyCharm使用HTTP-client发送请求/index.html">
 <meta property="og:site_name" content="踏浪">
+<meta property="og:description" content="测试Web服务时，可以直接在PyCharm代码编辑器中创建，编辑和执行HTTP请求  HTTP请求存储在.http和.rest文件中 1、创建HTTP请求文件 在文件菜单，点New 创建 HTTP Request 2、写HTTP请求 格式如下1234Method Request-URI HTTP-VersionHeader-field: Header-valueRequest-Body [参考链">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-13T13:49:56.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="踏浪">
+<meta name="twitter:title" content="PyCharm使用HTTP client发送请求">
+<meta name="twitter:description" content="测试Web服务时，可以直接在PyCharm代码编辑器中创建，编辑和执行HTTP请求  HTTP请求存储在.http和.rest文件中 1、创建HTTP请求文件 在文件菜单，点New 创建 HTTP Request 2、写HTTP请求 格式如下1234Method Request-URI HTTP-VersionHeader-field: Header-valueRequest-Body [参考链">
 
 
 
@@ -122,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://houyimin.github.io/archives/page/3/"/>
+  <link rel="canonical" href="https://houyimin.github.io/2019/12/13/PyCharm使用HTTP-client发送请求/"/>
 
 
 
@@ -137,7 +142,7 @@
 
 
 
-  <title>归档 | 踏浪</title>
+  <title>PyCharm使用HTTP client发送请求 | 踏浪</title>
   
 
 
@@ -166,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/houyimin" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -295,415 +300,235 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 37 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://houyimin.github.io/2019/12/13/PyCharm使用HTTP-client发送请求/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="踏浪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏浪">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">PyCharm使用HTTP client发送请求</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-13T16:26:28+08:00">
+                2019-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/10/Docker-安装/" itemprop="url">
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">Docker 安装</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-10T16:21:45+08:00"
-              content="2018-09-10" >
-          09-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/26/pyenv切换python版本/" itemprop="url">
               
-                <span itemprop="name">pyenv切换python版本</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PyCharm/" itemprop="url" rel="index">
+                    <span itemprop="name">PyCharm</span>
+                  </a>
+                </span>
+
+                
+                
               
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-26T22:19:05+08:00"
-              content="2018-07-26" >
-          07-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/23/本地配置多个ssh-key/" itemprop="url">
-              
-                <span itemprop="name">本地配置多个ssh key</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-23T16:23:53+08:00"
-              content="2018-07-23" >
-          07-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/17/Python导出CSV/" itemprop="url">
-              
-                <span itemprop="name">Python导出CSV</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-17T10:50:38+08:00"
-              content="2018-07-17" >
-          07-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/25/awk文件比对/" itemprop="url">
-              
-                <span itemprop="name">awk文件比对</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-25T17:30:34+08:00"
-              content="2018-06-25" >
-          06-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/09/MYSQL备份/" itemprop="url">
-              
-                <span itemprop="name">MYSQL备份</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-09T14:20:57+08:00"
-              content="2018-04-09" >
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/09/Mysql-导入导出CSV/" itemprop="url">
-              
-                <span itemprop="name">MYSQL 导入导出CSV</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-09T11:47:03+08:00"
-              content="2018-04-09" >
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/13/PyCharm使用HTTP-client发送请求/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/13/PyCharm使用HTTP-client发送请求/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/2019/12/13/PyCharm使用HTTP-client发送请求/" class="leancloud_visitors" data-flag-title="PyCharm使用HTTP client发送请求">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/12/Python安装/" itemprop="url">
-              
-                <span itemprop="name">Python安装</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-12T11:12:23+08:00"
-              content="2017-10-12" >
-          10-12
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/30/Linux在history添加时间和用户/" itemprop="url">
-              
-                <span itemprop="name">Linux在history添加时间和用户</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-30T15:55:51+08:00"
-              content="2017-09-30" >
-          09-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/03/Python独立开发环境配置/" itemprop="url">
-              
-                <span itemprop="name">Python独立开发环境virtualenv配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-03T17:38:05+08:00"
-              content="2017-07-03" >
-          07-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <blockquote>
+<p>测试Web服务时，可以直接在PyCharm代码编辑器中创建，编辑和执行HTTP请求</p>
+</blockquote>
+<p>HTTP请求存储在.http和.rest文件中</p>
+<p>1、创建HTTP请求文件</p>
+<p>在文件菜单，点New 创建 HTTP Request</p>
+<p>2、写HTTP请求</p>
+<p>格式如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Method Request-URI HTTP-Version</span><br><span class="line">Header-field: Header-value</span><br><span class="line"></span><br><span class="line">Request-Body</span><br></pre></td></tr></table></figure></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="[参考链接]"></a>[参考链接]</h3><p> <a href="https://www.jetbrains.com/help/pycharm/http-client-in-product-code-editor.html" target="_blank" rel="noopener">官方文档</a></p>
+
+      
     </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="踏浪 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/reward/wechat-reward-image.png" alt="踏浪 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/reward/alipay-reward-image.jpg" alt="踏浪 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PyCharm/" rel="tag"><i class="fa fa-tag"></i> PyCharm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/10/supervisor进程管理/" rel="next" title="supervisor进程管理">
+                <i class="fa fa-chevron-left"></i> supervisor进程管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -711,6 +536,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -731,8 +563,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -820,6 +661,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">[参考链接]</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -970,6 +827,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
