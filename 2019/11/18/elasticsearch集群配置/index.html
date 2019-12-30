@@ -379,16 +379,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/18/elasticsearch集群配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/elasticsearch集群配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -649,7 +639,8 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
   
     <div class="comments" id="comments">
     </div>
-  
+
+   
 
 
 
@@ -979,28 +970,22 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: '83BITI5PMUub7HfGHiyrdxR6-gzGzoHsz',
-        appKey: 'DvtSPEz05qusKMdmO2VVyLXi',
-        placeholder: 'Write your comment',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '317071a25642cf9f34f2',
+          clientSecret: '7397b8abdd7445629b73b0286536b920593e8c7d',
+          repo: 'houyimin.github.io',
+          owner: 'houyimin',
+          admin: ['houyimin'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
   
