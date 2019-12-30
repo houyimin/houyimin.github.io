@@ -974,6 +974,7 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
    <script type="text/javascript">
         var gitalk = new Gitalk({
           clientID: '317071a25642cf9f34f2',
@@ -981,7 +982,7 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
           repo: 'houyimin.github.io',
           owner: 'houyimin',
           admin: ['houyimin'],
-          id: location.pathname,
+          id:md5(location.pathname),
           distractionFreeMode: 'true'
         })
         gitalk.render('gitalk-container')           
